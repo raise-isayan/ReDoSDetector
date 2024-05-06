@@ -279,6 +279,24 @@ public class ReDosDetectorTest {
     }
 
     @Test
+    public void testAttackString() {
+        System.out.println("testAttackString");
+        ReDosDetector detect = new ReDosDetector();
+        String regex = "(aa|aa)*$";
+        String flags = "";
+        DetectIssue result = detect.scan(regex, flags);
+        System.out.println("debug:" + result.debugStringClassName());
+        if (result.getAttack().isPresent()) {
+            AttackString atk = result.getAttack().get();
+            System.out.println("asUString:" + atk.getAsUString());
+            System.out.println("getFixedSize:" + atk.getFixedSize());
+            System.out.println("getRepeatSize:" + atk.getRepeatSize());
+            System.out.println("getRepeatCount:" + atk.getRepeatCount());
+            System.out.println("toString:" + atk.toString());
+        }
+    }
+
+    @Test
     public void testTimeout() {
         System.out.println("testTimeout");
         ReDosDetector detect = new ReDosDetector();

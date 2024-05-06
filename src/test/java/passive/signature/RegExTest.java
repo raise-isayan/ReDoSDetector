@@ -1,6 +1,7 @@
 package passive.signature;
 
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -93,5 +94,17 @@ public class RegExTest {
             }
         }
     }
+
+
+    @Test
+    public void testReDoS() {
+        System.out.println("testReDoS");
+        Pattern p = Pattern.compile("/([a-zA-Z0-9]+)*$/");
+        Matcher m = p.matcher("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@");
+        boolean result = m.find();
+        System.out.println("math:" + result);
+
+    }
+
 
 }

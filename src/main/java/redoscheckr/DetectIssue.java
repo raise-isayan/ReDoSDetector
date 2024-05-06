@@ -20,7 +20,6 @@ public class DetectIssue {
 
     private ReDoSOption.FieldType[] fieldType;
     private ReDoSOption.StatusType status;
-    private String hostspot;
     private final Map<ReDoSOption.FieldType, Object> map = new HashMap<>();
 
     static DetectIssue parseDiagnostics(Diagnostics diagnostics) {
@@ -35,7 +34,6 @@ public class DetectIssue {
             result.fieldType[i] = ReDoSOption.FieldType.parseEnum(nameList.get(i));
         }
         for (int i = 0; i < result.fieldType.length; i++) {
-            System.out.println(result.fieldType[i] + ":" + diagnostics.productElement(i).getClass().getName());
             result.map.put(result.fieldType[i], diagnostics.productElement(i));
         }
         return result;
@@ -60,10 +58,11 @@ public class DetectIssue {
         return ReDoSOption.CheckerType.parseEnum(StringUtil.toString(checker));
     }
 
-    public Optional<String> getAttack() {
+    public Optional<AttackString> getAttack() {
         var attack = map.get(ReDoSOption.FieldType.ATTACK);
-        if (attack != null) {
-            return Optional.ofNullable(StringUtil.toString(attack));
+        if (attack instanceof codes.quine.labs.recheck.diagnostics.AttackPattern attackPattern) {
+            AttackString attackString = AttackString.valueOf(attackPattern);
+            return Optional.ofNullable(attackString);
         } else {
             return Optional.empty();
         }
@@ -104,6 +103,15 @@ public class DetectIssue {
         } else {
             return Optional.empty();
         }
+    }
+
+    public String debugStringClassName() {
+        StringBuilder buff = new StringBuilder();
+        for (int i = 0; i < fieldType.length; i++) {
+            buff.append(fieldType[i] + ":" + map.get(fieldType[i]).getClass().getName());
+            buff.append("\r\n");
+        }
+        return buff.toString();
     }
 
 }

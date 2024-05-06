@@ -12,6 +12,10 @@ import scala.collection.immutable.Seq;
  */
 public class HotSpot {
 
+    private HotSpot() {
+
+    }
+
     public enum Temperature {
         HEAT(codes.quine.labs.recheck.diagnostics.Hotspot.Heat$.MODULE$),
         NORMAL(codes.quine.labs.recheck.diagnostics.Hotspot.Normal$.MODULE$);

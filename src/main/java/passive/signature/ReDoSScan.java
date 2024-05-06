@@ -34,6 +34,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import redoscheckr.AttackString;
 import redoscheckr.DetectIssue;
 import redoscheckr.HotSpot;
 import redoscheckr.ReDoSOption;
@@ -70,21 +71,21 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
     private final ReDosDetector detect = new ReDosDetector();
 
     final static Pattern JS_PATTERNS[] = {
-        Pattern.compile("\\snew\\s{1,6}RegExp\\(\\s{0,6}(?:\"(.*?)\"\\s*(?:,\\s{0,6}\"([dgimsuvy]+)\"\\s{0,6})?)\\)"),
-        Pattern.compile("\\snew\\s{1,6}RegExp\\((?:/(.*?)/([dgimsuvy]+)?)\\)"),
-        Pattern.compile("/(.*)/([dgimsuvy]+)?\\.(?:test|exec)\\(.*?\\)"),
-    };
+        Pattern.compile("\\snew\\s{1,6}RegExp\\(\\s{0,6}(?:\"(.*?)\"\\s*(?:,\\s{0,6}\"(d?g?i?m?s?u?v?y?)\"\\s{0,6})?)\\)"),
+        Pattern.compile("\\snew\\s{1,6}RegExp\\((?:/(.*?)/(d?g?i?m?s?u?v?y?))\\)"),
+        Pattern.compile("/(.*)/(d?g?i?m?s?u?v?y?)\\.(?:test|exec)\\(.*?\\)"),};
 
     final static Pattern VALIDATION_PATTERNS[] = {
         Pattern.compile("\\smatch the pattern( of)?:? [\"\'`/]?(.*?)[\"\'`/]?\\s"),
         Pattern.compile("\\sregular expression pattern: [\"\'`/]?(.*?)[\"\'`/]?\\s"),
-        Pattern.compile("\\spattern [\"\'`/]?(.*?)[\"\'`/]?\\s"),
-    };
+        Pattern.compile("\\spattern [\"\'`/]?(.*?)[\"\'`/]?\\s"),};
 
+    // https://www.php.net/regexp.reference.internal-options
     final static Pattern ERROR_PATTERNS[] = {
         Pattern.compile("\\WPattern.compile\\([\"](.*)[\"]\\)\\W"), // Java
-        Pattern.compile("\\Wpreg_match\\([/\"'](.*)[/\"']\\)\\W"),      // php
-        Pattern.compile("\\Wpreg_replace\\([/\"'](.*)[/\"']\\)\\W"),    // php
+        Pattern.compile("\\Wpreg_match\\([\"']/(.*)/(i?m?s?x?U?X?J?)[\"']\\)\\W"), // php
+        Pattern.compile("\\Wpreg_replace\\([\"']/(.*)/(i?m?s?x?U?X?J?)[\"']\\)\\W"), // php
+        Pattern.compile("\\Wpreg_all\\([\"']/(.*)/(i?m?s?x?U?X?J?)[\"']\\)\\W"), // php
     };
 
     @Override
@@ -312,10 +313,14 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
             detail.append("</div>");
         }
         if (issue.getAttack().isPresent()) {
+            AttackString attackString = issue.getAttack().get();
             detail.append("<div>");
             detail.append("<p><strong>Attack String:</strong></p>");
             detail.append("<p><code>");
-            detail.append(issue.getAttack().get());
+            detail.append(HttpUtil.toHtmlEncode(attackString.toString()));
+            detail.append("</code></p>");
+            detail.append("<p><code>");
+            detail.append(HttpUtil.toHtmlEncode(attackString.getAsUString()));
             detail.append("</code></p>");
             detail.append("</div>");
         }
@@ -336,9 +341,6 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
 
                 if (i + 1 < sps.size()) {
                     detail.append(source.substring(sps.get(i).getEnd(), sps.get(i + 1).getStart()));
-                    detail.append("<strong color='red'>");
-                    detail.append(HttpUtil.toHtmlEncode(source.substring(sps.get(i + 1).getStart(), sps.get(i + 1).getEnd())));
-                    detail.append("</strong>");
                 }
                 if (i + 1 == sps.size()) {
                     detail.append(HttpUtil.toHtmlEncode(source.substring(sps.get(i).getEnd())));

@@ -12,6 +12,11 @@ import scala.Option;
  */
 public class ReDosDetector {
 
+    public DetectIssue scan(String regvalue, String flags) {
+        final ReDoSOption option = new ReDoSOption();
+        return scan(regvalue, flags, option);
+    }
+
     public DetectIssue scan(String regvalue, String flags, ReDoSOption option) {
         // https://makenowjust-labs.github.io/recheck/docs/usage/parameters/
         Parameters params = Parameters.apply(
