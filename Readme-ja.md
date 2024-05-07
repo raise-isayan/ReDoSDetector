@@ -8,6 +8,8 @@ Burp Pro/Communityに対応しています。
 
 この拡張はReDoSの判定および検出を目的としたツールです。
 
+ReDoS判定のライブラリに「https://makenowjust-labs.github.io/recheck/」を利用しています。
+
 ## 最新版について
 
 メインのリポジトリ(main)には開発中のコードが含まれている場合があります。
@@ -21,7 +23,7 @@ Burp Pro/Communityに対応しています。
 
 ## 利用方法
 
-Burp suite の Extenderは以下の手順で読み込めます。
+Burp suite の Extender は以下の手順で読み込めます。
 
 1. [Extender]タブの[add]をクリック
 2. [Select file ...]をクリックし、ReDoSDetector.jar を選択する。
@@ -31,7 +33,21 @@ Burp suite の Extenderは以下の手順で読み込めます。
 
 Burp SuiteにReDoSDetectorタブが追加されます。
 
-![ReDoSDetector Tab](/image/ReDoSDetectorTab.png)
+#### Scan
+
+手動でのReDoSのチェックを行えます。
+
+![ReDoSDetector Tab Scan](/image/ReDoSDetectorTab-Scan.png)
+
+#### Advance
+
+ReDoSのスキャンオプションを指定します。
+
+![ReDoSDetector Tab Option](/image/ReDoSDetectorTab-Option.png)
+
+スキャンオプションの詳細については以下を参照ください。
+
+* https://makenowjust-labs.github.io/recheck/docs/usage/parameters/
 
 ## GUIオプション
 

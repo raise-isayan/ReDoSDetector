@@ -23,8 +23,6 @@ import extension.helpers.HttpUtil;
 import extension.helpers.SmartCodec;
 import extension.helpers.json.JsonUtil;
 import java.awt.Component;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -56,29 +54,17 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
 
     private final ReDoSDetectorTab tabReDoSDetectorTab = new ReDoSDetectorTab();
 
-    public final PropertyChangeListener newPropertyChangeListener() {
-        return new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                if (SIGNATURE_PROPERTY.equals(evt.getPropertyName())) {
-                    ReDoSOption redosProperty = tabReDoSDetectorTab.getOption();
-                    property.setProperty(redosProperty);
-                }
-            }
-        };
-    }
-
     private final ReDosDetector detect = new ReDosDetector();
 
     final static Pattern JS_PATTERNS[] = {
-        Pattern.compile("\\snew\\s{1,6}RegExp\\(\\s{0,6}(?:\"(.*?)\"\\s*(?:,\\s{0,6}\"(d?g?i?m?s?u?v?y?)\"\\s{0,6})?)\\)"),
-        Pattern.compile("\\snew\\s{1,6}RegExp\\((?:/(.*?)/(d?g?i?m?s?u?v?y?))\\)"),
+        Pattern.compile("\\Wnew\\s{1,6}RegExp\\(\\s{0,6}(?:\"(.*?)\"\\s*(?:,\\s{0,6}\"(d?g?i?m?s?u?v?y?)\"\\s{0,6})?)\\)"),
+        Pattern.compile("\\Wnew\\s{1,6}RegExp\\((?:/(.*?)/(d?g?i?m?s?u?v?y?))\\)"),
         Pattern.compile("/(.*)/(d?g?i?m?s?u?v?y?)\\.(?:test|exec)\\(.*?\\)"),};
 
     final static Pattern VALIDATION_PATTERNS[] = {
-        Pattern.compile("\\smatch the pattern( of)?:? [\"\'`/]?(.*?)[\"\'`/]?\\s"),
-        Pattern.compile("\\sregular expression pattern: [\"\'`/]?(.*?)[\"\'`/]?\\s"),
-        Pattern.compile("\\spattern [\"\'`/]?(.*?)[\"\'`/]?\\s"),};
+        Pattern.compile("\\Wmatch the pattern(?: of)?: [\"\'`/]?(.*?)[\"\'`/]?\\s"),
+        Pattern.compile("\\Wregular expression pattern: [\"\'`/]?(.*?)[\"\'`/]?\\s"),
+        Pattern.compile("\\Wpattern [\"\'`/]?(.*?)[\"\'`/]?\\s"),};
 
     // https://www.php.net/regexp.reference.internal-options
     final static Pattern ERROR_PATTERNS[] = {
@@ -113,7 +99,9 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
                                         issueItem.setServerity(Severity.LOW);
                                         issueItem.setConfidence(Confidence.FIRM);
                                         issueItem.setCaptureValue(m.group(1));
-                                        issueItem.setFlgags(m.group(2));
+                                        if (m.groupCount() >= 2) {
+                                            issueItem.setFlgags(m.group(2));
+                                        }
                                         issueItem.setStart(m.start(1));
                                         issueItem.setEnd(m.end(1));
                                         issueItem.setDetectIssue(result);
@@ -128,7 +116,7 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
                                 Matcher m = ReDoSScan.VALIDATION_PATTERNS[i].matcher(wrapResponse.getMessageString(wrapResponse.getGuessCharset(StandardCharsets.UTF_8.name())));
                                 while (m.find()) {
                                     String regex = ConvertUtil.decodeJsonLiteral(m.group(1), false);
-                                    String flags = m.group(2);
+                                    String flags = "";
                                     DetectIssue result = detect.scan(regex, flags, this.getOption());
                                     if (result.getStatus() == ReDoSOption.StatusType.VULNERABLE) {
                                         List<ReDoSIssueItem> issueList = new ArrayList<>();
@@ -138,7 +126,9 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
                                         issueItem.setServerity(Severity.MEDIUM);
                                         issueItem.setConfidence(Confidence.FIRM);
                                         issueItem.setCaptureValue(m.group(1));
-                                        issueItem.setFlgags(m.group(2));
+                                        if (m.groupCount() >= 2) {
+                                            issueItem.setFlgags(m.group(2));
+                                        }
                                         issueItem.setStart(m.start(1));
                                         issueItem.setEnd(m.end(1));
                                         issueItem.setDetectIssue(result);
@@ -162,7 +152,9 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
                                         issueItem.setServerity(Severity.MEDIUM);
                                         issueItem.setConfidence(Confidence.FIRM);
                                         issueItem.setCaptureValue(m.group(1));
-                                        issueItem.setFlgags(m.group(2));
+                                        if (m.groupCount() >= 2) {
+                                            issueItem.setFlgags(m.group(2));
+                                        }
                                         issueItem.setStart(m.start(1));
                                         issueItem.setEnd(m.end(1));
                                         issueItem.setDetectIssue(result);
@@ -224,7 +216,7 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
                 detail.append("<h4>ReDoS:</h4>");
                 for (ReDoSIssueItem markItem : issueItems) {
                     DetectIssue detectIssue = markItem.getReDoSIssue();
-                    detail.append(toDetectIssueLabel(detectIssue));
+                    detail.append(toDetectIssueLabel(detectIssue, false));
                 }
                 return detail.toString();
             }
@@ -283,52 +275,46 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
         return result;
     }
 
-    public static String toDetectIssueLabel(DetectIssue issue) {
+    public static String toDetectIssueLabel(DetectIssue issue, boolean fullTag) {
         StringBuilder detail = new StringBuilder();
-        detail.append("<html>");
-        detail.append("<div>");
+        if (fullTag) {
+            detail.append("<html>");
+        }
         detail.append("<p><strong>Source:</strong></p>");
-        detail.append("<p>");
+        detail.append("<ul>");
         detail.append(HttpUtil.toHtmlEncode(issue.getSource()));
-        detail.append("</p>");
-        detail.append("</div>");
-        detail.append("<div>");
+        detail.append("</ul>");
         detail.append("<p><strong>Status:</strong></p>");
-        detail.append("<p>");
+        detail.append("<ul>");
         detail.append(toStatusLabel(issue.getStatus()));
-        detail.append("</p>");
-        detail.append("</div>");
-        detail.append("<div>");
+        detail.append("</ul>");
         detail.append("<p><strong>Checker:</strong></p>");
-        detail.append("<p>");
+        detail.append("<ul>");
         detail.append(HttpUtil.toHtmlEncode(issue.getChecker().name().toLowerCase()));
-        detail.append("</p>");
-        detail.append("</div>");
+        detail.append("</ul>");
         if (issue.getComplexity().isPresent()) {
-            detail.append("<div>");
             detail.append("<p><strong>Complexity:</strong></p>");
-            detail.append("<p>");
+            detail.append("<ul>");
             detail.append(HttpUtil.toHtmlEncode(issue.getComplexity().get().name().toLowerCase()));
-            detail.append("</p>");
-            detail.append("</div>");
+            detail.append("</ul>");
         }
         if (issue.getAttack().isPresent()) {
             AttackString attackString = issue.getAttack().get();
-            detail.append("<div>");
             detail.append("<p><strong>Attack String:</strong></p>");
+            detail.append("<ul>");
             detail.append("<p><code>");
             detail.append(HttpUtil.toHtmlEncode(attackString.toString()));
             detail.append("</code></p>");
             detail.append("<p><code>");
             detail.append(HttpUtil.toHtmlEncode(attackString.getAsUString()));
             detail.append("</code></p>");
-            detail.append("</div>");
+            detail.append("</ul>");
         }
         if (issue.getHotspot().isPresent()) {
             String source = issue.getSource();
             HotSpot hotsopt = issue.getHotspot().get();
-            detail.append("<div>");
             detail.append("<p><strong>Hotspot:</strong></p>");
+            detail.append("<ul>");
             detail.append("<p><code>");
             List<HotSpot.Spot> sps = hotsopt.getSpotList();
             for (int i = 0; i < sps.size(); i++) {
@@ -347,25 +333,27 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
                 }
             }
             detail.append("</code></p>");
-            detail.append("</div>");
+            detail.append("</ul>");
         }
         if (issue.getLogger().isPresent()) {
-            detail.append("<div>");
             detail.append("<p><strong>Logger:</strong></p>");
+            detail.append("<ul>");
             detail.append("<p><code>");
             detail.append(HttpUtil.toHtmlEncode(issue.getLogger().get()));
             detail.append("</code></p>");
-            detail.append("</div>");
+            detail.append("</ul>");
         }
         if (issue.getError().isPresent()) {
-            detail.append("<div>");
             detail.append("<p><strong>Error:</strong></p>");
+            detail.append("<ul>");
             detail.append("<p>");
             detail.append(HttpUtil.toHtmlEncode(issue.getError().get()));
             detail.append("</p>");
-            detail.append("</div>");
+            detail.append("</ul>");
         }
-        detail.append("</html>");
+        if (fullTag) {
+            detail.append("</html>");
+        }
         return detail.toString();
     }
 

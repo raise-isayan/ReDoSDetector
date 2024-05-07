@@ -1,5 +1,6 @@
 package passive.signature;
 
+import burp.BurpExtension;
 import extension.helpers.StringUtil;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -8,6 +9,8 @@ import java.awt.Toolkit;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.EnumSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
@@ -22,6 +25,8 @@ import redoscheckr.ReDosDetector;
  * @author isayan
  */
 public class ReDoSDetectorTab extends javax.swing.JPanel {
+
+    private final static Logger logger = Logger.getLogger(ReDoSDetectorTab.class.getName());
 
     /**
      * Creates new form ReDoSDetectorTab
@@ -150,6 +155,7 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
         spnSeedingLimit = new javax.swing.JSpinner();
         cmbLoggerType = new javax.swing.JComboBox<>();
         lblLoggerType = new javax.swing.JLabel();
+        btnDefaut = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -179,31 +185,47 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
             }
         });
 
+        chkGlobal.setMnemonic('g');
         chkGlobal.setText("global(g)");
         chkGlobal.setToolTipText("Global search.");
+        chkGlobal.setActionCommand("global");
 
+        chkDotAll.setMnemonic('s');
         chkDotAll.setText("dotAll(s)");
         chkDotAll.setToolTipText("Allows . to match newline characters.");
+        chkDotAll.setActionCommand("dotAll");
 
+        chkMultiline.setMnemonic('m');
         chkMultiline.setText("multiline(m)");
         chkMultiline.setToolTipText("Allows ^ and $ to match next to newline characters.");
+        chkMultiline.setActionCommand("multiline");
 
+        chkHasIndices.setMnemonic('d');
         chkHasIndices.setText("hasIndices(d)");
         chkHasIndices.setToolTipText("Generate indices for substring matches.");
+        chkHasIndices.setActionCommand("hasIndices");
         chkHasIndices.setEnabled(false);
 
+        chkIgnoreCase.setMnemonic('i');
         chkIgnoreCase.setText("IgnoreCase(i)");
         chkIgnoreCase.setToolTipText("Case-insensitive search.");
+        chkIgnoreCase.setActionCommand("IgnoreCase");
 
+        chkUnicodeSets.setMnemonic(' ');
         chkUnicodeSets.setText("unicodeSets(v)");
         chkUnicodeSets.setToolTipText("An upgrade to the u mode with more Unicode features.");
+        chkUnicodeSets.setActionCommand("unicodeSets");
         chkUnicodeSets.setEnabled(false);
 
+        chkUnicode.setMnemonic('u');
         chkUnicode.setText("unicode(u)");
         chkUnicode.setToolTipText("\"Unicode\"; treat a pattern as a sequence of Unicode code points.");
+        chkUnicode.setActionCommand("unicode");
 
+        chkSticky.setMnemonic('y');
         chkSticky.setText("sticky(y)");
         chkSticky.setToolTipText("Perform a \"sticky\" search that matches starting at the current position in the target string.");
+        chkSticky.setActionCommand("sticky");
 
         javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
         pnlHeader.setLayout(pnlHeaderLayout);
@@ -211,14 +233,12 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
             pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlHeaderLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlHeaderLayout.createSequentialGroup()
-                        .addComponent(txtReDoS)
+                        .addComponent(txtReDoS, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCheck))
                     .addGroup(pnlHeaderLayout.createSequentialGroup()
-                        .addComponent(chkHasIndices)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(chkGlobal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(chkIgnoreCase)
@@ -229,10 +249,12 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(chkUnicode)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chkSticky)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(chkUnicodeSets)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(chkSticky)))
-                .addContainerGap())
+                        .addComponent(chkHasIndices)))
+                .addGap(218, 218, 218))
         );
         pnlHeaderLayout.setVerticalGroup(
             pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,18 +263,21 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
                 .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtReDoS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCheck))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chkSticky, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chkUnicodeSets, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chkUnicode, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(chkDotAll, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(chkMultiline, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(chkIgnoreCase, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(chkGlobal, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(chkHasIndices, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(10, Short.MAX_VALUE))
+                    .addComponent(chkIgnoreCase, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(chkMultiline, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(chkDotAll, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(chkUnicode, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(chkSticky)
+                        .addComponent(chkUnicodeSets)
+                        .addComponent(chkHasIndices)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        chkGlobal.getAccessibleContext().setAccessibleName("global(&g)");
 
         pnlScan.add(pnlHeader, java.awt.BorderLayout.NORTH);
 
@@ -364,6 +389,13 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
 
         lblLoggerType.setText("Logger:");
 
+        btnDefaut.setText("Defaut");
+        btnDefaut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDefautActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlOptionLayout = new javax.swing.GroupLayout(pnlOption);
         pnlOption.setLayout(pnlOptionLayout);
         pnlOptionLayout.setHorizontalGroup(
@@ -371,75 +403,70 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
             .addGroup(pnlOptionLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlOptionLayout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(spnSeedingTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(spnMutationSize, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(spnRandomSeed, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlOptionLayout.createSequentialGroup()
-                            .addGap(150, 150, 150)
-                            .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(cmbSenderType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(spnRecallTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(spnRecallLimit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(spnSeedingLimit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblMaxInitialGenerationSize)
+                        .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblMaxSimpleRepeatCount)
+                            .addComponent(lblMaxRepeatCount)
+                            .addComponent(lblMaxRecallStringSize)
+                            .addComponent(lblMaxNFASize1)
+                            .addComponent(lblMaxNFASize)
+                            .addComponent(lblMaxIteration)
+                            .addComponent(lblMutationSize)
+                            .addComponent(lblRandomSeed)
+                            .addComponent(lblRecallLimit)
+                            .addComponent(lblRecallTimeout)
+                            .addComponent(lblSeederType)
+                            .addComponent(lblSeedingLimit)
+                            .addComponent(lblSeedingTimeout)))
+                    .addComponent(lblMaxGenerationSize)
+                    .addComponent(lblMaxDegree1)
+                    .addComponent(lblMaxDegree)
+                    .addComponent(lblMaxDegree2)
+                    .addComponent(lblCrossoverSize3)
+                    .addComponent(lblCrossoverSize2)
+                    .addComponent(lblCrossoverSize1)
+                    .addComponent(lblCrossoverSize)
+                    .addComponent(lblAttackTimeout)
+                    .addComponent(lblAttackLimit)
+                    .addComponent(lblAccelerationModeType)
+                    .addComponent(lblTimeout)
+                    .addComponent(lblLoggerType)
+                    .addComponent(lblCheckerType))
+                .addGap(18, 18, 18)
+                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(spnSeedingTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnSeedingLimit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbSenderType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnRecallTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnRecallLimit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnRandomSeed, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnMutationSize, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnMaxSimpleRepeatCount, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnMaxRepeatCount, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnMaxRecallStringSize, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnMaxPatternSize, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnMaxNFASize, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnMaxIteration, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnMaxInitialGenerationSize, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnMaxGenerationSize, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnMaxGeneStringSize, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnMaxDegree, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnMaxAttackStringSize, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnIncubationTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnIncubationLimit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnHeatRatio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnCrossoverSize, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnAttackTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnAttackLimit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbAccelerationModeType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbLoggerType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlOptionLayout.createSequentialGroup()
-                        .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblMaxInitialGenerationSize)
-                                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblMaxSimpleRepeatCount)
-                                    .addComponent(lblMaxRepeatCount)
-                                    .addComponent(lblMaxRecallStringSize)
-                                    .addComponent(lblMaxNFASize1)
-                                    .addComponent(lblMaxNFASize)
-                                    .addComponent(lblMaxIteration)
-                                    .addComponent(lblMutationSize)
-                                    .addComponent(lblRandomSeed)
-                                    .addComponent(lblRecallLimit)
-                                    .addComponent(lblRecallTimeout)
-                                    .addComponent(lblSeederType)
-                                    .addComponent(lblSeedingLimit)
-                                    .addComponent(lblSeedingTimeout)))
-                            .addComponent(lblMaxGenerationSize)
-                            .addComponent(lblMaxDegree1)
-                            .addComponent(lblMaxDegree)
-                            .addComponent(lblMaxDegree2)
-                            .addComponent(lblCrossoverSize3)
-                            .addComponent(lblCrossoverSize2)
-                            .addComponent(lblCrossoverSize1)
-                            .addComponent(lblCrossoverSize)
-                            .addComponent(lblAttackTimeout)
-                            .addComponent(lblAttackLimit)
-                            .addComponent(lblAccelerationModeType)
-                            .addComponent(lblTimeout)
-                            .addComponent(lblLoggerType)
-                            .addComponent(lblCheckerType))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbCheckerType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbLoggerType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbAccelerationModeType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnAttackTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnCrossoverSize, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnHeatRatio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnIncubationLimit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnIncubationTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnMaxAttackStringSize, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnMaxDegree, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnMaxGeneStringSize, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnMaxGenerationSize, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnMaxIteration, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnMaxNFASize, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnMaxPatternSize, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnMaxRecallStringSize, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnMaxRepeatCount, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnMaxSimpleRepeatCount, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnMaxInitialGenerationSize, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnAttackLimit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spnTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(520, Short.MAX_VALUE))
+                        .addComponent(cmbCheckerType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDefaut, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(461, Short.MAX_VALUE))
         );
         pnlOptionLayout.setVerticalGroup(
             pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -447,7 +474,8 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCheckerType)
-                    .addComponent(cmbCheckerType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbCheckerType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDefaut))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLoggerType)
@@ -582,11 +610,18 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
     private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed
         String flags = ReDoSOption.RegexFlag.toFlags(this.getFlags());
         DetectIssue issue = detect.scan(this.getRegex(), flags, this.getOption());
-        this.txtIssueText.setText(ReDoSScan.toDetectIssueLabel(issue));
+        this.txtIssueText.setText(ReDoSScan.toDetectIssueLabel(issue, true));
     }//GEN-LAST:event_btnCheckActionPerformed
+
+    private void btnDefautActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDefautActionPerformed
+        ReDoSOption option = new ReDoSOption();
+        this.setOption(option);
+        firePropertyChange(ReDoSScan.SIGNATURE_PROPERTY, null, getOption());
+    }//GEN-LAST:event_btnDefautActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCheck;
+    private javax.swing.JButton btnDefaut;
     private javax.swing.JCheckBox chkDotAll;
     private javax.swing.JCheckBox chkGlobal;
     private javax.swing.JCheckBox chkHasIndices;
@@ -780,10 +815,10 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
             } catch (UnsupportedLookAndFeelException ignored) {
                 Toolkit.getDefaultToolkit().beep();
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-                ex.printStackTrace();
+                logger.log(Level.SEVERE, ex.getMessage(), ex);
                 return;
             }
-            JFrame frame = new JFrame("DnDTable");
+            JFrame frame = new JFrame("ReDoS");
             frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             frame.getContentPane().add(new MainPanel());
             frame.pack();

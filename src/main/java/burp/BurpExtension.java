@@ -34,19 +34,20 @@ public class BurpExtension extends BurpExtensionImpl implements ExtensionUnloadi
         IBurpTab tab = this.signature.getBurpTab();
         if (tab != null) {
             api().userInterface().registerSuiteTab(tab.getTabCaption(), tab.getUiComponent());
+            IPropertyConfig config = signature.getSignatureConfig();
+            if (config != null) {
+                Map<String, String> settings = this.option.loadConfigSetting();
+                Preferences pref = api().persistence().preferences();
+                String value = pref.getString(ReDoSScan.SIGNATURE_PROPERTY);
+                settings.put(ReDoSScan.SIGNATURE_PROPERTY, value == null ? config.defaultSetting() : value);
+                String settingValue = settings.getOrDefault(config.getSettingName(), config.defaultSetting());
+                config.saveSetting(settingValue);
+                tab.getUiComponent().addPropertyChangeListener(config.getSettingName(), newPropertyChangeListener());
+            }
         }
         api().scanner().registerScanCheck(this.signature.getSignatureScan().passiveScanCheck());
         api.extension().registerUnloadingHandler(this);
 
-        Map<String, String> settings = this.option.loadConfigSetting();
-        Preferences pref = api().persistence().preferences();
-        String value = pref.getString(ReDoSScan.SIGNATURE_PROPERTY);
-        IPropertyConfig config = signature.getSignatureConfig();
-        if (config != null) {
-            settings.put(ReDoSScan.SIGNATURE_PROPERTY, value == null ? config.defaultSetting() : value);
-            String settingValue = settings.getOrDefault(config.getSettingName(), config.defaultSetting());
-            config.saveSetting(settingValue);
-        }
         this.tabReDoSDetector.addPropertyChangeListener(newPropertyChangeListener());
     }
 

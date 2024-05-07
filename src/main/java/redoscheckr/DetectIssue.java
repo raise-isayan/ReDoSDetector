@@ -108,7 +108,7 @@ public class DetectIssue {
     public String debugStringClassName() {
         StringBuilder buff = new StringBuilder();
         for (int i = 0; i < fieldType.length; i++) {
-            buff.append(fieldType[i] + ":" + map.get(fieldType[i]).getClass().getName());
+            buff.append(fieldType[i]).append(":").append(map.get(fieldType[i]).getClass().getName());
             buff.append("\r\n");
         }
         return buff.toString();

@@ -13,7 +13,6 @@ import scala.collection.immutable.Seq;
 public class HotSpot {
 
     private HotSpot() {
-
     }
 
     public enum Temperature {

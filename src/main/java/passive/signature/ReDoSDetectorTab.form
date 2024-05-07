@@ -11,7 +11,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,-47,0,0,3,109"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,-47,0,0,3,-84"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -99,15 +99,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="txtReDoS" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="txtReDoS" min="-2" pref="624" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnCheck" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="chkHasIndices" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="chkGlobal" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="chkIgnoreCase" min="-2" max="-2" attributes="0"/>
@@ -118,35 +116,39 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="chkUnicode" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="chkSticky" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="chkUnicodeSets" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="chkSticky" min="-2" max="-2" attributes="0"/>
+                                  <Component id="chkHasIndices" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="218" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="txtReDoS" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="chkSticky" alignment="1" min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="chkUnicodeSets" alignment="1" min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="chkUnicode" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="chkDotAll" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="chkMultiline" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="chkIgnoreCase" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="chkGlobal" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="chkHasIndices" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="chkIgnoreCase" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="chkMultiline" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="chkDotAll" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="chkUnicode" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                  <Component id="chkSticky" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="chkUnicodeSets" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="chkHasIndices" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace pref="10" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -164,52 +166,71 @@
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="chkGlobal">
                   <Properties>
+                    <Property name="mnemonic" type="int" value="103"/>
                     <Property name="text" type="java.lang.String" value="global(g)"/>
                     <Property name="toolTipText" type="java.lang.String" value="Global search."/>
+                    <Property name="actionCommand" type="java.lang.String" value="global"/>
                   </Properties>
+                  <AccessibilityProperties>
+                    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="global(&amp;g)"/>
+                  </AccessibilityProperties>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="chkDotAll">
                   <Properties>
+                    <Property name="mnemonic" type="int" value="115"/>
                     <Property name="text" type="java.lang.String" value="dotAll(s)"/>
                     <Property name="toolTipText" type="java.lang.String" value="Allows . to match newline characters."/>
+                    <Property name="actionCommand" type="java.lang.String" value="dotAll"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="chkMultiline">
                   <Properties>
+                    <Property name="mnemonic" type="int" value="109"/>
                     <Property name="text" type="java.lang.String" value="multiline(m)"/>
                     <Property name="toolTipText" type="java.lang.String" value="Allows ^ and $ to match next to newline characters."/>
+                    <Property name="actionCommand" type="java.lang.String" value="multiline"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="chkHasIndices">
                   <Properties>
+                    <Property name="mnemonic" type="int" value="100"/>
                     <Property name="text" type="java.lang.String" value="hasIndices(d)"/>
                     <Property name="toolTipText" type="java.lang.String" value="Generate indices for substring matches."/>
+                    <Property name="actionCommand" type="java.lang.String" value="hasIndices"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="chkIgnoreCase">
                   <Properties>
+                    <Property name="mnemonic" type="int" value="105"/>
                     <Property name="text" type="java.lang.String" value="IgnoreCase(i)"/>
                     <Property name="toolTipText" type="java.lang.String" value="Case-insensitive search."/>
+                    <Property name="actionCommand" type="java.lang.String" value="IgnoreCase"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="chkUnicodeSets">
                   <Properties>
+                    <Property name="mnemonic" type="int" value="32"/>
                     <Property name="text" type="java.lang.String" value="unicodeSets(v)"/>
                     <Property name="toolTipText" type="java.lang.String" value="An upgrade to the u mode with more Unicode features."/>
+                    <Property name="actionCommand" type="java.lang.String" value="unicodeSets"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="chkUnicode">
                   <Properties>
+                    <Property name="mnemonic" type="int" value="117"/>
                     <Property name="text" type="java.lang.String" value="unicode(u)"/>
                     <Property name="toolTipText" type="java.lang.String" value="&quot;Unicode&quot;; treat a pattern as a sequence of Unicode code points."/>
+                    <Property name="actionCommand" type="java.lang.String" value="unicode"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="chkSticky">
                   <Properties>
+                    <Property name="mnemonic" type="int" value="121"/>
                     <Property name="text" type="java.lang.String" value="sticky(y)"/>
                     <Property name="toolTipText" type="java.lang.String" value="Perform a &quot;sticky&quot; search that matches starting at the current position in the target string."/>
+                    <Property name="actionCommand" type="java.lang.String" value="sticky"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -231,85 +252,75 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
-                              <Component id="spnSeedingTimeout" min="-2" pref="200" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Component id="spnMutationSize" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                              <Component id="spnRandomSeed" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="cmbSenderType" min="-2" pref="200" max="-2" attributes="0"/>
-                                      <Component id="spnRecallTimeout" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                                      <Component id="spnRecallLimit" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                                  </Group>
+                              <Component id="lblMaxInitialGenerationSize" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblMaxSimpleRepeatCount" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblMaxRepeatCount" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblMaxRecallStringSize" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblMaxNFASize1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblMaxNFASize" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblMaxIteration" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblMutationSize" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblRandomSeed" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblRecallLimit" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblRecallTimeout" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblSeederType" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblSeedingLimit" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblSeedingTimeout" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="spnSeedingLimit" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="lblMaxGenerationSize" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMaxDegree1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMaxDegree" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMaxDegree2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCrossoverSize3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCrossoverSize2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCrossoverSize1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCrossoverSize" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAttackTimeout" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAttackLimit" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAccelerationModeType" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTimeout" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblLoggerType" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCheckerType" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="spnSeedingTimeout" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnSeedingLimit" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="cmbSenderType" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnRecallTimeout" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnRecallLimit" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnRandomSeed" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnMutationSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnMaxSimpleRepeatCount" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnMaxRepeatCount" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnMaxRecallStringSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnMaxPatternSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnMaxNFASize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnMaxIteration" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnMaxInitialGenerationSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnMaxGenerationSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnMaxGeneStringSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnMaxDegree" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnMaxAttackStringSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnIncubationTimeout" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnIncubationLimit" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnHeatRatio" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnCrossoverSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnAttackTimeout" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnAttackLimit" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="cmbAccelerationModeType" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="spnTimeout" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="cmbLoggerType" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Component id="lblMaxInitialGenerationSize" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblMaxSimpleRepeatCount" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblMaxRepeatCount" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblMaxRecallStringSize" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblMaxNFASize1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblMaxNFASize" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblMaxIteration" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblMutationSize" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblRandomSeed" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblRecallLimit" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblRecallTimeout" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblSeederType" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblSeedingLimit" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblSeedingTimeout" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Component id="lblMaxGenerationSize" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblMaxDegree1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblMaxDegree" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblMaxDegree2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblCrossoverSize3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblCrossoverSize2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblCrossoverSize1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblCrossoverSize" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblAttackTimeout" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblAttackLimit" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblAccelerationModeType" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblTimeout" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblLoggerType" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblCheckerType" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="cmbCheckerType" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="cmbLoggerType" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="cmbAccelerationModeType" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="spnAttackTimeout" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="spnCrossoverSize" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="spnHeatRatio" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="spnIncubationLimit" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="spnIncubationTimeout" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="spnMaxAttackStringSize" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="spnMaxDegree" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="spnMaxGeneStringSize" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="spnMaxGenerationSize" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="spnMaxIteration" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="spnMaxNFASize" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="spnMaxPatternSize" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="spnMaxRecallStringSize" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="spnMaxRepeatCount" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="spnMaxSimpleRepeatCount" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="spnMaxInitialGenerationSize" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="spnAttackLimit" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="spnTimeout" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="cmbCheckerType" min="-2" pref="200" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnDefaut" min="-2" pref="116" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="520" max="32767" attributes="0"/>
+                      <EmptySpace pref="461" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -320,6 +331,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblCheckerType" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cmbCheckerType" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnDefaut" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -816,6 +828,14 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Logger:"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnDefaut">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Defaut"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDefautActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

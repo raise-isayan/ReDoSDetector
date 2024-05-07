@@ -99,6 +99,18 @@ public class ReDosDetectorTest {
             assertFalse(result.getAttack().isPresent());
             assertFalse(result.getComplexity().isPresent());
         }
+        {
+            ReDoSOption option = new ReDoSOption();
+            String regex = "(";
+            String flags = "";
+            DetectIssue result = detect.scan(regex, flags, option);
+            assertEquals(result.getStatus(), ReDoSOption.StatusType.UNKNOWN);
+            assertEquals(result.getSource(), regex);
+            assertEquals(result.getFlags(), flags);
+            assertEquals(result.getChecker(), ReDoSOption.CheckerType.NONE);
+            assertFalse(result.getAttack().isPresent());
+            assertFalse(result.getComplexity().isPresent());
+        }
     }
 
     @Test

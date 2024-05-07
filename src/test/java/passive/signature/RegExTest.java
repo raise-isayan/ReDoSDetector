@@ -95,16 +95,4 @@ public class RegExTest {
         }
     }
 
-
-    @Test
-    public void testReDoS() {
-        System.out.println("testReDoS");
-        Pattern p = Pattern.compile("/([a-zA-Z0-9]+)*$/");
-        Matcher m = p.matcher("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@");
-        boolean result = m.find();
-        System.out.println("math:" + result);
-
-    }
-
-
 }
