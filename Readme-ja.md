@@ -1,6 +1,8 @@
 Burp suite 拡張 ReDoSDetector
 =============
 
+Language/[English](Readme.md)
+
 このツールは、PortSwigger社の製品であるBurp Suiteの拡張になります。
 Burp Pro/Communityに対応しています。
 
@@ -8,7 +10,7 @@ Burp Pro/Communityに対応しています。
 
 この拡張はReDoSの判定および検出を目的としたツールです。
 
-ReDoS判定のライブラリに「https://makenowjust-labs.github.io/recheck/」を利用しています。
+ReDoS判定のライブラリに"https://makenowjust-labs.github.io/recheck/"を利用しています。
 
 ## 最新版について
 
@@ -33,7 +35,7 @@ Burp suite の Extender は以下の手順で読み込めます。
 
 Burp SuiteにReDoSDetectorタブが追加されます。
 
-#### Scan
+#### Scan タブ
 
 手動でのReDoSのチェックを行えます。
 

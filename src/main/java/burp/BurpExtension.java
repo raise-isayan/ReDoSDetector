@@ -27,10 +27,12 @@ public class BurpExtension extends BurpExtensionImpl implements ExtensionUnloadi
 
     private final ReDoSSignature signature = new ReDoSSignature();
 
+    private final static java.util.ResourceBundle BUNDLE = java.util.ResourceBundle.getBundle("burp/resources/release");
+
     @Override
     public void initialize(MontoyaApi api) {
         super.initialize(api);
-        api().extension().setName("ReDoSDetector");
+        api().extension().setName(BUNDLE.getString("projname"));
         IBurpTab tab = this.signature.getBurpTab();
         if (tab != null) {
             api().userInterface().registerSuiteTab(tab.getTabCaption(), tab.getUiComponent());
@@ -63,7 +65,6 @@ public class BurpExtension extends BurpExtensionImpl implements ExtensionUnloadi
             public void propertyChange(PropertyChangeEvent evt) {
                 IPropertyConfig config = signature.getSignatureConfig();
                 if (config != null) {
-                    BurpExtension.helpers().outPrintln(config.getSettingName() + "<=>" + evt.getPropertyName());
                     if (config.getSettingName().equals(evt.getPropertyName())) {
                         Map<String, String> settings = option.loadConfigSetting();
                         settings.put(config.getSettingName(), config.loadSetting());
