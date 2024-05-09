@@ -15,7 +15,7 @@ public class ReDoSIssueItem extends IssueItem {
      * @return the flgags
      */
     public String getFlgags() {
-        return flgags;
+        return this.flgags;
     }
 
     /**
@@ -31,7 +31,7 @@ public class ReDoSIssueItem extends IssueItem {
      * @return the detectIssue
      */
     public DetectIssue getReDoSIssue() {
-        return detectIssue;
+        return this.detectIssue;
     }
 
     /**

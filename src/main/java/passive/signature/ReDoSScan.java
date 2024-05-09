@@ -335,11 +335,11 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
             detail.append("</code></p>");
             detail.append("</ul>");
         }
-        if (issue.getLogger().isPresent()) {
+        if (issue.getLog().isPresent()) {
             detail.append("<p><strong>Logger:</strong></p>");
             detail.append("<ul>");
             detail.append("<p><code>");
-            detail.append(HttpUtil.toHtmlEncode(issue.getLogger().get()));
+            detail.append(HttpUtil.toHtmlEncode(issue.getLog().get()));
             detail.append("</code></p>");
             detail.append("</ul>");
         }

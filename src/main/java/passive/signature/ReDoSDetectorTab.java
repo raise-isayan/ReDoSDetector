@@ -1,6 +1,5 @@
 package passive.signature;
 
-import burp.BurpExtension;
 import extension.helpers.StringUtil;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -609,7 +608,7 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
 
     private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed
         String flags = ReDoSOption.RegexFlag.toFlags(this.getFlags());
-        DetectIssue issue = detect.scan(this.getRegex(), flags, this.getOption());
+        DetectIssue issue = this.detect.scan(this.getRegex(), flags, this.getOption());
         this.txtIssueText.setText(ReDoSScan.toDetectIssueLabel(issue, true));
     }//GEN-LAST:event_btnCheckActionPerformed
 

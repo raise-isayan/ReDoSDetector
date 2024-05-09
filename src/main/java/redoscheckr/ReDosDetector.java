@@ -2,8 +2,10 @@ package redoscheckr;
 
 import codes.quine.labs.recheck.ReDoS;
 import codes.quine.labs.recheck.common.CancellationToken;
+import codes.quine.labs.recheck.common.Context.Logger;
 import codes.quine.labs.recheck.common.Parameters;
 import codes.quine.labs.recheck.diagnostics.Diagnostics;
+import java.util.Optional;
 import scala.Option;
 
 /**
@@ -19,6 +21,7 @@ public class ReDosDetector {
 
     public DetectIssue scan(String regvalue, String flags, ReDoSOption option) {
         // https://makenowjust-labs.github.io/recheck/docs/usage/parameters/
+        Option<Logger> logger = option.getLogger() == ReDoSOption.LoggerType.OFF ? Option.empty() : Option.empty();
         Parameters params = Parameters.apply(
                 option.getAccelerationMode().toValue(), // accelerationMode
                 option.getAttackLimit(), // attackLimit
@@ -28,7 +31,7 @@ public class ReDosDetector {
                 option.getHeatRatio(), // heatRatio
                 option.getIncubationLimit(), // incubationLimit
                 option.toIncubationTimeout(), // incubationTimeout
-                option.getLogger() == ReDoSOption.LoggerType.OFF ? Option.empty() : Option.empty(), // logger
+                logger, // logger
                 option.getMaxAttackStringSize(), // maxAttackStringSize
                 option.getMaxDegree(), // maxDegree
                 option.getMaxGeneStringSize(), // maxGeneStringSize
@@ -52,7 +55,7 @@ public class ReDosDetector {
 
         CancellationToken token = new CancellationToken();
         Diagnostics result = ReDoS.check(regvalue, flags, params, Option.apply(token));
-        return DetectIssue.parseDiagnostics(result);
+        return DetectIssue.parseDiagnostics(result, Optional.empty());
     }
 
 }

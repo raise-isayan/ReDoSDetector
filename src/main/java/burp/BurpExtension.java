@@ -1,7 +1,15 @@
 package burp;
 
 import burp.api.montoya.MontoyaApi;
+import burp.api.montoya.core.ToolSource;
+import burp.api.montoya.core.ToolType;
 import burp.api.montoya.extension.ExtensionUnloadingHandler;
+import burp.api.montoya.http.handler.HttpHandler;
+import burp.api.montoya.http.handler.HttpRequestToBeSent;
+import burp.api.montoya.http.handler.HttpResponseReceived;
+import burp.api.montoya.http.handler.RequestToBeSentAction;
+import burp.api.montoya.http.handler.ResponseReceivedAction;
+import burp.api.montoya.http.message.HttpRequestResponse;
 import burp.api.montoya.persistence.Preferences;
 import extension.burp.BurpExtensionImpl;
 import extension.burp.IBurpTab;
@@ -19,7 +27,7 @@ import passive.signature.ReDoSDetectorTab;
  *
  * @author isayan
  */
-public class BurpExtension extends BurpExtensionImpl implements ExtensionUnloadingHandler {
+public class BurpExtension extends BurpExtensionImpl implements HttpHandler, ExtensionUnloadingHandler {
 
     private final static Logger logger = Logger.getLogger(BurpExtension.class.getName());
 
@@ -48,8 +56,8 @@ public class BurpExtension extends BurpExtensionImpl implements ExtensionUnloadi
             }
         }
         api().scanner().registerScanCheck(this.signature.getSignatureScan().passiveScanCheck());
-        api.extension().registerUnloadingHandler(this);
-
+        api.http().registerHttpHandler(this);
+//        api.extension().registerUnloadingHandler(this);
         this.tabReDoSDetector.addPropertyChangeListener(newPropertyChangeListener());
     }
 
@@ -87,6 +95,20 @@ public class BurpExtension extends BurpExtensionImpl implements ExtensionUnloadi
         for (String key : settings.keySet()) {
             pref.setString(key, settings.get(key));
         }
+    }
+
+    @Override
+    public RequestToBeSentAction handleHttpRequestToBeSent(HttpRequestToBeSent requestToBeSent) {
+        return RequestToBeSentAction.continueWith(requestToBeSent, requestToBeSent.annotations());
+    }
+
+    @Override
+    public ResponseReceivedAction handleHttpResponseReceived(HttpResponseReceived responseReceived) {
+        ToolSource toolSource = responseReceived.toolSource();
+        if (toolSource.isFromTool(ToolType.PROXY)) {
+            api().siteMap().add(HttpRequestResponse.httpRequestResponse(responseReceived.initiatingRequest(), responseReceived));
+        }
+        return ResponseReceivedAction.continueWith(responseReceived, responseReceived.annotations());
     }
 
 }

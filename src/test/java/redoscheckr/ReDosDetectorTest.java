@@ -1,5 +1,6 @@
 package redoscheckr;
 
+import java.util.List;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.*;
@@ -127,9 +128,16 @@ public class ReDosDetectorTest {
             assertEquals(result.getSource(), regex);
             assertEquals(result.getFlags(), flags);
             assertEquals(result.getChecker(), ReDoSOption.CheckerType.AUTOMATON);
-
+            System.out.println("source:" + result.getSource());
             if (result.getAttack().isPresent()) {
-                System.out.println("attack:" + result.getAttack().get());
+                AttackString atk = result.getAttack().get();
+                System.out.println("attack:" + atk.toString());
+                List<Pumps> pumps = atk.getPumpList();
+                for (int i = 0; i < pumps.size(); i++) {
+                    System.out.println("pumps.1:" + pumps.get(i).getPrefix());
+                    System.out.println("pumps.2:" + pumps.get(i).getPump());
+                    System.out.println("pumps.3:" + pumps.get(i).getBias());
+                }
             }
 
             if (result.getHotspot().isPresent()) {
@@ -155,9 +163,16 @@ public class ReDosDetectorTest {
             assertEquals(result.getSource(), regex);
             assertEquals(result.getFlags(), flags);
             assertEquals(result.getChecker(), ReDoSOption.CheckerType.AUTOMATON);
-
+            System.out.println("source:" + result.getSource());
             if (result.getAttack().isPresent()) {
-                System.out.println("attack:" + result.getAttack().get());
+                AttackString atk = result.getAttack().get();
+                System.out.println("attack:" + atk.toString());
+                List<Pumps> pumps = atk.getPumpList();
+                for (int i = 0; i < pumps.size(); i++) {
+                    System.out.println("pumps.1:" + pumps.get(i).getPrefix());
+                    System.out.println("pumps.2:" + pumps.get(i).getPump());
+                    System.out.println("pumps.3:" + pumps.get(i).getBias());
+                }
             }
 
             if (result.getHotspot().isPresent()) {
@@ -183,9 +198,16 @@ public class ReDosDetectorTest {
             assertEquals(result.getSource(), regex);
             assertEquals(result.getFlags(), flags);
             assertEquals(result.getChecker(), ReDoSOption.CheckerType.AUTOMATON);
-
+            System.out.println("source:" + result.getSource());
             if (result.getAttack().isPresent()) {
-                System.out.println("attack:" + result.getAttack().get());
+                AttackString atk = result.getAttack().get();
+                System.out.println("attack:" + atk.toString());
+                List<Pumps> pumps = atk.getPumpList();
+                for (int i = 0; i < pumps.size(); i++) {
+                    System.out.println("pumps.1:" + pumps.get(i).getPrefix());
+                    System.out.println("pumps.2:" + pumps.get(i).getPump());
+                    System.out.println("pumps.3:" + pumps.get(i).getBias());
+                }
             }
 
             if (result.getHotspot().isPresent()) {
@@ -211,9 +233,16 @@ public class ReDosDetectorTest {
             assertEquals(result.getSource(), regex);
             assertEquals(result.getFlags(), flags);
             assertEquals(result.getChecker(), ReDoSOption.CheckerType.AUTOMATON);
-
+            System.out.println("source:" + result.getSource());
             if (result.getAttack().isPresent()) {
-                System.out.println("attack:" + result.getAttack().get());
+                AttackString atk = result.getAttack().get();
+                System.out.println("attack:" + atk.toString());
+                List<Pumps> pumps = atk.getPumpList();
+                for (int i = 0; i < pumps.size(); i++) {
+                    System.out.println("pumps.1:" + pumps.get(i).getPrefix());
+                    System.out.println("pumps.2:" + pumps.get(i).getPump());
+                    System.out.println("pumps.3:" + pumps.get(i).getBias());
+                }
             }
             if (result.getComplexity().isPresent()) {
                 System.out.println("complexity:" + result.getComplexity().get());
@@ -221,18 +250,6 @@ public class ReDosDetectorTest {
             if (result.getHotspot().isPresent()) {
                 System.out.println("hotspot:");
                 HotSpot hotspot = result.getHotspot().get();
-                for (HotSpot.Spot spot : hotspot.getSpotList()) {
-                    System.out.println("spot:" + spot.toString());
-                }
-            }
-
-            if (result.getAttack().isPresent()) {
-                System.out.println("attack:" + result.getAttack().get());
-            }
-
-            if (result.getHotspot().isPresent()) {
-                HotSpot hotspot = result.getHotspot().get();
-                System.out.println("hotspot:");
                 for (HotSpot.Spot spot : hotspot.getSpotList()) {
                     System.out.println("spot:" + spot.toString());
                 }
@@ -254,9 +271,17 @@ public class ReDosDetectorTest {
             assertEquals(result.getSource(), regex);
             assertEquals(result.getFlags(), flags);
             assertEquals(result.getChecker(), ReDoSOption.CheckerType.AUTOMATON);
+            System.out.println("source:" + result.getSource());
 
             if (result.getAttack().isPresent()) {
-                System.out.println("attack:" + result.getAttack().get());
+                AttackString atk = result.getAttack().get();
+                System.out.println("attack:" + atk.toString());
+                List<Pumps> pumps = atk.getPumpList();
+                for (int i = 0; i < pumps.size(); i++) {
+                    System.out.println("pumps.1:" + pumps.get(i).getPrefix());
+                    System.out.println("pumps.2:" + pumps.get(i).getPump());
+                    System.out.println("pumps.3:" + pumps.get(i).getBias());
+                }
             }
             if (result.getComplexity().isPresent()) {
                 System.out.println("complexity:" + result.getComplexity().get());
@@ -268,19 +293,6 @@ public class ReDosDetectorTest {
                     System.out.println("spot:" + spot.toString());
                 }
             }
-
-            if (result.getAttack().isPresent()) {
-                System.out.println("attack:" + result.getAttack().get());
-            }
-
-            if (result.getHotspot().isPresent()) {
-                HotSpot hotspot = result.getHotspot().get();
-                System.out.println("hotspot:");
-                for (HotSpot.Spot spot : hotspot.getSpotList()) {
-                    System.out.println("spot:" + spot.toString());
-                }
-            }
-
             assertTrue(result.getComplexity().isPresent());
             if (result.getComplexity().isPresent()) {
                 assertEquals(result.getComplexity().get(), ReDoSOption.ComplexityType.POLYNOMIAL);

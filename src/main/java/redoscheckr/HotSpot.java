@@ -52,21 +52,21 @@ public class HotSpot {
          * @return the start
          */
         public int getStart() {
-            return start;
+            return this.start;
         }
 
         /**
          * @return the end
          */
         public int getEnd() {
-            return end;
+            return this.end;
         }
 
         /**
          * @return the temperature
          */
         public Temperature getTemperature() {
-            return temperature;
+            return this.temperature;
         }
 
         public static Spot valueOf(codes.quine.labs.recheck.diagnostics.Hotspot.Spot spot) {
@@ -90,7 +90,7 @@ public class HotSpot {
     private final List<Spot> spots = new ArrayList<>();
 
     public List<Spot> getSpotList() {
-        return spots;
+        return this.spots;
     }
 
     public static HotSpot valueOf(codes.quine.labs.recheck.diagnostics.Hotspot hotsopt) {
