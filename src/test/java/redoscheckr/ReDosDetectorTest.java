@@ -134,9 +134,9 @@ public class ReDosDetectorTest {
                 System.out.println("attack:" + atk.toString());
                 List<Pumps> pumps = atk.getPumpList();
                 for (int i = 0; i < pumps.size(); i++) {
-                    System.out.println("pumps.1:" + pumps.get(i).getPrefix());
-                    System.out.println("pumps.2:" + pumps.get(i).getPump());
-                    System.out.println("pumps.3:" + pumps.get(i).getBias());
+                    System.out.println("pumps[" + i + "].prefix:" + pumps.get(i).getPrefix());
+                    System.out.println("pumps[" + i + "].pump:" + pumps.get(i).getPump());
+                    System.out.println("pumps[" + i + "].bias:" + pumps.get(i).getBias());
                 }
             }
 
@@ -155,7 +155,7 @@ public class ReDosDetectorTest {
         }
         {
             System.out.println("----------------------------------------------");
-            String regex = "^(?:a|a)*$";
+            String regex = "^([a-z]+)*$";
             String flags = "";
             ReDoSOption option = new ReDoSOption();
             DetectIssue result = detect.scan(regex, flags, option);
@@ -169,9 +169,9 @@ public class ReDosDetectorTest {
                 System.out.println("attack:" + atk.toString());
                 List<Pumps> pumps = atk.getPumpList();
                 for (int i = 0; i < pumps.size(); i++) {
-                    System.out.println("pumps.1:" + pumps.get(i).getPrefix());
-                    System.out.println("pumps.2:" + pumps.get(i).getPump());
-                    System.out.println("pumps.3:" + pumps.get(i).getBias());
+                    System.out.println("pumps[" + i + "].prefix:" + pumps.get(i).getPrefix());
+                    System.out.println("pumps[" + i + "].pump:" + pumps.get(i).getPump());
+                    System.out.println("pumps[" + i + "].bias:" + pumps.get(i).getBias());
                 }
             }
 
@@ -204,9 +204,9 @@ public class ReDosDetectorTest {
                 System.out.println("attack:" + atk.toString());
                 List<Pumps> pumps = atk.getPumpList();
                 for (int i = 0; i < pumps.size(); i++) {
-                    System.out.println("pumps.1:" + pumps.get(i).getPrefix());
-                    System.out.println("pumps.2:" + pumps.get(i).getPump());
-                    System.out.println("pumps.3:" + pumps.get(i).getBias());
+                    System.out.println("pumps[" + i + "].prefix:" + pumps.get(i).getPrefix());
+                    System.out.println("pumps[" + i + "].pump:" + pumps.get(i).getPump());
+                    System.out.println("pumps[" + i + "].bias:" + pumps.get(i).getBias());
                 }
             }
 
@@ -239,9 +239,9 @@ public class ReDosDetectorTest {
                 System.out.println("attack:" + atk.toString());
                 List<Pumps> pumps = atk.getPumpList();
                 for (int i = 0; i < pumps.size(); i++) {
-                    System.out.println("pumps.1:" + pumps.get(i).getPrefix());
-                    System.out.println("pumps.2:" + pumps.get(i).getPump());
-                    System.out.println("pumps.3:" + pumps.get(i).getBias());
+                    System.out.println("pumps[" + i + "].prefix:" + pumps.get(i).getPrefix());
+                    System.out.println("pumps[" + i + "].pump:" + pumps.get(i).getPump());
+                    System.out.println("pumps[" + i + "].bias:" + pumps.get(i).getBias());
                 }
             }
             if (result.getComplexity().isPresent()) {
@@ -278,9 +278,9 @@ public class ReDosDetectorTest {
                 System.out.println("attack:" + atk.toString());
                 List<Pumps> pumps = atk.getPumpList();
                 for (int i = 0; i < pumps.size(); i++) {
-                    System.out.println("pumps.1:" + pumps.get(i).getPrefix());
-                    System.out.println("pumps.2:" + pumps.get(i).getPump());
-                    System.out.println("pumps.3:" + pumps.get(i).getBias());
+                    System.out.println("pumps[" + i + "].prefix:" + pumps.get(i).getPrefix());
+                    System.out.println("pumps[" + i + "].pump:" + pumps.get(i).getPump());
+                    System.out.println("pumps[" + i + "].bias:" + pumps.get(i).getBias());
                 }
             }
             if (result.getComplexity().isPresent()) {

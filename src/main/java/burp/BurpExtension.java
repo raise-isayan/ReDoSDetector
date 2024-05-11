@@ -11,7 +11,11 @@ import burp.api.montoya.http.handler.RequestToBeSentAction;
 import burp.api.montoya.http.handler.ResponseReceivedAction;
 import burp.api.montoya.http.message.HttpRequestResponse;
 import burp.api.montoya.persistence.Preferences;
+import burp.api.montoya.scanner.AuditResult;
+import burp.api.montoya.scanner.ScanCheck;
+import burp.api.montoya.scanner.audit.issues.AuditIssue;
 import extension.burp.BurpExtensionImpl;
+import static extension.burp.BurpExtensionImpl.api;
 import extension.burp.IBurpTab;
 import extension.burp.IPropertyConfig;
 import java.beans.PropertyChangeEvent;
@@ -57,7 +61,7 @@ public class BurpExtension extends BurpExtensionImpl implements HttpHandler, Ext
         }
         api().scanner().registerScanCheck(this.signature.getSignatureScan().passiveScanCheck());
         api.http().registerHttpHandler(this);
-//        api.extension().registerUnloadingHandler(this);
+        api.extension().registerUnloadingHandler(this);
         this.tabReDoSDetector.addPropertyChangeListener(newPropertyChangeListener());
     }
 
@@ -105,8 +109,15 @@ public class BurpExtension extends BurpExtensionImpl implements HttpHandler, Ext
     @Override
     public ResponseReceivedAction handleHttpResponseReceived(HttpResponseReceived responseReceived) {
         ToolSource toolSource = responseReceived.toolSource();
-        if (toolSource.isFromTool(ToolType.PROXY)) {
-            api().siteMap().add(HttpRequestResponse.httpRequestResponse(responseReceived.initiatingRequest(), responseReceived));
+        if (toolSource.isFromTool(ToolType.REPEATER)) {
+//            api().siteMap().add(HttpRequestResponse.httpRequestResponse(responseReceived.initiatingRequest(), responseReceived));
+                ScanCheck scan = signature.getSignatureScan().passiveScanCheck();
+                AuditResult audit = scan.passiveAudit(HttpRequestResponse.httpRequestResponse(responseReceived.initiatingRequest(), responseReceived));
+                BurpExtension.helpers().outPrintln("issue:" + responseReceived.initiatingRequest().url() + "." + audit.auditIssues().size());
+                for (AuditIssue auditIssue : audit.auditIssues()) {
+                    api().siteMap().add(auditIssue);
+                }
+
         }
         return ResponseReceivedAction.continueWith(responseReceived, responseReceived.annotations());
     }

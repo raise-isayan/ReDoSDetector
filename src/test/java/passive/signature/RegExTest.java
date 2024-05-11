@@ -61,8 +61,8 @@ public class RegExTest {
             + "}",};
 
         for (int i = 0; i < test.length; i++) {
-            for (int j = 0; j < ReDoSScan.JS_PATTERNS.length; j++) {
-                Matcher m = ReDoSScan.JS_PATTERNS[j].matcher(test[i]);
+            for (int j = 0; j < ReDoSScan.MATCH.length; j++) {
+                Matcher m = ReDoSScan.MATCH[j].getMatcher(test[i]);
                 System.out.println("test[" + i + "]:pattern[" + j + "]:" + m.pattern().pattern());;
                 while (m.find()) {
                     System.out.println("\tcapture:" + m.group(1));
@@ -82,8 +82,8 @@ public class RegExTest {
             // https://github.com/elastic/kibana/blob/68d323b4891e7d6147af70b48df3904d098d4a81/x-pack/plugins/cloud_defend/public/common/utils.ts#L193
             "\"zzz\" values must match the pattern: /^(aa|aa)*$/",};
         for (int i = 0; i < test.length; i++) {
-            for (int j = 0; j < ReDoSScan.VALIDATION_PATTERNS.length; j++) {
-                Matcher m = ReDoSScan.VALIDATION_PATTERNS[j].matcher(test[i]);
+            for (int j = 0; j < ReDoSScan.MATCH.length; j++) {
+                Matcher m = ReDoSScan.MATCH[j].getMatcher(test[i]);
                 System.out.println("test[" + i + "]:pattern[" + j + "]:" + m.pattern().pattern());;
                 while (m.find()) {
                     System.out.println("\tcapture:" + m.group(1));
