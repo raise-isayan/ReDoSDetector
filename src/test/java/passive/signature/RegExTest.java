@@ -1,7 +1,6 @@
 package passive.signature;
 
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;

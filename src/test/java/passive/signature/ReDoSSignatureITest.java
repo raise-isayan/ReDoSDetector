@@ -19,8 +19,8 @@ public class ReDoSSignatureITest {
     public ReDoSSignatureITest() {
     }
 
-    private ReDoSSignature signature = new ReDoSSignature();
-    private ReDoSScan scan = new ReDoSScan();
+    private final ReDoSSignature signature = new ReDoSSignature();
+    private final ReDoSScan scan = new ReDoSScan();
 
     @BeforeAll
     public static void setUpClass() {

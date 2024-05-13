@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
 public class MatchPattern {
 
     public enum Type {
-
         CLIENT_SIDE("Client Side"),
         SERVER_SIDE("Server Side");
 

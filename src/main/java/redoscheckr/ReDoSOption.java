@@ -160,7 +160,7 @@ public class ReDoSOption {
                 return Enum.valueOf(ComplexityType.class, m.group(1));
             }
             throw new IllegalArgumentException(
-                    "No enum constant " + CheckerType.class.getCanonicalName() + "." + name);
+                "No enum constant " + CheckerType.class.getCanonicalName() + "." + name);
         }
 
     };
@@ -226,7 +226,7 @@ public class ReDoSOption {
      * @return the accelerationMode
      */
     public AccelerationModeType getAccelerationMode() {
-        return accelerationMode;
+        return this.accelerationMode;
     }
 
     /**
@@ -240,7 +240,7 @@ public class ReDoSOption {
      * @return the attackLimit
      */
     public int getAttackLimit() {
-        return attackLimit;
+        return this.attackLimit;
     }
 
     /**
@@ -254,7 +254,7 @@ public class ReDoSOption {
      * @return the attackTimeout
      */
     public int getAttackTimeout() {
-        return attackTimeout;
+        return this.attackTimeout;
     }
 
     /**
@@ -265,14 +265,14 @@ public class ReDoSOption {
     }
 
     public scala.concurrent.duration.Duration toAttackTimeout() {
-        return Duration.apply(attackTimeout, TimeUnit.MILLISECONDS);
+        return Duration.apply(this.attackTimeout, TimeUnit.MILLISECONDS);
     }
 
     /**
      * @return the checker
      */
     public CheckerType getChecker() {
-        return checker;
+        return this.checker;
     }
 
     /**
@@ -286,7 +286,7 @@ public class ReDoSOption {
      * @return the crossoverSize
      */
     public int getCrossoverSize() {
-        return crossoverSize;
+        return this.crossoverSize;
     }
 
     /**
@@ -300,7 +300,7 @@ public class ReDoSOption {
      * @return the heatRatio
      */
     public double getHeatRatio() {
-        return heatRatio;
+        return this.heatRatio;
     }
 
     /**
@@ -314,7 +314,7 @@ public class ReDoSOption {
      * @return the incubationLimit
      */
     public int getIncubationLimit() {
-        return incubationLimit;
+        return this.incubationLimit;
     }
 
     /**
@@ -328,7 +328,7 @@ public class ReDoSOption {
      * @return the incubationTimeout
      */
     public int getIncubationTimeout() {
-        return incubationTimeout;
+        return this.incubationTimeout;
     }
 
     /**
@@ -339,14 +339,14 @@ public class ReDoSOption {
     }
 
     public scala.concurrent.duration.Duration toIncubationTimeout() {
-        return Duration.apply(incubationTimeout, TimeUnit.MILLISECONDS);
+        return Duration.apply(this.incubationTimeout, TimeUnit.MILLISECONDS);
     }
 
     /**
      * @return the logger
      */
     public LoggerType getLogger() {
-        return logger;
+        return this.logger;
     }
 
     /**
@@ -360,7 +360,7 @@ public class ReDoSOption {
      * @return the maxAttackStringSize
      */
     public int getMaxAttackStringSize() {
-        return maxAttackStringSize;
+        return this.maxAttackStringSize;
     }
 
     /**
@@ -374,7 +374,7 @@ public class ReDoSOption {
      * @return the maxDegree
      */
     public int getMaxDegree() {
-        return maxDegree;
+        return this.maxDegree;
     }
 
     /**
@@ -388,7 +388,7 @@ public class ReDoSOption {
      * @return the maxGeneStringSize
      */
     public int getMaxGeneStringSize() {
-        return maxGeneStringSize;
+        return this.maxGeneStringSize;
     }
 
     /**
@@ -402,7 +402,7 @@ public class ReDoSOption {
      * @return the maxGenerationSize
      */
     public int getMaxGenerationSize() {
-        return maxGenerationSize;
+        return this.maxGenerationSize;
     }
 
     /**
@@ -416,7 +416,7 @@ public class ReDoSOption {
      * @return the maxInitialGenerationSize
      */
     public int getMaxInitialGenerationSize() {
-        return maxInitialGenerationSize;
+        return this.maxInitialGenerationSize;
     }
 
     /**
@@ -430,7 +430,7 @@ public class ReDoSOption {
      * @return the maxIteration
      */
     public int getMaxIteration() {
-        return maxIteration;
+        return this.maxIteration;
     }
 
     /**
@@ -444,7 +444,7 @@ public class ReDoSOption {
      * @return the maxNFASize
      */
     public int getMaxNFASize() {
-        return maxNFASize;
+        return this.maxNFASize;
     }
 
     /**
@@ -458,7 +458,7 @@ public class ReDoSOption {
      * @return the maxPatternSize
      */
     public int getMaxPatternSize() {
-        return maxPatternSize;
+        return this.maxPatternSize;
     }
 
     /**
@@ -472,7 +472,7 @@ public class ReDoSOption {
      * @return the maxRecallStringSize
      */
     public int getMaxRecallStringSize() {
-        return maxRecallStringSize;
+        return this.maxRecallStringSize;
     }
 
     /**
@@ -486,7 +486,7 @@ public class ReDoSOption {
      * @return the maxRepeatCount
      */
     public int getMaxRepeatCount() {
-        return maxRepeatCount;
+        return this.maxRepeatCount;
     }
 
     /**
@@ -500,7 +500,7 @@ public class ReDoSOption {
      * @return the maxSimpleRepeatCount
      */
     public int getMaxSimpleRepeatCount() {
-        return maxSimpleRepeatCount;
+        return this.maxSimpleRepeatCount;
     }
 
     /**
@@ -514,7 +514,7 @@ public class ReDoSOption {
      * @return the mutationSize
      */
     public int getMutationSize() {
-        return mutationSize;
+        return this.mutationSize;
     }
 
     /**
@@ -528,7 +528,7 @@ public class ReDoSOption {
      * @return the randomSeed
      */
     public long getRandomSeed() {
-        return randomSeed;
+        return this.randomSeed;
     }
 
     /**
@@ -542,7 +542,7 @@ public class ReDoSOption {
      * @return the recallLimit
      */
     public int getRecallLimit() {
-        return recallLimit;
+        return this.recallLimit;
     }
 
     /**
@@ -556,7 +556,7 @@ public class ReDoSOption {
      * @return the recallTimeout
      */
     public int getRecallTimeout() {
-        return recallTimeout;
+        return this.recallTimeout;
     }
 
     /**
@@ -567,14 +567,14 @@ public class ReDoSOption {
     }
 
     public scala.concurrent.duration.Duration toRecallTimeout() {
-        return Duration.apply(recallTimeout, TimeUnit.MILLISECONDS);
+        return Duration.apply(this.recallTimeout, TimeUnit.MILLISECONDS);
     }
 
     /**
      * @return the seeder
      */
     public SeederType getSeeder() {
-        return seeder;
+        return this.seeder;
     }
 
     /**
@@ -588,7 +588,7 @@ public class ReDoSOption {
      * @return the seedingLimit
      */
     public int getSeedingLimit() {
-        return seedingLimit;
+        return this.seedingLimit;
     }
 
     /**
@@ -602,7 +602,7 @@ public class ReDoSOption {
      * @return the seedingTimeout
      */
     public int getSeedingTimeout() {
-        return seedingTimeout;
+        return this.seedingTimeout;
     }
 
     /**
@@ -613,14 +613,14 @@ public class ReDoSOption {
     }
 
     public scala.concurrent.duration.Duration toSeedingTimeout() {
-        return Duration.apply(seedingTimeout, TimeUnit.MILLISECONDS);
+        return Duration.apply(this.seedingTimeout, TimeUnit.MILLISECONDS);
     }
 
     /**
      * @return the timeout
      */
     public int getTimeout() {
-        return timeout;
+        return this.timeout;
     }
 
     /**
@@ -631,7 +631,7 @@ public class ReDoSOption {
     }
 
     public scala.concurrent.duration.Duration toTimeout() {
-        return Duration.apply(timeout, TimeUnit.MILLISECONDS);
+        return Duration.apply(this.timeout, TimeUnit.MILLISECONDS);
     }
 
     public void setProperty(ReDoSOption redosProperty) {

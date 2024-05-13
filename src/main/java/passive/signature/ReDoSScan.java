@@ -16,19 +16,15 @@ import extension.burp.Severity;
 import extension.burp.scanner.IssueItem;
 import extension.burp.scanner.ScannerCheckAdapter;
 import extension.burp.scanner.SignatureScanBase;
-import extension.helpers.ConvertUtil;
-import extension.helpers.HttpMessageWapper;
 import extension.helpers.HttpMessageWapper.ContentMimeType;
 import extension.helpers.HttpResponseWapper;
 import extension.helpers.HttpUtil;
-import extension.helpers.SmartCodec;
 import extension.helpers.json.JsonUtil;
 import java.awt.Component;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.EnumSet;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -94,7 +90,7 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
                             Matcher m = MATCH[i].getMatcher(body);
                             while (m.find()) {
                                 String regex = MatchPattern.toDecode(m.group(1), MATCH[i].getContentType());
-                                String flags = m.group(2) != null ? m.group(2) : "";
+                                String flags = m.groupCount() >= 2 && m.group(2) != null ? m.group(2) : "";
                                 DetectIssue result = detect.scan(regex, flags, this.getOption());
                                 if (result.getStatus() == ReDoSOption.StatusType.VULNERABLE) {
                                     List<ReDoSIssueItem> issueList = new ArrayList<>();

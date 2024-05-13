@@ -15,7 +15,6 @@ import burp.api.montoya.scanner.AuditResult;
 import burp.api.montoya.scanner.ScanCheck;
 import burp.api.montoya.scanner.audit.issues.AuditIssue;
 import extension.burp.BurpExtensionImpl;
-import static extension.burp.BurpExtensionImpl.api;
 import extension.burp.IBurpTab;
 import extension.burp.IPropertyConfig;
 import java.beans.PropertyChangeEvent;
@@ -48,7 +47,7 @@ public class BurpExtension extends BurpExtensionImpl implements HttpHandler, Ext
         IBurpTab tab = this.signature.getBurpTab();
         if (tab != null) {
             api().userInterface().registerSuiteTab(tab.getTabCaption(), tab.getUiComponent());
-            IPropertyConfig config = signature.getSignatureConfig();
+            IPropertyConfig config = this.signature.getSignatureConfig();
             if (config != null) {
                 Map<String, String> settings = this.option.loadConfigSetting();
                 Preferences pref = api().persistence().preferences();
@@ -94,7 +93,7 @@ public class BurpExtension extends BurpExtensionImpl implements HttpHandler, Ext
     }
 
     private void applyOptionProperty() {
-        Map<String, String> settings = option.loadConfigSetting();
+        Map<String, String> settings = this.option.loadConfigSetting();
         Preferences pref = api().persistence().preferences();
         for (String key : settings.keySet()) {
             pref.setString(key, settings.get(key));
@@ -111,13 +110,12 @@ public class BurpExtension extends BurpExtensionImpl implements HttpHandler, Ext
         ToolSource toolSource = responseReceived.toolSource();
         if (toolSource.isFromTool(ToolType.REPEATER)) {
 //            api().siteMap().add(HttpRequestResponse.httpRequestResponse(responseReceived.initiatingRequest(), responseReceived));
-                ScanCheck scan = signature.getSignatureScan().passiveScanCheck();
-                AuditResult audit = scan.passiveAudit(HttpRequestResponse.httpRequestResponse(responseReceived.initiatingRequest(), responseReceived));
-                BurpExtension.helpers().outPrintln("issue:" + responseReceived.initiatingRequest().url() + "." + audit.auditIssues().size());
-                for (AuditIssue auditIssue : audit.auditIssues()) {
-                    api().siteMap().add(auditIssue);
-                }
-
+            ScanCheck scan = this.signature.getSignatureScan().passiveScanCheck();
+            AuditResult audit = scan.passiveAudit(HttpRequestResponse.httpRequestResponse(responseReceived.initiatingRequest(), responseReceived));
+            BurpExtension.helpers().outPrintln("issue:" + responseReceived.initiatingRequest().url() + "." + audit.auditIssues().size());
+            for (AuditIssue auditIssue : audit.auditIssues()) {
+                api().siteMap().add(auditIssue);
+            }
         }
         return ResponseReceivedAction.continueWith(responseReceived, responseReceived.annotations());
     }
