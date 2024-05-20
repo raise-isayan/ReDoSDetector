@@ -1,5 +1,6 @@
 package passive.signature;
 
+import redoscheckr.MatchPattern;
 import burp.api.montoya.collaborator.Interaction;
 import burp.api.montoya.http.HttpService;
 import burp.api.montoya.http.message.HttpRequestResponse;
@@ -33,7 +34,6 @@ import java.util.regex.Pattern;
 import redoscheckr.AttackString;
 import redoscheckr.DetectIssue;
 import redoscheckr.HotSpot;
-import redoscheckr.MatchPattern;
 import redoscheckr.ReDoSOption;
 import redoscheckr.ReDosDetector;
 

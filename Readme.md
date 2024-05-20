@@ -28,7 +28,7 @@ Please use the following versions
 The Burp Suite Extender can be loaded by following the steps below.
 
 1. Click [add] on the [Extender] tab
-2. Click [Select file ...] and select ImageMetaExtract.jar.
+2. Click [Select file ...] and select ReDoSDetector.jar
 3. Click [Next], confirm that no error is occurring, and close the dialog with [Close].
 
 ### ReDoSDetector Tab

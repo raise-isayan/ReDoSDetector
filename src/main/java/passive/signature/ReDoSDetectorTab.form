@@ -11,7 +11,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,-47,0,0,3,-84"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,-35,0,0,3,-84"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -254,26 +254,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                               <Component id="lblMaxInitialGenerationSize" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblMaxSimpleRepeatCount" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblMaxRepeatCount" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblMaxRecallStringSize" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblMaxNFASize1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblMaxNFASize" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblMaxIteration" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblMutationSize" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblRandomSeed" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblRecallLimit" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblRecallTimeout" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblSeederType" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblSeedingLimit" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblSeedingTimeout" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="lblSeedingTimeout" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="lblMaxGenerationSize" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblMaxDegree1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblMaxDegree" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMaxDegree2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblCrossoverSize3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblCrossoverSize2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblCrossoverSize1" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -284,8 +272,21 @@
                           <Component id="lblTimeout" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblLoggerType" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblCheckerType" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMaxDegree2" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMaxIteration" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMaxNFASize" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMaxNFASize1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMaxRecallStringSize" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMaxRepeatCount" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMaxSimpleRepeatCount" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMutationSize" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblRandomSeed" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblRecallLimit" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblRecallTimeout" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblSeederType" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblSeedingLimit" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="spnSeedingTimeout" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                           <Component id="spnSeedingLimit" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
@@ -320,7 +321,7 @@
                               <Component id="btnDefaut" min="-2" pref="116" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="461" max="32767" attributes="0"/>
+                      <EmptySpace pref="456" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -388,91 +389,88 @@
                           <Component id="lblMaxDegree" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="spnMaxDegree" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="spnMaxGeneStringSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMaxDegree1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblMaxGenerationSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="spnMaxGenerationSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblMaxInitialGenerationSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="spnMaxInitialGenerationSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblMaxIteration" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="spnMaxIteration" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblMaxNFASize" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="spnMaxNFASize" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblMaxNFASize1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="spnMaxPatternSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblMaxRecallStringSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="spnMaxRecallStringSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblMaxRepeatCount" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="spnMaxRepeatCount" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblMaxSimpleRepeatCount" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="spnMaxSimpleRepeatCount" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblMutationSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="spnMutationSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblMaxGenerationSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="spnMaxGenerationSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblMaxInitialGenerationSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="spnMaxInitialGenerationSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblMaxIteration" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="spnMaxIteration" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblMaxNFASize" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="spnMaxNFASize" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblMaxNFASize1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="spnMaxPatternSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblMaxRecallStringSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="spnMaxRecallStringSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblMaxRepeatCount" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="spnMaxRepeatCount" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblMaxSimpleRepeatCount" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="spnMaxSimpleRepeatCount" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblMutationSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="spnMutationSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="spnRecallLimit" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblRecallLimit" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="spnRecallTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblRecallTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="cmbSenderType" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblSeederType" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="spnSeedingLimit" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblSeedingLimit" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="spnSeedingTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblSeedingTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="spnRandomSeed" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblRandomSeed" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                              <Component id="lblRandomSeed" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="spnMaxGeneStringSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblMaxDegree1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="spnRandomSeed" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="spnRecallLimit" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblRecallLimit" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="spnRecallTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblRecallTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="cmbSenderType" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblSeederType" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="spnSeedingLimit" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblSeedingLimit" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="spnSeedingTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblSeedingTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
                   </Group>
@@ -482,7 +480,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="lblAccelerationModeType">
               <Properties>
-                <Property name="text" type="java.lang.String" value="AccelerationMode:"/>
+                <Property name="text" type="java.lang.String" value="Acceleration Mode:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="cmbAccelerationModeType">
@@ -497,7 +495,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblAttackLimit">
               <Properties>
-                <Property name="text" type="java.lang.String" value="AttackLimit:"/>
+                <Property name="text" type="java.lang.String" value="Attack Limit:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnAttackTimeout">
@@ -509,7 +507,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblAttackTimeout">
               <Properties>
-                <Property name="text" type="java.lang.String" value="AttackTimeout(ms):"/>
+                <Property name="text" type="java.lang.String" value="Attack Timeout (ms):"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnAttackLimit">
@@ -536,7 +534,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblCrossoverSize">
               <Properties>
-                <Property name="text" type="java.lang.String" value="CrossoverSize:"/>
+                <Property name="text" type="java.lang.String" value="Crossover Size:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnCrossoverSize">
@@ -548,7 +546,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblCrossoverSize1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="HeatRatio:"/>
+                <Property name="text" type="java.lang.String" value="Heat Ratio:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnHeatRatio">
@@ -560,7 +558,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblCrossoverSize2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="IncubationLimit:"/>
+                <Property name="text" type="java.lang.String" value="Incubation Limit:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnIncubationLimit">
@@ -572,7 +570,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblCrossoverSize3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="IncubationTimeout(ms):"/>
+                <Property name="text" type="java.lang.String" value="Incubation Timeout (ms):"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnIncubationTimeout">
@@ -584,7 +582,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblMaxDegree">
               <Properties>
-                <Property name="text" type="java.lang.String" value="MaxDegree:"/>
+                <Property name="text" type="java.lang.String" value="Max Degree:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnMaxDegree">
@@ -596,7 +594,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblMaxDegree1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="MaxGeneStringSize:"/>
+                <Property name="text" type="java.lang.String" value="Max Gene String Size:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnMaxGeneStringSize">
@@ -608,7 +606,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblMaxGenerationSize">
               <Properties>
-                <Property name="text" type="java.lang.String" value="MaxGenerationSize:"/>
+                <Property name="text" type="java.lang.String" value="Max Generation Size:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnMaxGenerationSize">
@@ -620,7 +618,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblMaxInitialGenerationSize">
               <Properties>
-                <Property name="text" type="java.lang.String" value="MaxInitialGenerationSize:"/>
+                <Property name="text" type="java.lang.String" value="Max Initial Generation Size:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnMaxInitialGenerationSize">
@@ -632,7 +630,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblMaxIteration">
               <Properties>
-                <Property name="text" type="java.lang.String" value="MaxIteration:"/>
+                <Property name="text" type="java.lang.String" value="Max Iteration:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnMaxIteration">
@@ -644,7 +642,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblMaxNFASize">
               <Properties>
-                <Property name="text" type="java.lang.String" value="MaxNFASize:"/>
+                <Property name="text" type="java.lang.String" value="Max NFA Size:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnMaxNFASize">
@@ -656,7 +654,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblMaxNFASize1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="MaxPatternSize:"/>
+                <Property name="text" type="java.lang.String" value="Max Pattern Size:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnMaxPatternSize">
@@ -668,7 +666,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblMaxRepeatCount">
               <Properties>
-                <Property name="text" type="java.lang.String" value="MaxRepeatCount:"/>
+                <Property name="text" type="java.lang.String" value="Max Repeat Count:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnMaxRepeatCount">
@@ -680,7 +678,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblMutationSize">
               <Properties>
-                <Property name="text" type="java.lang.String" value="MutationSize:"/>
+                <Property name="text" type="java.lang.String" value="Mutation Size:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnMutationSize">
@@ -692,7 +690,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblRandomSeed">
               <Properties>
-                <Property name="text" type="java.lang.String" value="RandomSeed:"/>
+                <Property name="text" type="java.lang.String" value="Random Seed:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnRandomSeed">
@@ -704,7 +702,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblRecallLimit">
               <Properties>
-                <Property name="text" type="java.lang.String" value="RecallLimit:"/>
+                <Property name="text" type="java.lang.String" value="Recall Limit:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnRecallLimit">
@@ -716,7 +714,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblRecallTimeout">
               <Properties>
-                <Property name="text" type="java.lang.String" value="RecallTimeout(ms):"/>
+                <Property name="text" type="java.lang.String" value="Recall Timeout (ms):"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnRecallTimeout">
@@ -743,7 +741,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblSeedingTimeout">
               <Properties>
-                <Property name="text" type="java.lang.String" value="SeedingTimeout(ms):"/>
+                <Property name="text" type="java.lang.String" value="Seeding Timeout (ms):"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnSeedingTimeout">
@@ -755,7 +753,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblTimeout">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Timeout(ms):"/>
+                <Property name="text" type="java.lang.String" value="Timeout (ms):"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnTimeout">
@@ -774,12 +772,12 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblMaxDegree2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="MaxAttackStringSize:"/>
+                <Property name="text" type="java.lang.String" value="Max Attack String Size:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblMaxRecallStringSize">
               <Properties>
-                <Property name="text" type="java.lang.String" value="MaxRecallStringSize:"/>
+                <Property name="text" type="java.lang.String" value="Max Recall String Size:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnMaxRecallStringSize">
@@ -791,7 +789,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblMaxSimpleRepeatCount">
               <Properties>
-                <Property name="text" type="java.lang.String" value="MaxSimpleRepeatCount:"/>
+                <Property name="text" type="java.lang.String" value="Max Simple Repeat Count:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnMaxSimpleRepeatCount">
@@ -803,7 +801,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblSeedingLimit">
               <Properties>
-                <Property name="text" type="java.lang.String" value="SeedingLimit:"/>
+                <Property name="text" type="java.lang.String" value="Seeding Limit:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="spnSeedingLimit">

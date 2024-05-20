@@ -282,105 +282,105 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
 
         tabbetScan.addTab("Scan", pnlScan);
 
-        lblAccelerationModeType.setText("AccelerationMode:");
+        lblAccelerationModeType.setText("Acceleration Mode:");
 
-        lblAttackLimit.setText("AttackLimit:");
+        lblAttackLimit.setText("Attack Limit:");
 
         spnAttackTimeout.setModel(new javax.swing.SpinnerNumberModel());
 
-        lblAttackTimeout.setText("AttackTimeout(ms):");
+        lblAttackTimeout.setText("Attack Timeout (ms):");
 
         spnAttackLimit.setModel(new javax.swing.SpinnerNumberModel());
 
         lblCheckerType.setText("Checker:");
 
-        lblCrossoverSize.setText("CrossoverSize:");
+        lblCrossoverSize.setText("Crossover Size:");
 
         spnCrossoverSize.setModel(new javax.swing.SpinnerNumberModel());
 
-        lblCrossoverSize1.setText("HeatRatio:");
+        lblCrossoverSize1.setText("Heat Ratio:");
 
         spnHeatRatio.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 1.0d));
 
-        lblCrossoverSize2.setText("IncubationLimit:");
+        lblCrossoverSize2.setText("Incubation Limit:");
 
         spnIncubationLimit.setModel(new javax.swing.SpinnerNumberModel());
 
-        lblCrossoverSize3.setText("IncubationTimeout(ms):");
+        lblCrossoverSize3.setText("Incubation Timeout (ms):");
 
         spnIncubationTimeout.setModel(new javax.swing.SpinnerNumberModel());
 
-        lblMaxDegree.setText("MaxDegree:");
+        lblMaxDegree.setText("Max Degree:");
 
         spnMaxDegree.setModel(new javax.swing.SpinnerNumberModel());
 
-        lblMaxDegree1.setText("MaxGeneStringSize:");
+        lblMaxDegree1.setText("Max Gene String Size:");
 
         spnMaxGeneStringSize.setModel(new javax.swing.SpinnerNumberModel());
 
-        lblMaxGenerationSize.setText("MaxGenerationSize:");
+        lblMaxGenerationSize.setText("Max Generation Size:");
 
         spnMaxGenerationSize.setModel(new javax.swing.SpinnerNumberModel());
 
-        lblMaxInitialGenerationSize.setText("MaxInitialGenerationSize:");
+        lblMaxInitialGenerationSize.setText("Max Initial Generation Size:");
 
         spnMaxInitialGenerationSize.setModel(new javax.swing.SpinnerNumberModel());
 
-        lblMaxIteration.setText("MaxIteration:");
+        lblMaxIteration.setText("Max Iteration:");
 
         spnMaxIteration.setModel(new javax.swing.SpinnerNumberModel());
 
-        lblMaxNFASize.setText("MaxNFASize:");
+        lblMaxNFASize.setText("Max NFA Size:");
 
         spnMaxNFASize.setModel(new javax.swing.SpinnerNumberModel());
 
-        lblMaxNFASize1.setText("MaxPatternSize:");
+        lblMaxNFASize1.setText("Max Pattern Size:");
 
         spnMaxPatternSize.setModel(new javax.swing.SpinnerNumberModel());
 
-        lblMaxRepeatCount.setText("MaxRepeatCount:");
+        lblMaxRepeatCount.setText("Max Repeat Count:");
 
         spnMaxRepeatCount.setModel(new javax.swing.SpinnerNumberModel());
 
-        lblMutationSize.setText("MutationSize:");
+        lblMutationSize.setText("Mutation Size:");
 
         spnMutationSize.setModel(new javax.swing.SpinnerNumberModel());
 
-        lblRandomSeed.setText("RandomSeed:");
+        lblRandomSeed.setText("Random Seed:");
 
         spnRandomSeed.setModel(new javax.swing.SpinnerNumberModel(0L, null, null, 1L));
 
-        lblRecallLimit.setText("RecallLimit:");
+        lblRecallLimit.setText("Recall Limit:");
 
         spnRecallLimit.setModel(new javax.swing.SpinnerNumberModel());
 
-        lblRecallTimeout.setText("RecallTimeout(ms):");
+        lblRecallTimeout.setText("Recall Timeout (ms):");
 
         spnRecallTimeout.setModel(new javax.swing.SpinnerNumberModel());
 
         lblSeederType.setText("Seeder:");
 
-        lblSeedingTimeout.setText("SeedingTimeout(ms):");
+        lblSeedingTimeout.setText("Seeding Timeout (ms):");
 
         spnSeedingTimeout.setModel(new javax.swing.SpinnerNumberModel());
 
-        lblTimeout.setText("Timeout(ms):");
+        lblTimeout.setText("Timeout (ms):");
 
         spnTimeout.setModel(new javax.swing.SpinnerNumberModel());
 
         spnMaxAttackStringSize.setModel(new javax.swing.SpinnerNumberModel());
 
-        lblMaxDegree2.setText("MaxAttackStringSize:");
+        lblMaxDegree2.setText("Max Attack String Size:");
 
-        lblMaxRecallStringSize.setText("MaxRecallStringSize:");
+        lblMaxRecallStringSize.setText("Max Recall String Size:");
 
         spnMaxRecallStringSize.setModel(new javax.swing.SpinnerNumberModel());
 
-        lblMaxSimpleRepeatCount.setText("MaxSimpleRepeatCount:");
+        lblMaxSimpleRepeatCount.setText("Max Simple Repeat Count:");
 
         spnMaxSimpleRepeatCount.setModel(new javax.swing.SpinnerNumberModel());
 
-        lblSeedingLimit.setText("SeedingLimit:");
+        lblSeedingLimit.setText("Seeding Limit:");
 
         spnSeedingLimit.setModel(new javax.swing.SpinnerNumberModel());
 
@@ -404,24 +404,12 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
                 .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(lblMaxInitialGenerationSize)
-                        .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMaxSimpleRepeatCount)
-                            .addComponent(lblMaxRepeatCount)
-                            .addComponent(lblMaxRecallStringSize)
-                            .addComponent(lblMaxNFASize1)
-                            .addComponent(lblMaxNFASize)
-                            .addComponent(lblMaxIteration)
-                            .addComponent(lblMutationSize)
-                            .addComponent(lblRandomSeed)
-                            .addComponent(lblRecallLimit)
-                            .addComponent(lblRecallTimeout)
-                            .addComponent(lblSeederType)
-                            .addComponent(lblSeedingLimit)
-                            .addComponent(lblSeedingTimeout)))
+                        .addGroup(pnlOptionLayout.createSequentialGroup()
+                            .addComponent(lblSeedingTimeout)
+                            .addGap(27, 27, 27)))
                     .addComponent(lblMaxGenerationSize)
                     .addComponent(lblMaxDegree1)
                     .addComponent(lblMaxDegree)
-                    .addComponent(lblMaxDegree2)
                     .addComponent(lblCrossoverSize3)
                     .addComponent(lblCrossoverSize2)
                     .addComponent(lblCrossoverSize1)
@@ -431,8 +419,21 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
                     .addComponent(lblAccelerationModeType)
                     .addComponent(lblTimeout)
                     .addComponent(lblLoggerType)
-                    .addComponent(lblCheckerType))
-                .addGap(18, 18, 18)
+                    .addComponent(lblCheckerType)
+                    .addComponent(lblMaxDegree2)
+                    .addComponent(lblMaxIteration)
+                    .addComponent(lblMaxNFASize)
+                    .addComponent(lblMaxNFASize1)
+                    .addComponent(lblMaxRecallStringSize)
+                    .addComponent(lblMaxRepeatCount)
+                    .addComponent(lblMaxSimpleRepeatCount)
+                    .addComponent(lblMutationSize)
+                    .addComponent(lblRandomSeed)
+                    .addComponent(lblRecallLimit)
+                    .addComponent(lblRecallTimeout)
+                    .addComponent(lblSeederType)
+                    .addComponent(lblSeedingLimit))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(spnSeedingTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(spnSeedingLimit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -465,7 +466,7 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
                         .addComponent(cmbCheckerType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDefaut, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(461, Short.MAX_VALUE))
+                .addContainerGap(456, Short.MAX_VALUE))
         );
         pnlOptionLayout.setVerticalGroup(
             pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -519,72 +520,72 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
                 .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMaxDegree)
                     .addComponent(spnMaxDegree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spnMaxGeneStringSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMaxDegree1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMaxGenerationSize)
+                    .addComponent(spnMaxGenerationSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMaxInitialGenerationSize)
+                    .addComponent(spnMaxInitialGenerationSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMaxIteration)
+                    .addComponent(spnMaxIteration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMaxNFASize)
+                    .addComponent(spnMaxNFASize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMaxNFASize1)
+                    .addComponent(spnMaxPatternSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMaxRecallStringSize)
+                    .addComponent(spnMaxRecallStringSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMaxRepeatCount)
+                    .addComponent(spnMaxRepeatCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMaxSimpleRepeatCount)
+                    .addComponent(spnMaxSimpleRepeatCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMutationSize)
+                    .addComponent(spnMutationSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlOptionLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblMaxGenerationSize)
-                            .addComponent(spnMaxGenerationSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblMaxInitialGenerationSize)
-                            .addComponent(spnMaxInitialGenerationSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblMaxIteration)
-                            .addComponent(spnMaxIteration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblMaxNFASize)
-                            .addComponent(spnMaxNFASize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblMaxNFASize1)
-                            .addComponent(spnMaxPatternSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblMaxRecallStringSize)
-                            .addComponent(spnMaxRecallStringSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblMaxRepeatCount)
-                            .addComponent(spnMaxRepeatCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblMaxSimpleRepeatCount)
-                            .addComponent(spnMaxSimpleRepeatCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblMutationSize)
-                            .addComponent(spnMutationSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlOptionLayout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(spnRecallLimit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblRecallLimit))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(spnRecallTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblRecallTimeout))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(cmbSenderType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblSeederType))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(spnSeedingLimit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblSeedingLimit))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(spnSeedingTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblSeedingTimeout)))
-                            .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(spnRandomSeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblRandomSeed))))
-                    .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(spnMaxGeneStringSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblMaxDegree1)))
+                        .addGap(6, 6, 6)
+                        .addComponent(lblRandomSeed))
+                    .addComponent(spnRandomSeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spnRecallLimit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRecallLimit))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spnRecallTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRecallTimeout))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbSenderType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSeederType))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spnSeedingLimit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSeedingLimit))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spnSeedingTimeout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSeedingTimeout))
                 .addGap(170, 170, 170))
         );
 
