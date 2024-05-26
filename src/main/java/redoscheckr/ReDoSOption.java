@@ -70,6 +70,10 @@ public class ReDoSOption {
             return this.scalar;
         }
 
+        public boolean equals(AccelerationModeType accelerationModeType) {
+            return this.scalar.equals(accelerationModeType.scalar);
+        }
+
     };
 
     public enum CheckerType {
@@ -86,6 +90,10 @@ public class ReDoSOption {
 
         public codes.quine.labs.recheck.common.Checker toValue() {
             return this.scalar;
+        }
+
+        public boolean equals(CheckerType checkerType) {
+            return this.scalar.equals(checkerType.scalar);
         }
 
         public static CheckerType parseEnum(String name) {
@@ -112,6 +120,10 @@ public class ReDoSOption {
 
         public codes.quine.labs.recheck.common.Seeder toValue() {
             return this.scalar;
+        }
+
+        public boolean equals(SeederType seederType) {
+            return this.scalar.equals(seederType.scalar);
         }
 
     }
@@ -161,6 +173,10 @@ public class ReDoSOption {
             }
             throw new IllegalArgumentException(
                 "No enum constant " + CheckerType.class.getCanonicalName() + "." + name);
+        }
+
+        public boolean equals(ComplexityType complexityType) {
+            return this.scalar.equals(complexityType.scalar);
         }
 
     };

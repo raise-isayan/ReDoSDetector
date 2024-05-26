@@ -1,3 +1,4 @@
+
 package redoscheckr;
 
 import java.util.Arrays;
@@ -45,11 +46,20 @@ public class ReDoSOptionITest {
     }
 
     @Test
-    public void testFlags() {
-        System.out.println("getFlags");
-        EnumSet<ReDoSOption.RegexFlag> flags = EnumSet.allOf(ReDoSOption.RegexFlag.class);
-        String value = ReDoSOption.RegexFlag.toFlags(flags);
-        assertEquals(value, "dgimsuvy");
+    public void testRegexFlag() {
+        System.out.println("testRegexFlag");
+        {
+            String flag = ReDoSOption.RegexFlag.toFlags(EnumSet.allOf(ReDoSOption.RegexFlag.class));
+            assertEquals("dgimsuvy", flag);
+        }
+        {
+            String flag = ReDoSOption.RegexFlag.toFlags(EnumSet.noneOf(ReDoSOption.RegexFlag.class));
+            assertEquals("", flag);
+        }
+        {
+            String flag = ReDoSOption.RegexFlag.toFlags(EnumSet.of(ReDoSOption.RegexFlag.GLOBAL));
+            assertEquals("g", flag);
+        }
     }
 
     @Test
@@ -84,6 +94,68 @@ public class ReDoSOptionITest {
         assertEquals(option.getSeedingLimit(), 1000); // seedingLimit
         assertEquals(option.getSeedingTimeout(), 100); // seedingTimeout
         assertEquals(option.getTimeout(), 10000); // timeout
+    }
+
+    @Test
+    public void testEnum() {
+        System.out.println("testEnum");
+        {
+            AccelerationModeType auto = ReDoSOption.AccelerationModeType.AUTO;
+            assertEquals(auto, ReDoSOption.AccelerationModeType.AUTO);
+            AccelerationModeType off = ReDoSOption.AccelerationModeType.OFF;
+            assertEquals(off, ReDoSOption.AccelerationModeType.OFF);
+            AccelerationModeType on = ReDoSOption.AccelerationModeType.ON;
+            assertEquals(on, ReDoSOption.AccelerationModeType.ON);
+        }
+
+        {
+            ReDoSOption.CheckerType auto = ReDoSOption.CheckerType.AUTO;
+            assertEquals(auto, ReDoSOption.CheckerType.AUTO);
+            ReDoSOption.CheckerType none = ReDoSOption.CheckerType.NONE;
+            assertEquals(none, ReDoSOption.CheckerType.NONE);
+        }
+
+        {
+            ReDoSOption.FieldType attack = ReDoSOption.FieldType.ATTACK;
+            assertEquals(attack, ReDoSOption.FieldType.ATTACK);
+            ReDoSOption.FieldType source = ReDoSOption.FieldType.SOURCE;
+            assertEquals(source, ReDoSOption.FieldType.SOURCE);
+        }
+
+        {
+            ReDoSOption.ComplexityType constant = ReDoSOption.ComplexityType.CONSTANT;
+            assertEquals(constant, ReDoSOption.ComplexityType.CONSTANT);
+            ReDoSOption.ComplexityType exponential = ReDoSOption.ComplexityType.EXPONENTIAL;
+            assertEquals(exponential, ReDoSOption.ComplexityType.EXPONENTIAL);
+            ReDoSOption.ComplexityType linear = ReDoSOption.ComplexityType.LINEAR;
+            assertEquals(linear, ReDoSOption.ComplexityType.LINEAR);
+            ReDoSOption.ComplexityType polynomial = ReDoSOption.ComplexityType.POLYNOMIAL;
+            assertEquals(polynomial, ReDoSOption.ComplexityType.POLYNOMIAL);
+            ReDoSOption.ComplexityType safe = ReDoSOption.ComplexityType.SAFE;
+            assertEquals(safe, ReDoSOption.ComplexityType.SAFE);
+        }
+
+        {
+            ReDoSOption.RegexFlag dotall = ReDoSOption.RegexFlag.DOTALL;
+            assertEquals(dotall, ReDoSOption.RegexFlag.DOTALL);
+            ReDoSOption.RegexFlag unicode_set = ReDoSOption.RegexFlag.UNICODE_SETS;
+            assertEquals(unicode_set, ReDoSOption.RegexFlag.UNICODE_SETS);
+        }
+
+        {
+            ReDoSOption.SeederType dynamic = ReDoSOption.SeederType.DYNAMIC;
+            assertEquals(dynamic, ReDoSOption.SeederType.DYNAMIC);
+            ReDoSOption.SeederType statics = ReDoSOption.SeederType.STATIC;
+            assertEquals(statics, ReDoSOption.SeederType.STATIC);
+        }
+
+        {
+            ReDoSOption.StatusType vule = ReDoSOption.StatusType.VULNERABLE;
+            assertEquals(vule, ReDoSOption.StatusType.VULNERABLE);
+            ReDoSOption.StatusType safe = ReDoSOption.StatusType.SAFE;
+            assertEquals(safe, ReDoSOption.StatusType.SAFE);
+        }
+
     }
 
 }

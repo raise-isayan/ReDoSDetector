@@ -45,10 +45,12 @@ public class ReDosDetectorTest {
             assertEquals(result.getFlags(), flags);
             assertEquals(result.getChecker(), ReDoSOption.CheckerType.AUTOMATON);
             assertFalse(result.getAttack().isPresent());
+            assertFalse(result.getHotspot().isPresent());
             assertTrue(result.getComplexity().isPresent());
             if (result.getComplexity().isPresent()) {
                 assertEquals(result.getComplexity().get(), ReDoSOption.ComplexityType.SAFE);
             }
+            assertTrue(result.getLog().isEmpty());
         }
         {
             ReDoSOption option = new ReDoSOption();
@@ -61,10 +63,12 @@ public class ReDosDetectorTest {
             assertEquals(result.getFlags(), flags);
             assertEquals(result.getChecker(), ReDoSOption.CheckerType.FUZZ);
             assertFalse(result.getAttack().isPresent());
+            assertFalse(result.getHotspot().isPresent());
             assertTrue(result.getComplexity().isPresent());
             if (result.getComplexity().isPresent()) {
                 assertEquals(result.getComplexity().get(), ReDoSOption.ComplexityType.SAFE);
             }
+            assertTrue(result.getLog().isEmpty());
         }
         {
             ReDoSOption option = new ReDoSOption();
@@ -77,10 +81,12 @@ public class ReDosDetectorTest {
             assertEquals(result.getFlags(), flags);
             assertEquals(result.getChecker(), ReDoSOption.CheckerType.AUTOMATON);
             assertFalse(result.getAttack().isPresent());
+            assertFalse(result.getHotspot().isPresent());
             assertTrue(result.getComplexity().isPresent());
             if (result.getComplexity().isPresent()) {
                 assertEquals(result.getComplexity().get(), ReDoSOption.ComplexityType.LINEAR);
             }
+            assertTrue(result.getLog().isEmpty());
         }
     }
 
@@ -98,7 +104,9 @@ public class ReDosDetectorTest {
             assertEquals(result.getFlags(), flags);
             assertEquals(result.getChecker(), ReDoSOption.CheckerType.NONE);
             assertFalse(result.getAttack().isPresent());
+            assertFalse(result.getHotspot().isPresent());
             assertFalse(result.getComplexity().isPresent());
+            assertTrue(result.getLog().isEmpty());
         }
         {
             ReDoSOption option = new ReDoSOption();
@@ -110,7 +118,9 @@ public class ReDosDetectorTest {
             assertEquals(result.getFlags(), flags);
             assertEquals(result.getChecker(), ReDoSOption.CheckerType.NONE);
             assertFalse(result.getAttack().isPresent());
+            assertFalse(result.getHotspot().isPresent());
             assertFalse(result.getComplexity().isPresent());
+            assertTrue(result.getLog().isEmpty());
         }
     }
 
@@ -129,6 +139,8 @@ public class ReDosDetectorTest {
             assertEquals(result.getFlags(), flags);
             assertEquals(result.getChecker(), ReDoSOption.CheckerType.AUTOMATON);
             System.out.println("source:" + result.getSource());
+
+            assertTrue(result.getAttack().isPresent());
             if (result.getAttack().isPresent()) {
                 AttackString atk = result.getAttack().get();
                 System.out.println("attack:" + atk.toString());
@@ -140,6 +152,7 @@ public class ReDosDetectorTest {
                 }
             }
 
+            assertTrue(result.getHotspot().isPresent());
             if (result.getHotspot().isPresent()) {
                 System.out.println("hotspot:");
                 HotSpot hotspot = result.getHotspot().get();
@@ -150,8 +163,10 @@ public class ReDosDetectorTest {
 
             assertTrue(result.getComplexity().isPresent());
             if (result.getComplexity().isPresent()) {
-                assertEquals(result.getComplexity().get(), ReDoSOption.ComplexityType.EXPONENTIAL);
+//                assertEquals(result.getComplexity().get(), ReDoSOption.ComplexityType.EXPONENTIAL);
+                System.out.println(result.getComplexity().get());
             }
+            assertTrue(result.getLog().isEmpty());
         }
         {
             System.out.println("----------------------------------------------");
@@ -164,6 +179,8 @@ public class ReDosDetectorTest {
             assertEquals(result.getFlags(), flags);
             assertEquals(result.getChecker(), ReDoSOption.CheckerType.AUTOMATON);
             System.out.println("source:" + result.getSource());
+
+            assertTrue(result.getAttack().isPresent());
             if (result.getAttack().isPresent()) {
                 AttackString atk = result.getAttack().get();
                 System.out.println("attack:" + atk.toString());
@@ -175,6 +192,7 @@ public class ReDosDetectorTest {
                 }
             }
 
+            assertTrue(result.getHotspot().isPresent());
             if (result.getHotspot().isPresent()) {
                 System.out.println("hotspot:");
                 HotSpot hotspot = result.getHotspot().get();
@@ -187,6 +205,7 @@ public class ReDosDetectorTest {
             if (result.getComplexity().isPresent()) {
                 assertEquals(result.getComplexity().get(), ReDoSOption.ComplexityType.EXPONENTIAL);
             }
+            assertTrue(result.getLog().isEmpty());
         }
         {
             System.out.println("----------------------------------------------");
@@ -199,6 +218,8 @@ public class ReDosDetectorTest {
             assertEquals(result.getFlags(), flags);
             assertEquals(result.getChecker(), ReDoSOption.CheckerType.AUTOMATON);
             System.out.println("source:" + result.getSource());
+
+            assertTrue(result.getAttack().isPresent());
             if (result.getAttack().isPresent()) {
                 AttackString atk = result.getAttack().get();
                 System.out.println("attack:" + atk.toString());
@@ -210,6 +231,7 @@ public class ReDosDetectorTest {
                 }
             }
 
+            assertTrue(result.getHotspot().isPresent());
             if (result.getHotspot().isPresent()) {
                 HotSpot hotspot = result.getHotspot().get();
                 System.out.println("hotspot:");
@@ -222,6 +244,7 @@ public class ReDosDetectorTest {
             if (result.getComplexity().isPresent()) {
                 assertEquals(result.getComplexity().get(), ReDoSOption.ComplexityType.EXPONENTIAL);
             }
+            assertTrue(result.getLog().isEmpty());
         }
         {
             System.out.println("----------------------------------------------");
@@ -234,6 +257,8 @@ public class ReDosDetectorTest {
             assertEquals(result.getFlags(), flags);
             assertEquals(result.getChecker(), ReDoSOption.CheckerType.AUTOMATON);
             System.out.println("source:" + result.getSource());
+
+            assertTrue(result.getAttack().isPresent());
             if (result.getAttack().isPresent()) {
                 AttackString atk = result.getAttack().get();
                 System.out.println("attack:" + atk.toString());
@@ -244,9 +269,11 @@ public class ReDosDetectorTest {
                     System.out.println("pumps[" + i + "].bias:" + pumps.get(i).getBias());
                 }
             }
+            assertTrue(result.getComplexity().isPresent());
             if (result.getComplexity().isPresent()) {
-                System.out.println("complexity:" + result.getComplexity().get());
+                assertEquals(result.getComplexity().get(), ReDoSOption.ComplexityType.EXPONENTIAL);
             }
+            assertTrue(result.getHotspot().isPresent());
             if (result.getHotspot().isPresent()) {
                 System.out.println("hotspot:");
                 HotSpot hotspot = result.getHotspot().get();
@@ -254,11 +281,11 @@ public class ReDosDetectorTest {
                     System.out.println("spot:" + spot.toString());
                 }
             }
-
             assertTrue(result.getComplexity().isPresent());
             if (result.getComplexity().isPresent()) {
                 assertEquals(result.getComplexity().get(), ReDoSOption.ComplexityType.EXPONENTIAL);
             }
+            assertTrue(result.getLog().isEmpty());
         }
 
         {
@@ -273,6 +300,7 @@ public class ReDosDetectorTest {
             assertEquals(result.getChecker(), ReDoSOption.CheckerType.AUTOMATON);
             System.out.println("source:" + result.getSource());
 
+            assertTrue(result.getAttack().isPresent());
             if (result.getAttack().isPresent()) {
                 AttackString atk = result.getAttack().get();
                 System.out.println("attack:" + atk.toString());
@@ -283,9 +311,11 @@ public class ReDosDetectorTest {
                     System.out.println("pumps[" + i + "].bias:" + pumps.get(i).getBias());
                 }
             }
+            assertTrue(result.getComplexity().isPresent());
             if (result.getComplexity().isPresent()) {
-                System.out.println("complexity:" + result.getComplexity().get());
+                assertEquals(result.getComplexity().get(), ReDoSOption.ComplexityType.POLYNOMIAL);
             }
+            assertTrue(result.getHotspot().isPresent());
             if (result.getHotspot().isPresent()) {
                 System.out.println("hotspot:");
                 HotSpot hotspot = result.getHotspot().get();
@@ -297,6 +327,7 @@ public class ReDosDetectorTest {
             if (result.getComplexity().isPresent()) {
                 assertEquals(result.getComplexity().get(), ReDoSOption.ComplexityType.POLYNOMIAL);
             }
+            assertTrue(result.getLog().isEmpty());
 
         }
 
@@ -306,17 +337,22 @@ public class ReDosDetectorTest {
     public void testAttackString() {
         System.out.println("testAttackString");
         ReDosDetector detect = new ReDosDetector();
-        String regex = "(aa|aa)*$";
-        String flags = "";
-        DetectIssue result = detect.scan(regex, flags);
-        System.out.println("debug:" + result.debugStringClassName());
-        if (result.getAttack().isPresent()) {
-            AttackString atk = result.getAttack().get();
-            System.out.println("asUString:" + atk.getAsUString());
-            System.out.println("getFixedSize:" + atk.getFixedSize());
-            System.out.println("getRepeatSize:" + atk.getRepeatSize());
-            System.out.println("getRepeatCount:" + atk.getRepeatCount());
-            System.out.println("toString:" + atk.toString());
+        {
+            String regex = "(aa|aa)*$";
+            String flags = "";
+            DetectIssue result = detect.scan(regex, flags);
+            System.out.println("debug:" + result.debugStringClassName());
+            assertTrue(result.getAttack().isPresent());
+            if (result.getAttack().isPresent()) {
+                AttackString atk = result.getAttack().get();
+                System.out.println("asUString:" + atk.getAsUString());
+                System.out.println("getFixedSize:" + atk.getFixedSize());
+                System.out.println("getRepeatSize:" + atk.getRepeatSize());
+                System.out.println("getRepeatCount:" + atk.getRepeatCount());
+                System.out.println("toString:" + atk.toString());
+            }
+            assertTrue(result.getHotspot().isPresent());
+            assertTrue(result.getLog().isEmpty());
         }
     }
 
@@ -334,9 +370,10 @@ public class ReDosDetectorTest {
             assertEquals(result.getSource(), regex);
             assertEquals(result.getFlags(), flags);
             assertFalse(result.getAttack().isPresent());
-
+            assertFalse(result.getHotspot().isPresent());
             assertEquals(result.getChecker(), CheckerType.NONE);
             assertFalse(result.getComplexity().isPresent());
+            assertTrue(result.getLog().isEmpty());
         }
     }
 

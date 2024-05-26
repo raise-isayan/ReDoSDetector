@@ -55,7 +55,7 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
 
     private final ReDosDetector detect = new ReDosDetector();
 
-    static final MatchPattern[] MATCH = new MatchPattern[] {
+    static final MatchPattern[] MATCH = new MatchPattern[]{
         // JavaScript
         new MatchPattern(Pattern.compile("\\Wnew\\s{1,6}RegExp\\(\\s{0,6}(?:\"(.*?)\"\\s*(?:,\\s{0,6}\"(d?g?i?m?s?u?v?y?)\"\\s{0,6})?)\\)"), ContentMimeType.JAVA_SCRIPT, MatchPattern.Type.CLIENT_SIDE),
         new MatchPattern(Pattern.compile("\\Wnew\\s{1,6}RegExp\\((?:/(.*?)/(d?g?i?m?s?u?v?y?))\\)"), ContentMimeType.JAVA_SCRIPT, MatchPattern.Type.CLIENT_SIDE),
@@ -68,12 +68,10 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
 
         new MatchPattern(Pattern.compile("\\Wpreg_(?:match|replace|all)\\(&(?:quot|#39);/(.*)/(i?m?s?x?U?X?J?)&(?:quot|#39);\\)\\W"), ContentMimeType.HTML, MatchPattern.Type.SERVER_SIDE),
         new MatchPattern(Pattern.compile("\\Wpreg_(?:match|replace|all)\\([\"']/(.*)/(i?m?s?x?U?X?J?)[\"']\\)\\W"), ContentMimeType.JSON, MatchPattern.Type.SERVER_SIDE),
-
         // Validation
         new MatchPattern(Pattern.compile("\\Wmatch the pattern(?: of)?: [\"\'`/]?(.*?)[\"\'`/]?\\s"), ContentMimeType.JSON, MatchPattern.Type.SERVER_SIDE),
         new MatchPattern(Pattern.compile("\\Wregular expression pattern: [\"\'`/]?(.*?)[\"\'`/]?\\s"), ContentMimeType.JSON, MatchPattern.Type.SERVER_SIDE),
-        new MatchPattern(Pattern.compile("\\Wpattern [\"\'`/]?(.*?)[\"\'`/]?\\s"), ContentMimeType.JSON, MatchPattern.Type.SERVER_SIDE),
-    };
+        new MatchPattern(Pattern.compile("\\Wpattern [\"\'`/]?(.*?)[\"\'`/]?\\s"), ContentMimeType.JSON, MatchPattern.Type.SERVER_SIDE),};
 
     @Override
     public ScanCheck passiveScanCheck() {
