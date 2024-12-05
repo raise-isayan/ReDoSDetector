@@ -97,6 +97,7 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
         chkUnicodeSets = new javax.swing.JCheckBox();
         chkUnicode = new javax.swing.JCheckBox();
         chkSticky = new javax.swing.JCheckBox();
+        scrollOption = new javax.swing.JScrollPane();
         pnlOption = new javax.swing.JPanel();
         lblAccelerationModeType = new javax.swing.JLabel();
         cmbAccelerationModeType = new javax.swing.JComboBox<>();
@@ -589,7 +590,9 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
                 .addGap(170, 170, 170))
         );
 
-        tabbetScan.addTab("Advance Option", pnlOption);
+        scrollOption.setViewportView(pnlOption);
+
+        tabbetScan.addTab("Option", scrollOption);
 
         add(tabbetScan, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -668,6 +671,7 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
     private javax.swing.JPanel pnlOptional;
     private javax.swing.JPanel pnlResult;
     private javax.swing.JPanel pnlScan;
+    private javax.swing.JScrollPane scrollOption;
     private javax.swing.JSpinner spnAttackLimit;
     private javax.swing.JSpinner spnAttackTimeout;
     private javax.swing.JSpinner spnCrossoverSize;

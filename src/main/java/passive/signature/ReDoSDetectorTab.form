@@ -237,604 +237,610 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="pnlOption">
+        <Container class="javax.swing.JScrollPane" name="scrollOption">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Advance Option">
-                <Property name="tabTitle" type="java.lang.String" value="Advance Option"/>
+              <JTabbedPaneConstraints tabName="Option">
+                <Property name="tabTitle" type="java.lang.String" value="Option"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
 
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Component id="lblMaxInitialGenerationSize" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="lblSeedingTimeout" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="pnlOption">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                  <Component id="lblMaxInitialGenerationSize" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="lblSeedingTimeout" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="lblMaxGenerationSize" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblMaxDegree1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblMaxDegree" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCrossoverSize3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCrossoverSize2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCrossoverSize1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCrossoverSize" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblAttackTimeout" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblAttackLimit" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblAccelerationModeType" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblTimeout" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblLoggerType" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCheckerType" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblMaxDegree2" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblMaxIteration" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblMaxNFASize" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblMaxNFASize1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblMaxRecallStringSize" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblMaxRepeatCount" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblMaxSimpleRepeatCount" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblMutationSize" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblRandomSeed" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblRecallLimit" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblRecallTimeout" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblSeederType" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblSeedingLimit" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="spnSeedingTimeout" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnSeedingLimit" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="cmbSenderType" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnRecallTimeout" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnRecallLimit" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnRandomSeed" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnMutationSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnMaxSimpleRepeatCount" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnMaxRepeatCount" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnMaxRecallStringSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnMaxPatternSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnMaxNFASize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnMaxIteration" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnMaxInitialGenerationSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnMaxGenerationSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnMaxGeneStringSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnMaxDegree" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnMaxAttackStringSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnIncubationTimeout" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnIncubationLimit" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnHeatRatio" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnCrossoverSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnAttackTimeout" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnAttackLimit" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="cmbAccelerationModeType" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="spnTimeout" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="cmbLoggerType" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="cmbCheckerType" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnDefaut" min="-2" pref="116" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="lblMaxGenerationSize" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMaxDegree1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMaxDegree" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCrossoverSize3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCrossoverSize2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCrossoverSize1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCrossoverSize" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAttackTimeout" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAttackLimit" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAccelerationModeType" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblTimeout" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblLoggerType" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCheckerType" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMaxDegree2" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMaxIteration" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMaxNFASize" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMaxNFASize1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMaxRecallStringSize" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMaxRepeatCount" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMaxSimpleRepeatCount" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMutationSize" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblRandomSeed" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblRecallLimit" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblRecallTimeout" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblSeederType" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblSeedingLimit" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="456" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="spnSeedingTimeout" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnSeedingLimit" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="cmbSenderType" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnRecallTimeout" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnRecallLimit" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnRandomSeed" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnMutationSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnMaxSimpleRepeatCount" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnMaxRepeatCount" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnMaxRecallStringSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnMaxPatternSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnMaxNFASize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnMaxIteration" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnMaxInitialGenerationSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnMaxGenerationSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnMaxGeneStringSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnMaxDegree" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnMaxAttackStringSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnIncubationTimeout" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnIncubationLimit" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnHeatRatio" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnCrossoverSize" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnAttackTimeout" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnAttackLimit" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="cmbAccelerationModeType" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="spnTimeout" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="cmbLoggerType" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="cmbCheckerType" min="-2" pref="200" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnDefaut" min="-2" pref="116" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace pref="456" max="32767" attributes="0"/>
                   </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblCheckerType" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmbCheckerType" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnDefaut" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblLoggerType" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmbLoggerType" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="spnTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblAccelerationModeType" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmbAccelerationModeType" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="spnAttackLimit" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAttackLimit" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblAttackTimeout" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="spnAttackTimeout" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblCrossoverSize" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="spnCrossoverSize" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblCrossoverSize1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="spnHeatRatio" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblCrossoverSize2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="spnIncubationLimit" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblCrossoverSize3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="spnIncubationTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblMaxDegree2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="spnMaxAttackStringSize" alignment="3" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblMaxDegree" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="spnMaxDegree" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="spnMaxGeneStringSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMaxDegree1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblMaxGenerationSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="spnMaxGenerationSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblMaxInitialGenerationSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="spnMaxInitialGenerationSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblMaxIteration" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="spnMaxIteration" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblMaxNFASize" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="spnMaxNFASize" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblMaxNFASize1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="spnMaxPatternSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblMaxRecallStringSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="spnMaxRecallStringSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblMaxRepeatCount" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="spnMaxRepeatCount" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblMaxSimpleRepeatCount" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="spnMaxSimpleRepeatCount" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblMutationSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="spnMutationSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                              <Component id="lblRandomSeed" min="-2" max="-2" attributes="0"/>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblCheckerType" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbCheckerType" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnDefaut" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="spnRandomSeed" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblLoggerType" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbLoggerType" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="spnTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblAccelerationModeType" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbAccelerationModeType" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="spnAttackLimit" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblAttackLimit" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblAttackTimeout" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="spnAttackTimeout" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblCrossoverSize" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="spnCrossoverSize" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblCrossoverSize1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spnHeatRatio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblCrossoverSize2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spnIncubationLimit" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblCrossoverSize3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spnIncubationTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblMaxDegree2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spnMaxAttackStringSize" alignment="3" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblMaxDegree" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spnMaxDegree" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="spnMaxGeneStringSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblMaxDegree1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblMaxGenerationSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spnMaxGenerationSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblMaxInitialGenerationSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spnMaxInitialGenerationSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblMaxIteration" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spnMaxIteration" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblMaxNFASize" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spnMaxNFASize" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblMaxNFASize1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spnMaxPatternSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblMaxRecallStringSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spnMaxRecallStringSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblMaxRepeatCount" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spnMaxRepeatCount" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblMaxSimpleRepeatCount" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spnMaxSimpleRepeatCount" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblMutationSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spnMutationSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                  <Component id="lblRandomSeed" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="spnRandomSeed" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="spnRecallLimit" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblRecallLimit" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="spnRecallTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblRecallTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="cmbSenderType" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblSeederType" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="spnSeedingLimit" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblSeedingLimit" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="spnSeedingTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblSeedingTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="spnRecallLimit" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblRecallLimit" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="spnRecallTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblRecallTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="cmbSenderType" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblSeederType" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="spnSeedingLimit" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblSeedingLimit" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="spnSeedingTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblSeedingTimeout" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
                   </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JLabel" name="lblAccelerationModeType">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Acceleration Mode:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="cmbAccelerationModeType">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblAttackLimit">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Attack Limit:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnAttackTimeout">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblAttackTimeout">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Attack Timeout (ms):"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnAttackLimit">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblCheckerType">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Checker:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="cmbCheckerType">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblCrossoverSize">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Crossover Size:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnCrossoverSize">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblCrossoverSize1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Heat Ratio:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnHeatRatio">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblCrossoverSize2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Incubation Limit:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnIncubationLimit">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblCrossoverSize3">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Incubation Timeout (ms):"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnIncubationTimeout">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblMaxDegree">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Max Degree:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnMaxDegree">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblMaxDegree1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Max Gene String Size:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnMaxGeneStringSize">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblMaxGenerationSize">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Max Generation Size:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnMaxGenerationSize">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblMaxInitialGenerationSize">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Max Initial Generation Size:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnMaxInitialGenerationSize">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblMaxIteration">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Max Iteration:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnMaxIteration">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblMaxNFASize">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Max NFA Size:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnMaxNFASize">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblMaxNFASize1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Max Pattern Size:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnMaxPatternSize">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblMaxRepeatCount">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Max Repeat Count:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnMaxRepeatCount">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblMutationSize">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Mutation Size:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnMutationSize">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblRandomSeed">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Random Seed:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnRandomSeed">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Long" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblRecallLimit">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Recall Limit:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnRecallLimit">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblRecallTimeout">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Recall Timeout (ms):"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnRecallTimeout">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblSeederType">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Seeder:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="cmbSenderType">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblSeedingTimeout">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Seeding Timeout (ms):"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnSeedingTimeout">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblTimeout">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Timeout (ms):"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnTimeout">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnMaxAttackStringSize">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblMaxDegree2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Max Attack String Size:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblMaxRecallStringSize">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Max Recall String Size:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnMaxRecallStringSize">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblMaxSimpleRepeatCount">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Max Simple Repeat Count:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnMaxSimpleRepeatCount">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblSeedingLimit">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Seeding Limit:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="spnSeedingLimit">
-              <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="cmbLoggerType">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
-                </Property>
-                <Property name="enabled" type="boolean" value="false"/>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblLoggerType">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Logger:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnDefaut">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Defaut"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDefautActionPerformed"/>
-              </Events>
-            </Component>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="lblAccelerationModeType">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Acceleration Mode:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="cmbAccelerationModeType">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblAttackLimit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Attack Limit:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnAttackTimeout">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblAttackTimeout">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Attack Timeout (ms):"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnAttackLimit">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblCheckerType">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Checker:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="cmbCheckerType">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblCrossoverSize">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Crossover Size:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnCrossoverSize">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblCrossoverSize1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Heat Ratio:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnHeatRatio">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblCrossoverSize2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Incubation Limit:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnIncubationLimit">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblCrossoverSize3">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Incubation Timeout (ms):"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnIncubationTimeout">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblMaxDegree">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Max Degree:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnMaxDegree">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblMaxDegree1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Max Gene String Size:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnMaxGeneStringSize">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblMaxGenerationSize">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Max Generation Size:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnMaxGenerationSize">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblMaxInitialGenerationSize">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Max Initial Generation Size:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnMaxInitialGenerationSize">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblMaxIteration">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Max Iteration:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnMaxIteration">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblMaxNFASize">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Max NFA Size:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnMaxNFASize">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblMaxNFASize1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Max Pattern Size:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnMaxPatternSize">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblMaxRepeatCount">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Max Repeat Count:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnMaxRepeatCount">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblMutationSize">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Mutation Size:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnMutationSize">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblRandomSeed">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Random Seed:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnRandomSeed">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Long" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblRecallLimit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Recall Limit:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnRecallLimit">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblRecallTimeout">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Recall Timeout (ms):"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnRecallTimeout">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblSeederType">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Seeder:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="cmbSenderType">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblSeedingTimeout">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Seeding Timeout (ms):"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnSeedingTimeout">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblTimeout">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Timeout (ms):"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnTimeout">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnMaxAttackStringSize">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblMaxDegree2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Max Attack String Size:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblMaxRecallStringSize">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Max Recall String Size:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnMaxRecallStringSize">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblMaxSimpleRepeatCount">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Max Simple Repeat Count:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnMaxSimpleRepeatCount">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblSeedingLimit">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Seeding Limit:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spnSeedingLimit">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="cmbLoggerType">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblLoggerType">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Logger:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnDefaut">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Defaut"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDefautActionPerformed"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
       </SubComponents>
