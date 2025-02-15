@@ -592,7 +592,7 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
 
         scrollOption.setViewportView(pnlOption);
 
-        tabbetScan.addTab("Option", scrollOption);
+        tabbetScan.addTab("Advance Optoin", scrollOption);
 
         add(tabbetScan, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
