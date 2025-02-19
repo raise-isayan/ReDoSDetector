@@ -71,15 +71,15 @@ gradlew release
 * JRE (JDK) 17 (Open JDK is recommended) (https://openjdk.java.net/)
 
 .Burp suite
-* v2023.1.2 or higher (http://www.portswigger.net/burp/)
+* v2024.2.1.3 or higher (http://www.portswigger.net/burp/)
 
 ## 開発環境
-* NetBean 21 (https://netbeans.apache.org/)
+* NetBean 24 (https://netbeans.apache.org/)
 * Gradle 7.6 (https://gradle.org/)
 
 ## 必須ライブラリ
 ビルドには別途 [BurpExtensionCommons](https://github.com/raise-isayan/BurpExtensionCommons) のライブラリを必要とします。
-* BurpExtensionCommons v3.1.x
+* BurpExtensionCommons v3.2.5 以上
   * https://github.com/raise-isayan/BurpExtensionCommons
 
 ## 利用ライブラリ
@@ -97,7 +97,7 @@ gradlew release
   * https://makenowjust-labs.github.io/recheck/
 
 以下のバージョンで動作確認しています。
-* Burp suite v2024.2.1
+* Burp suite v2024.12.1
 
 ## 注意事項
 このツールは、私個人が勝手に開発したもので、PortSwigger社は一切関係ありません。本ツールを使用したことによる不具合等についてPortSwiggerに問い合わせないようお願いします。

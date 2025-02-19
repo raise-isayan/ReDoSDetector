@@ -21,7 +21,7 @@ Please download the stable release version from the following.
 
 Please use the following versions
 
-* Burp suite v2023.1.2 or above
+* Burp suite v2024.2.1.3 or above
 
 ## How to Use
 
@@ -71,15 +71,15 @@ gradlew release
 * JRE (JDK) 17 (Open JDK is recommended) (https://openjdk.java.net/)
 
 .Burp suite
-* v2023.1.2 or higher (http://www.portswigger.net/burp/)
+* v2024.2.1.3 or higher (http://www.portswigger.net/burp/)
 
 ## Development environment
-* NetBean 21 (https://netbeans.apache.org/)
+* NetBean 24 (https://netbeans.apache.org/)
 * Gradle 7.6 (https://gradle.org/)
 
 ## Use Library
 Building requires a [BurpExtensionCommons](https://github.com/raise-isayan/BurpExtensionCommons) library.
-* BurpExtensionCommons v3.1.x
+* BurpExtensionCommons v3.2.5  or higher
   * https://github.com/raise-isayan/BurpExtensionCommons
 
 ## Use Library
@@ -97,7 +97,7 @@ Building requires a [BurpExtensionCommons](https://github.com/raise-isayan/BurpE
   * https://makenowjust-labs.github.io/recheck/
 
 Operation is confirmed with the following versions.
-* Burp suite v2024.2.1
+* Burp suite v2024.12.1
 
 ## important
 This tool developed by my own personal use, PortSwigger company is not related at all. Please do not ask PortSwigger about problems, etc. caused by using this tool.
