@@ -71,7 +71,7 @@ dependencies {
     implementation 'net.portswigger.burp.extensions:montoya-api:2025.2'
 
     // https://mvnrepository.com/artifact/codes.quine.labs/recheck-core
-    implementation 'codes.quine.labs:recheck-core_2.13:4.4.5'
+    implementation 'codes.quine.labs:recheck-core_2.13:4.5.0'
 
     // Use JUnit Jupiter for testing.
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
