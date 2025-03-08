@@ -70,7 +70,7 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
         this.spnSeedingTimeout.addFocusListener(FIRE_FOCUS);
         this.spnTimeout.addFocusListener(FIRE_FOCUS);
 
-        this.txtIssueText.setFocusable(false);
+//        this.txtIssueText.setFocusable(false);
 
     }
 

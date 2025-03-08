@@ -172,7 +172,11 @@ public class ReDoSOption {
                 return Enum.valueOf(ComplexityType.class, m.group(1));
             }
             throw new IllegalArgumentException(
-                "No enum constant " + CheckerType.class.getCanonicalName() + "." + name);
+                    "No enum constant " + CheckerType.class.getCanonicalName() + "." + name);
+        }
+
+        public codes.quine.labs.recheck.diagnostics.AttackComplexity toValue() {
+            return this.scalar;
         }
 
         public boolean equals(ComplexityType complexityType) {
