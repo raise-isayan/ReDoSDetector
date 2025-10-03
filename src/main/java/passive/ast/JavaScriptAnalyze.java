@@ -44,7 +44,6 @@ public class JavaScriptAnalyze {
         return text;
     }
 
-
     public boolean analyze() {
         JavaScriptLexer lexer = new JavaScriptLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -109,7 +108,7 @@ public class JavaScriptAnalyze {
     private final List<RegExPattermItem> regList = new ArrayList<>();
 
     public List<RegExPattermItem> getRegExpList() {
-        return regList;
+        return this.regList;
     }
 
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 /**
  *
  * @author isayan
@@ -13,7 +14,7 @@ public class HtmlAnalyze {
 
     private final static Pattern SCRIPT_TAG = Pattern.compile("<script>(.*?)</script>", Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 
-    private String input;
+    private final String input;
 
     public HtmlAnalyze(String input) {
         this.input = input;
@@ -34,7 +35,7 @@ public class HtmlAnalyze {
     private final List<CaptureItem> captureList = new ArrayList<>();
 
     public List<CaptureItem> getCaputreList() {
-        return captureList;
+        return this.captureList;
     }
 
 }

@@ -24,12 +24,10 @@ import extension.helpers.HttpUtil;
 import extension.helpers.json.JsonUtil;
 import extension.view.base.CaptureItem;
 import java.awt.Component;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -60,10 +58,10 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
     private final ReDosDetector detect = new ReDosDetector();
 
     static final MatchPattern[] MATCH = new MatchPattern[]{
-//        // JavaScript
-//        new MatchPattern(Pattern.compile("\\Wnew\\s{1,6}RegExp\\(\\s{0,6}(?:\"(.*?)\"\\s*(?:,\\s{0,6}\"(d?g?i?m?s?u?v?y?)\"\\s{0,6})?)\\)"), ContentMimeType.JAVA_SCRIPT, MatchPattern.Type.CLIENT_SIDE),
-//        new MatchPattern(Pattern.compile("\\Wnew\\s{1,6}RegExp\\((?:/(.*?)/(d?g?i?m?s?u?v?y?))\\)"), ContentMimeType.JAVA_SCRIPT, MatchPattern.Type.CLIENT_SIDE),
-//        new MatchPattern(Pattern.compile("/(.*)/(d?g?i?m?s?u?v?y?)\\.(?:test|exec)\\(.*?\\)"), ContentMimeType.JAVA_SCRIPT, MatchPattern.Type.CLIENT_SIDE),
+        // JavaScript
+        //        new MatchPattern(Pattern.compile("\\Wnew\\s{1,6}RegExp\\(\\s{0,6}(?:\"(.*?)\"\\s*(?:,\\s{0,6}\"(d?g?i?m?s?u?v?y?)\"\\s{0,6})?)\\)"), ContentMimeType.JAVA_SCRIPT, MatchPattern.Type.CLIENT_SIDE),
+        //        new MatchPattern(Pattern.compile("\\Wnew\\s{1,6}RegExp\\((?:/(.*?)/(d?g?i?m?s?u?v?y?))\\)"), ContentMimeType.JAVA_SCRIPT, MatchPattern.Type.CLIENT_SIDE),
+        //        new MatchPattern(Pattern.compile("/(.*)/(d?g?i?m?s?u?v?y?)\\.(?:test|exec)\\(.*?\\)"), ContentMimeType.JAVA_SCRIPT, MatchPattern.Type.CLIENT_SIDE),
         // Error
         new MatchPattern(Pattern.compile("\\Wmatch the pattern(?: of)?: &(?:quot|#39);(.*?)&(?:quot|#39);\\s"), ContentMimeType.HTML, MatchPattern.Type.SERVER_SIDE),
         new MatchPattern(Pattern.compile("\\Wregular expression pattern: &(?:quot|#39);(.*?)&#(?:quot|#39);\\s"), ContentMimeType.HTML, MatchPattern.Type.SERVER_SIDE),
@@ -89,18 +87,18 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
                 if (wrapResponse.hasHttpResponse() && wrapResponse.getBodyByte().length > 0) {
                     // JavaScriptファイルの場合
                     if (wrapRequest.pathWithoutQuery().endsWith(".js")) {
-                        String body = wrapResponse.getBodyString(wrapResponse.getGuessCharset(StandardCharsets.UTF_8), false);
+                        String body = wrapResponse.getBodyString(StandardCharsets.ISO_8859_1, false);
                         JavaScriptAnalyze jsAnalyze = new JavaScriptAnalyze(body);
                         jsAnalyze.analyze();
                         List<RegExPattermItem> itemList = jsAnalyze.getRegExpList();
+                        List<ReDoSIssueItem> issueList = new ArrayList<>();
                         for (RegExPattermItem regItem : itemList) {
-                            List<ReDoSIssueItem> issueList = new ArrayList<>();
                             String regex = regItem.getRegExPattern();
                             String flags = regItem.getRegExFlag();
                             DetectIssue result = detect.scan(regex, flags, getOption());
                             if (result.getStatus() == ReDoSOption.StatusType.VULNERABLE) {
                                 ReDoSIssueItem issueItem = new ReDoSIssueItem();
-                                issueItem.setType(regex);
+                                issueItem.setType(MatchPattern.Type.CLIENT_SIDE.toString());
                                 issueItem.setMessageIsRequest(false);
                                 issueItem.setServerity(Severity.LOW);
                                 issueItem.setConfidence(Confidence.FIRM);
@@ -110,33 +108,31 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
                                 issueItem.setEnd(wrapResponse.bodyOffset() + regItem.end());
                                 issueItem.setDetectIssue(result);
                                 issueList.add(issueItem);
-                                HttpRequestResponse applyMarks = applyMarkers(baseRequestResponse, issueList);
-                                issues.add(makeScanIssue(applyMarks, issueList));
                             }
                         }
-                    }
-                    else {
-                        String body = wrapResponse.getBodyString(wrapResponse.getGuessCharset(StandardCharsets.UTF_8), false);
+                        HttpRequestResponse applyMarks = applyMarkers(baseRequestResponse, issueList);
+                        issues.add(makeScanIssue(applyMarks, issueList));
+                    } else {
+                        String body = wrapResponse.getBodyString(StandardCharsets.ISO_8859_1, false);
                         HtmlAnalyze htmlAnalyze = new HtmlAnalyze(body);
                         htmlAnalyze.analyze();
                         if (htmlAnalyze.getCaputreList().isEmpty()) {
                             issues.addAll(parseHttpResponse(baseRequestResponse));
-                        }
-                        else {
+                        } else {
                             // scriptタグ内を解析
+                            List<ReDoSIssueItem> issueList = new ArrayList<>();
                             List<CaptureItem> captureList = htmlAnalyze.getCaputreList();
                             for (CaptureItem captureItem : captureList) {
                                 JavaScriptAnalyze jsAnalyze = new JavaScriptAnalyze(captureItem.getCaptureValue());
                                 jsAnalyze.analyze();
                                 List<RegExPattermItem> itemList = jsAnalyze.getRegExpList();
                                 for (RegExPattermItem regItem : itemList) {
-                                    List<ReDoSIssueItem> issueList = new ArrayList<>();
                                     String regex = regItem.getRegExPattern();
                                     String flags = regItem.getRegExFlag();
                                     DetectIssue result = detect.scan(regex, flags, getOption());
                                     if (result.getStatus() == ReDoSOption.StatusType.VULNERABLE) {
                                         ReDoSIssueItem issueItem = new ReDoSIssueItem();
-                                        issueItem.setType(regex);
+                                        issueItem.setType(MatchPattern.Type.CLIENT_SIDE.toString());
                                         issueItem.setMessageIsRequest(false);
                                         issueItem.setServerity(Severity.LOW);
                                         issueItem.setConfidence(Confidence.FIRM);
@@ -146,11 +142,11 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
                                         issueItem.setEnd(wrapResponse.bodyOffset() + captureItem.start() + regItem.end());
                                         issueItem.setDetectIssue(result);
                                         issueList.add(issueItem);
-                                        HttpRequestResponse applyMarks = applyMarkers(baseRequestResponse, issueList);
-                                        issues.add(makeScanIssue(applyMarks, issueList));
                                     }
                                 }
                             }
+                            HttpRequestResponse applyMarks = applyMarkers(baseRequestResponse, issueList);
+                            issues.add(makeScanIssue(applyMarks, issueList));
                         }
                     }
                 }
@@ -163,36 +159,32 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
     private List<AuditIssue> parseHttpResponse(HttpRequestResponse baseRequestResponse) {
         List<AuditIssue> issues = new ArrayList<>();
         HttpResponseWapper wrapResponse = new HttpResponseWapper(baseRequestResponse.response());
-        try {
-            String body = wrapResponse.getBodyString(wrapResponse.getGuessCharset(StandardCharsets.UTF_8.name()), false);
-            for (int i = 0; i < MATCH.length; i++) {
-                Matcher m = MATCH[i].getMatcher(body);
-                while (m.find()) {
-                    String regex = MatchPattern.toDecode(m.group(1), MATCH[i].getContentType());
-                    String flags = m.groupCount() >= 2 && m.group(2) != null ? m.group(2) : "";
-                    DetectIssue result = detect.scan(regex, flags, this.getOption());
-                    if (result.getStatus() == ReDoSOption.StatusType.VULNERABLE) {
-                        List<ReDoSIssueItem> issueList = new ArrayList<>();
-                        ReDoSIssueItem issueItem = new ReDoSIssueItem();
-                        issueItem.setType(MATCH[i].getType().toString());
-                        issueItem.setMessageIsRequest(false);
-                        issueItem.setServerity(Severity.LOW);
-                        issueItem.setConfidence(Confidence.FIRM);
-                        issueItem.setCaptureValue(m.group(1));
-                        if (m.groupCount() >= 2) {
-                            issueItem.setFlgags(m.group(2));
-                        }
-                        issueItem.setStart(wrapResponse.bodyOffset() + m.start(1));
-                        issueItem.setEnd(wrapResponse.bodyOffset() + m.end(1));
-                        issueItem.setDetectIssue(result);
-                        issueList.add(issueItem);
-                        HttpRequestResponse applyMarks = applyMarkers(baseRequestResponse, issueList);
-                        issues.add(makeScanIssue(applyMarks, issueList));
+        String body = wrapResponse.getBodyString(StandardCharsets.ISO_8859_1, false);
+        for (int i = 0; i < MATCH.length; i++) {
+            Matcher m = MATCH[i].getMatcher(body);
+            while (m.find()) {
+                String regex = MatchPattern.toDecode(m.group(1), MATCH[i].getContentType());
+                String flags = m.groupCount() >= 2 && m.group(2) != null ? m.group(2) : "";
+                DetectIssue result = detect.scan(regex, flags, this.getOption());
+                if (result.getStatus() == ReDoSOption.StatusType.VULNERABLE) {
+                    List<ReDoSIssueItem> issueList = new ArrayList<>();
+                    ReDoSIssueItem issueItem = new ReDoSIssueItem();
+                    issueItem.setType(MATCH[i].getType().toString());
+                    issueItem.setMessageIsRequest(false);
+                    issueItem.setServerity(Severity.LOW);
+                    issueItem.setConfidence(Confidence.FIRM);
+                    issueItem.setCaptureValue(m.group(1));
+                    if (m.groupCount() >= 2) {
+                        issueItem.setFlgags(m.group(2));
                     }
+                    issueItem.setStart(wrapResponse.bodyOffset() + m.start(1));
+                    issueItem.setEnd(wrapResponse.bodyOffset() + m.end(1));
+                    issueItem.setDetectIssue(result);
+                    issueList.add(issueItem);
+                    HttpRequestResponse applyMarks = applyMarkers(baseRequestResponse, issueList);
+                    issues.add(makeScanIssue(applyMarks, issueList));
                 }
             }
-        } catch (UnsupportedEncodingException ex) {
-            logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
         return issues;
     }
