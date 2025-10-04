@@ -27,7 +27,10 @@ import java.awt.Component;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -75,6 +78,8 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
         new MatchPattern(Pattern.compile("\\Wregular expression pattern: [\"\'`/]?(.*?)[\"\'`/]?\\s"), ContentMimeType.JSON, MatchPattern.Type.SERVER_SIDE),
         new MatchPattern(Pattern.compile("\\Wpattern [\"\'`/]?(.*?)[\"\'`/]?\\s"), ContentMimeType.JSON, MatchPattern.Type.SERVER_SIDE),};
 
+    private final Set<String> analyzedUrl = Collections.synchronizedSet(new HashSet<>());
+
     @Override
     public ScanCheck passiveScanCheck() {
         return new ScannerCheckAdapter() {
@@ -86,7 +91,7 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
                 HttpResponseWapper wrapResponse = new HttpResponseWapper(baseRequestResponse.response());
                 if (wrapResponse.hasHttpResponse() && wrapResponse.getBodyByte().length > 0) {
                     // JavaScriptファイルの場合
-                    if (wrapRequest.pathWithoutQuery().endsWith(".js")) {
+                    if (wrapRequest.pathWithoutQuery().endsWith(".js") && !analyzedUrl.contains(wrapRequest.pathWithoutQuery())) {
                         String body = wrapResponse.getBodyString(StandardCharsets.ISO_8859_1, false);
                         JavaScriptAnalyze jsAnalyze = new JavaScriptAnalyze(body);
                         jsAnalyze.analyze();
@@ -112,6 +117,7 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
                         }
                         HttpRequestResponse applyMarks = applyMarkers(baseRequestResponse, issueList);
                         issues.add(makeScanIssue(applyMarks, issueList));
+                        analyzedUrl.add(wrapRequest.pathWithoutQuery());
                     } else {
                         String body = wrapResponse.getBodyString(StandardCharsets.ISO_8859_1, false);
                         HtmlAnalyze htmlAnalyze = new HtmlAnalyze(body);

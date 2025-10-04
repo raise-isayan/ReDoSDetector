@@ -1,13 +1,6 @@
 package passive.ast;
 
-import extension.helpers.FileUtil;
-import extension.helpers.StringUtil;
 import java.io.InputStream;
-import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.tree.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -15,6 +8,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import extension.helpers.FileUtil;
+import extension.helpers.StringUtil;
+import extension.view.base.CaptureItem;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.tree.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -70,7 +71,8 @@ public class JavaScriptAnalyzeTest {
     }
 
     @Test
-    public void testRegex() {
+    public void testAntlr() {
+        System.out.println("testAntlr");
         try {
             InputStream regexStream = JavaScriptAnalyzeTest.class.getResourceAsStream("/resources/regexliteral.js");
 
@@ -154,16 +156,71 @@ public class JavaScriptAnalyzeTest {
     }
 
     @Test
-    public void testAnalyze() {
+    public void testJavaScriptAnalyze() {
+        System.out.println("testJavaScriptAnalyze");
         try {
             InputStream regexStream = JavaScriptAnalyzeTest.class.getResourceAsStream("/resources/regexliteral.js");
-            JavaScriptAnalyze analyze = new JavaScriptAnalyze(StringUtil.getStringCharset(FileUtil.readAllBytes(regexStream), StandardCharsets.UTF_8));
+            JavaScriptAnalyze analyze = new JavaScriptAnalyze(StringUtil.getStringCharset(FileUtil.readAllBytes(regexStream), StandardCharsets.ISO_8859_1));
             analyze.analyze();
+            System.out.println("regexList");
             List<RegExPattermItem> regexpList = analyze.getRegExpList();
             for (RegExPattermItem item : regexpList) {
                 System.out.println("capture:" + item.getCaptureValue());
-                System.out.println("start:" + item.start());
-                System.out.println("end:" + item.end());
+                System.out.println("regex:" + item.getRegExPattern());
+                System.out.println("flag:" + item.getRegExFlag());
+                int start = item.start();
+                int end = item.end();
+                System.out.println("start:" + start + String.format("(%x)", start));
+                System.out.println("end:" + end + String.format("(%x)", end));
+            }
+            System.out.println("commentList");
+            List<CaptureItem> commentList = analyze.getCommentList();
+            for (CaptureItem item : commentList) {
+                System.out.println("capture:" + item.getCaptureValue());
+                System.out.println("capture-UTF-8:" + StringUtil.getStringCharset(StringUtil.getBytesRaw(item.getCaptureValue()), StandardCharsets.UTF_8));
+                int start = item.start();
+                int end = item.end();
+                System.out.println("start:" + start + String.format("(%x)", start));
+                System.out.println("end:" + end + String.format("(%x)", end));
+            }
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+    }
+
+    @Test
+    public void testHtmlAnalyze() {
+        System.out.println("testHtmlAnalyze");
+        try {
+            InputStream regexStream = JavaScriptAnalyzeTest.class.getResourceAsStream("/resources/script.html");
+
+            HtmlAnalyze html = new HtmlAnalyze(StringUtil.getStringCharset(FileUtil.readAllBytes(regexStream), StandardCharsets.ISO_8859_1));
+            html.analyze();
+            List<CaptureItem> htmlList = html.getCaputreList();
+            for (CaptureItem captureItem : htmlList) {
+                JavaScriptAnalyze analyze = new JavaScriptAnalyze(captureItem.getCaptureValue());
+                analyze.analyze();
+                List<RegExPattermItem> regexpList = analyze.getRegExpList();
+                System.out.println("regexList");
+                for (RegExPattermItem item : regexpList) {
+                    System.out.println("capture:" + item.getCaptureValue());
+                    System.out.println("regex:" + item.getRegExPattern());
+                    System.out.println("flag:" + item.getRegExFlag());
+                    int start = captureItem.start() + item.start();
+                    int end = captureItem.start() + item.end();
+                    System.out.println("start:" + start + String.format("(%x)", start));
+                    System.out.println("end:" + end + String.format("(%x)", end));
+                }
+                System.out.println("commentList");
+                List<CaptureItem> commentList = analyze.getCommentList();
+                for (CaptureItem item : commentList) {
+                    System.out.println("capture:" + item.getCaptureValue());
+                    System.out.println("capture-UTF-8:" + StringUtil.getStringCharset(StringUtil.getBytesRaw(item.getCaptureValue()), StandardCharsets.UTF_8));
+                    int start = item.start();
+                    int end = item.end();
+                    System.out.println("start:" + start + String.format("(%x)", start));
+                    System.out.println("end:" + end + String.format("(%x)", end));
+                }
             }
         } catch (IOException ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);

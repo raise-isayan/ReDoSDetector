@@ -1,14 +1,14 @@
 package passive.ast;
 
-import extension.helpers.FileUtil;
-import extension.helpers.StringUtil;
-import extension.view.base.CaptureItem;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import extension.helpers.FileUtil;
+import extension.helpers.StringUtil;
+import extension.view.base.CaptureItem;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,7 +43,8 @@ public class HtmlAnalyzeTest {
     }
 
     @Test
-    public void testHtml() {
+    public void testHtmlAnalyzeT() {
+        System.out.println("testHtmlAnalyzeT");
         try {
             InputStream htmlStream = HtmlAnalyzeTest.class.getResourceAsStream("/resources/script.html");
             HtmlAnalyze analyze = new HtmlAnalyze(StringUtil.getStringCharset(FileUtil.readAllBytes(htmlStream), StandardCharsets.UTF_8));

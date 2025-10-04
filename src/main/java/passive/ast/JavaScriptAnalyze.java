@@ -1,5 +1,6 @@
 package passive.ast;
 
+import extension.view.base.CaptureItem;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -20,6 +21,9 @@ import passive.signature.RegExPattermItem;
  * @author isayan
  */
 public class JavaScriptAnalyze {
+
+    // 値を抽出する正規表現: /pattern/flags
+    private final static Pattern REGEX_LITERAL = Pattern.compile("^(/.*?/)([a-z]*)$");
 
     private final CharStream input;
 
@@ -51,24 +55,32 @@ public class JavaScriptAnalyze {
 
         tokens.fill();
         for (Token token : tokens.getTokens()) {
-            if (token.getType() == JavaScriptLexer.RegularExpressionLiteral) {
-                String regexLiteral = token.getText();
-
-                // 値を抽出する正規表現: /pattern/flags
-                Pattern pattern = Pattern.compile("^(/.*?/)([a-z]*)$");
-                Matcher matcher = pattern.matcher(regexLiteral);
-
-                if (matcher.matches()) {
-                    String patternValue = stripSlash(matcher.group(1));
-                    String flags = matcher.group(2);
-
-                    RegExPattermItem item = new RegExPattermItem();
-                    item.setCaptureValue(regexLiteral);
-                    item.setRegExPattern(patternValue);
-                    item.setRegExFlag(flags);
+            if (token.getChannel() == Token.HIDDEN_CHANNEL) {
+                String text = token.getText();
+                if (text.startsWith("//") || text.startsWith("/*")) {
+                    CaptureItem item = new CaptureItem();
+                    item.setCaptureValue(text);
                     item.setStart(token.getStartIndex());
                     item.setEnd(token.getStopIndex());
-                    this.regList.add(item);
+                    this.commentList.add(item);
+                }
+            } else {
+                if (token.getType() == JavaScriptLexer.RegularExpressionLiteral) {
+                    String regexLiteral = token.getText();
+
+                    Matcher matcher = REGEX_LITERAL.matcher(regexLiteral);
+                    if (matcher.matches()) {
+                        String patternValue = stripSlash(matcher.group(1));
+                        String flags = matcher.group(2);
+
+                        RegExPattermItem item = new RegExPattermItem();
+                        item.setCaptureValue(regexLiteral);
+                        item.setRegExPattern(patternValue);
+                        item.setRegExFlag(flags);
+                        item.setStart(token.getStartIndex());
+                        item.setEnd(token.getStopIndex());
+                        this.regexList.add(item);
+                    }
                 }
             }
         }
@@ -97,7 +109,7 @@ public class JavaScriptAnalyze {
                         item.setRegExFlag(flags);
                         item.setStart(token.getStartIndex());
                         item.setEnd(token.getStopIndex());
-                        regList.add(item);
+                        regexList.add(item);
                     }
                 }
             }
@@ -105,10 +117,16 @@ public class JavaScriptAnalyze {
         return true;
     }
 
-    private final List<RegExPattermItem> regList = new ArrayList<>();
+    private final List<CaptureItem> commentList = new ArrayList<>();
+
+    public List<CaptureItem> getCommentList() {
+        return this.commentList;
+    }
+
+    private final List<RegExPattermItem> regexList = new ArrayList<>();
 
     public List<RegExPattermItem> getRegExpList() {
-        return this.regList;
+        return this.regexList;
     }
 
 }

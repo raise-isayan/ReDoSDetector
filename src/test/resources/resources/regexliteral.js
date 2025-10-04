@@ -1,5 +1,6 @@
 var someVar = "test";
 
+
 const reg1 = new RegExp("abc");
 const reg2 = RegExp("[a-z]+", "gi");
 const reg3 = RegExp(someVar);         // 対象外
@@ -10,3 +11,5 @@ const r2 = /foo.*bar/;
 const r3 = new RegExp("def\\s+", "g");
 const re3 = /escaped\/slash/;
 const notRegex = "this is just a string";
+
+// const comment1 = new RegExp("comment");
