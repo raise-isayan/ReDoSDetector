@@ -2,6 +2,7 @@ package passive.ast;
 
 import extension.view.base.CaptureItem;
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,13 +23,20 @@ import passive.signature.RegExPattermItem;
  */
 public class JavaScriptAnalyze {
 
+    public enum AnalyzeOption {
+        JS_COMMENTS, REGEXP
+    };
+
     // 値を抽出する正規表現: /pattern/flags
-    private final static Pattern REGEX_LITERAL = Pattern.compile("^(/.*?/)([a-z]*)$");
+    private final static Pattern REGEXP_LITERAL = Pattern.compile("^(/.*?/)([a-z]*)$");
+
+    private EnumSet<AnalyzeOption> option = EnumSet.noneOf(AnalyzeOption.class);
 
     private final CharStream input;
 
-    public JavaScriptAnalyze(String scriptBody) {
+    public JavaScriptAnalyze(String scriptBody, EnumSet<AnalyzeOption> option) {
         this.input = CharStreams.fromString(scriptBody);
+        this.option = option;
     }
 
     // 引用符で囲まれた文字列を剥がす
@@ -48,27 +56,32 @@ public class JavaScriptAnalyze {
         return text;
     }
 
+    public EnumSet<AnalyzeOption> getOption() {
+        return this.option;
+    }
+
     public boolean analyze() {
         JavaScriptLexer lexer = new JavaScriptLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
-        JavaScriptParser parser = new JavaScriptParser(tokens);
-
         tokens.fill();
         for (Token token : tokens.getTokens()) {
-            if (token.getChannel() == Token.HIDDEN_CHANNEL) {
-                String text = token.getText();
-                if (text.startsWith("//") || text.startsWith("/*")) {
-                    CaptureItem item = new CaptureItem();
-                    item.setCaptureValue(text);
-                    item.setStart(token.getStartIndex());
-                    item.setEnd(token.getStopIndex());
-                    this.commentList.add(item);
+            if (this.option.contains(AnalyzeOption.JS_COMMENTS)) {
+                if (token.getChannel() == Token.HIDDEN_CHANNEL) {
+                    String text = token.getText();
+                    if (text.startsWith("//") || text.startsWith("/*")) {
+                        CaptureItem item = new CaptureItem();
+                        item.setCaptureValue(text);
+                        item.setStart(token.getStartIndex());
+                        item.setEnd(token.getStopIndex());
+                        this.commentList.add(item);
+                    }
                 }
-            } else {
+            }
+            if (this.option.contains(AnalyzeOption.REGEXP)) {
                 if (token.getType() == JavaScriptLexer.RegularExpressionLiteral) {
                     String regexLiteral = token.getText();
 
-                    Matcher matcher = REGEX_LITERAL.matcher(regexLiteral);
+                    Matcher matcher = REGEXP_LITERAL.matcher(regexLiteral);
                     if (matcher.matches()) {
                         String patternValue = stripSlash(matcher.group(1));
                         String flags = matcher.group(2);
@@ -84,37 +97,39 @@ public class JavaScriptAnalyze {
                 }
             }
         }
+        if (this.option.contains(AnalyzeOption.REGEXP)) {
+            JavaScriptParser parser = new JavaScriptParser(tokens);
+            final ParseTree tree = parser.program();  // JS プログラム全体を解析
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.walk(new JavaScriptParserBaseListener() {
 
-        ParseTree tree = parser.program();  // JS プログラム全体を解析
-        ParseTreeWalker walker = new ParseTreeWalker();
-        walker.walk(new JavaScriptParserBaseListener() {
+                @Override
+                public void enterArgumentsExpression(JavaScriptParser.ArgumentsExpressionContext ctx) {
+                    String captureText = ctx.getText();
+                    String regexText = ctx.singleExpression().getText();
+                    if (regexText.contains("RegExp")) {
+                        JavaScriptParser.ArgumentsContext argsCtx = ctx.arguments();
+                        List<JavaScriptParser.ArgumentContext> arguments = argsCtx != null ? argsCtx.argument() : List.of();
+                        if (arguments.size() >= 1) {
+                            String patternValue = stripQuotes(arguments.get(0).getText());
+                            String flags = (arguments.size() >= 2) ? stripQuotes(arguments.get(1).getText()) : "";
 
-            @Override
-            public void enterArgumentsExpression(JavaScriptParser.ArgumentsExpressionContext ctx) {
-                String captureText = ctx.getText();
-                String regexText = ctx.singleExpression().getText();
-                if (regexText.contains("RegExp")) {
-                    JavaScriptParser.ArgumentsContext argsCtx = ctx.arguments();
-                    List<JavaScriptParser.ArgumentContext> arguments = argsCtx != null ? argsCtx.argument() : List.of();
-                    if (arguments.size() >= 1) {
-                        String patternValue = stripQuotes(arguments.get(0).getText());
-                        String flags = (arguments.size() >= 2) ? stripQuotes(arguments.get(1).getText()) : "";
+                            // トークン位置を取得
+                            Token token = arguments.get(0).getStart();
 
-                        // トークン位置を取得
-                        Token token = arguments.get(0).getStart();
-
-                        RegExPattermItem item = new RegExPattermItem();
-                        item.setCaptureValue(captureText);
-                        item.setRegExPattern(patternValue);
-                        item.setRegExFlag(flags);
-                        item.setStart(token.getStartIndex());
-                        item.setEnd(token.getStopIndex());
-                        regexList.add(item);
+                            RegExPattermItem item = new RegExPattermItem();
+                            item.setCaptureValue(captureText);
+                            item.setRegExPattern(patternValue);
+                            item.setRegExFlag(flags);
+                            item.setStart(token.getStartIndex());
+                            item.setEnd(token.getStopIndex());
+                            regexList.add(item);
+                        }
                     }
                 }
-            }
-        }, tree);
-        return true;
+            }, tree);
+        }
+        return !this.commentList.isEmpty() || !this.regexList.isEmpty();
     }
 
     private final List<CaptureItem> commentList = new ArrayList<>();

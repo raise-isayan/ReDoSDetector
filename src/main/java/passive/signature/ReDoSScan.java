@@ -28,6 +28,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -93,7 +94,7 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
                     // JavaScriptファイルの場合
                     if (wrapRequest.pathWithoutQuery().endsWith(".js") && !analyzedUrl.contains(wrapRequest.pathWithoutQuery())) {
                         String body = wrapResponse.getBodyString(StandardCharsets.ISO_8859_1, false);
-                        JavaScriptAnalyze jsAnalyze = new JavaScriptAnalyze(body);
+                        JavaScriptAnalyze jsAnalyze = new JavaScriptAnalyze(body, EnumSet.of(JavaScriptAnalyze.AnalyzeOption.REGEXP));
                         jsAnalyze.analyze();
                         List<RegExPattermItem> itemList = jsAnalyze.getRegExpList();
                         List<ReDoSIssueItem> issueList = new ArrayList<>();
@@ -129,7 +130,7 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
                             List<ReDoSIssueItem> issueList = new ArrayList<>();
                             List<CaptureItem> captureList = htmlAnalyze.getCaputreList();
                             for (CaptureItem captureItem : captureList) {
-                                JavaScriptAnalyze jsAnalyze = new JavaScriptAnalyze(captureItem.getCaptureValue());
+                                JavaScriptAnalyze jsAnalyze = new JavaScriptAnalyze(captureItem.getCaptureValue(), EnumSet.of(JavaScriptAnalyze.AnalyzeOption.REGEXP));
                                 jsAnalyze.analyze();
                                 List<RegExPattermItem> itemList = jsAnalyze.getRegExpList();
                                 for (RegExPattermItem regItem : itemList) {
@@ -326,9 +327,12 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
             detail.append("<p><code>");
             detail.append(HttpUtil.toHtmlEncode(attackString.toString()));
             detail.append("</code></p>");
-            detail.append("<p><code>");
-            detail.append(HttpUtil.toHtmlEncode(attackString.getAsUString()));
-            detail.append("</code></p>");
+            // 攻撃文字列が長すぎる場合は表示しない
+            if (attackString.getAsUString().length() > 1024)  {
+                detail.append("<p><code>");
+                detail.append(HttpUtil.toHtmlEncode(attackString.getAsUString()));
+                detail.append("</code></p>");
+           }
             detail.append("</ul>");
         }
         if (issue.getHotspot().isPresent()) {

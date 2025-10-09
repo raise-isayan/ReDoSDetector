@@ -144,6 +144,7 @@ public class ReDosDetectorTest {
             if (result.getAttack().isPresent()) {
                 AttackString atk = result.getAttack().get();
                 System.out.println("attack:" + atk.toString());
+                System.out.println("attackStr:" + atk.getAsUString());
                 List<Pumps> pumps = atk.getPumpList();
                 for (int i = 0; i < pumps.size(); i++) {
                     System.out.println("pumps[" + i + "].prefix:" + pumps.get(i).getPrefix());
@@ -184,6 +185,7 @@ public class ReDosDetectorTest {
             if (result.getAttack().isPresent()) {
                 AttackString atk = result.getAttack().get();
                 System.out.println("attack:" + atk.toString());
+                System.out.println("attackStr:" + atk.getAsUString());
                 List<Pumps> pumps = atk.getPumpList();
                 for (int i = 0; i < pumps.size(); i++) {
                     System.out.println("pumps[" + i + "].prefix:" + pumps.get(i).getPrefix());
@@ -223,6 +225,7 @@ public class ReDosDetectorTest {
             if (result.getAttack().isPresent()) {
                 AttackString atk = result.getAttack().get();
                 System.out.println("attack:" + atk.toString());
+                System.out.println("attackStr:" + atk.getAsUString());
                 List<Pumps> pumps = atk.getPumpList();
                 for (int i = 0; i < pumps.size(); i++) {
                     System.out.println("pumps[" + i + "].prefix:" + pumps.get(i).getPrefix());
@@ -262,6 +265,7 @@ public class ReDosDetectorTest {
             if (result.getAttack().isPresent()) {
                 AttackString atk = result.getAttack().get();
                 System.out.println("attack:" + atk.toString());
+                System.out.println("attackStr:" + atk.getAsUString());
                 List<Pumps> pumps = atk.getPumpList();
                 for (int i = 0; i < pumps.size(); i++) {
                     System.out.println("pumps[" + i + "].prefix:" + pumps.get(i).getPrefix());
@@ -304,6 +308,7 @@ public class ReDosDetectorTest {
             if (result.getAttack().isPresent()) {
                 AttackString atk = result.getAttack().get();
                 System.out.println("attack:" + atk.toString());
+                System.out.println("attackStr:" + atk.getAsUString());
                 List<Pumps> pumps = atk.getPumpList();
                 for (int i = 0; i < pumps.size(); i++) {
                     System.out.println("pumps[" + i + "].prefix:" + pumps.get(i).getPrefix());

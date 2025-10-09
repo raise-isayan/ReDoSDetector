@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 import extension.helpers.FileUtil;
 import extension.helpers.StringUtil;
 import extension.view.base.CaptureItem;
+import java.util.EnumSet;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -160,10 +161,11 @@ public class JavaScriptAnalyzeTest {
         System.out.println("testJavaScriptAnalyze");
         try {
             InputStream regexStream = JavaScriptAnalyzeTest.class.getResourceAsStream("/resources/regexliteral.js");
-            JavaScriptAnalyze analyze = new JavaScriptAnalyze(StringUtil.getStringCharset(FileUtil.readAllBytes(regexStream), StandardCharsets.ISO_8859_1));
-            analyze.analyze();
+            String input = StringUtil.getStringCharset(FileUtil.readAllBytes(regexStream), StandardCharsets.ISO_8859_1);
+            JavaScriptAnalyze jsAnalyze = new JavaScriptAnalyze(input, EnumSet.allOf(JavaScriptAnalyze.AnalyzeOption.class));
+            jsAnalyze.analyze();
             System.out.println("regexList");
-            List<RegExPattermItem> regexpList = analyze.getRegExpList();
+            List<RegExPattermItem> regexpList = jsAnalyze.getRegExpList();
             for (RegExPattermItem item : regexpList) {
                 System.out.println("capture:" + item.getCaptureValue());
                 System.out.println("regex:" + item.getRegExPattern());
@@ -174,7 +176,7 @@ public class JavaScriptAnalyzeTest {
                 System.out.println("end:" + end + String.format("(%x)", end));
             }
             System.out.println("commentList");
-            List<CaptureItem> commentList = analyze.getCommentList();
+            List<CaptureItem> commentList = jsAnalyze.getCommentList();
             for (CaptureItem item : commentList) {
                 System.out.println("capture:" + item.getCaptureValue());
                 System.out.println("capture-UTF-8:" + StringUtil.getStringCharset(StringUtil.getBytesRaw(item.getCaptureValue()), StandardCharsets.UTF_8));
@@ -193,14 +195,14 @@ public class JavaScriptAnalyzeTest {
         System.out.println("testHtmlAnalyze");
         try {
             InputStream regexStream = JavaScriptAnalyzeTest.class.getResourceAsStream("/resources/script.html");
-
-            HtmlAnalyze html = new HtmlAnalyze(StringUtil.getStringCharset(FileUtil.readAllBytes(regexStream), StandardCharsets.ISO_8859_1));
-            html.analyze();
-            List<CaptureItem> htmlList = html.getCaputreList();
+            String input = StringUtil.getStringCharset(FileUtil.readAllBytes(regexStream), StandardCharsets.ISO_8859_1);
+            HtmlAnalyze htmlAnalyze = new HtmlAnalyze(input);
+            htmlAnalyze.analyze();
+            List<CaptureItem> htmlList = htmlAnalyze.getCaputreList();
             for (CaptureItem captureItem : htmlList) {
-                JavaScriptAnalyze analyze = new JavaScriptAnalyze(captureItem.getCaptureValue());
-                analyze.analyze();
-                List<RegExPattermItem> regexpList = analyze.getRegExpList();
+                JavaScriptAnalyze jsAnalyze = new JavaScriptAnalyze(captureItem.getCaptureValue(), EnumSet.allOf(JavaScriptAnalyze.AnalyzeOption.class));
+                jsAnalyze.analyze();
+                List<RegExPattermItem> regexpList = jsAnalyze.getRegExpList();
                 System.out.println("regexList");
                 for (RegExPattermItem item : regexpList) {
                     System.out.println("capture:" + item.getCaptureValue());
@@ -212,7 +214,7 @@ public class JavaScriptAnalyzeTest {
                     System.out.println("end:" + end + String.format("(%x)", end));
                 }
                 System.out.println("commentList");
-                List<CaptureItem> commentList = analyze.getCommentList();
+                List<CaptureItem> commentList = jsAnalyze.getCommentList();
                 for (CaptureItem item : commentList) {
                     System.out.println("capture:" + item.getCaptureValue());
                     System.out.println("capture-UTF-8:" + StringUtil.getStringCharset(StringUtil.getBytesRaw(item.getCaptureValue()), StandardCharsets.UTF_8));

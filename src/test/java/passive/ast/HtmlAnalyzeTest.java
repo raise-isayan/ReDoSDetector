@@ -47,7 +47,8 @@ public class HtmlAnalyzeTest {
         System.out.println("testHtmlAnalyzeT");
         try {
             InputStream htmlStream = HtmlAnalyzeTest.class.getResourceAsStream("/resources/script.html");
-            HtmlAnalyze analyze = new HtmlAnalyze(StringUtil.getStringCharset(FileUtil.readAllBytes(htmlStream), StandardCharsets.UTF_8));
+            String input = StringUtil.getStringCharset(FileUtil.readAllBytes(htmlStream), StandardCharsets.UTF_8);
+            HtmlAnalyze analyze = new HtmlAnalyze(input);
             analyze.analyze();
             List<CaptureItem> scriptList = analyze.getCaputreList();
             for (CaptureItem item : scriptList) {

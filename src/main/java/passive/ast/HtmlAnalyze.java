@@ -29,7 +29,7 @@ public class HtmlAnalyze {
             item.setEnd(m.end(1));
             this.captureList.add(item);
         }
-        return true;
+        return !this.captureList.isEmpty();
     }
 
     private final List<CaptureItem> captureList = new ArrayList<>();
