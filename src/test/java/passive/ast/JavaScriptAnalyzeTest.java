@@ -83,7 +83,7 @@ public class JavaScriptAnalyzeTest {
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             JavaScriptParser parser = new JavaScriptParser(tokens);
 
-            tokens.fill();
+//            tokens.fill();
             for (Token token : tokens.getTokens()) {
                 if (token.getType() == JavaScriptLexer.RegularExpressionLiteral) {
                     String regexLiteral = token.getText();

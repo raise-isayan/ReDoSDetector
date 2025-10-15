@@ -32,10 +32,12 @@ public class JavaScriptAnalyze {
 
     private EnumSet<AnalyzeOption> option = EnumSet.noneOf(AnalyzeOption.class);
 
+    private final String script;
     private final CharStream input;
 
-    public JavaScriptAnalyze(String scriptBody, EnumSet<AnalyzeOption> option) {
-        this.input = CharStreams.fromString(scriptBody);
+    public JavaScriptAnalyze(String script, EnumSet<AnalyzeOption> option) {
+        this.input = CharStreams.fromString(script);
+        this.script = script;
         this.option = option;
     }
 
@@ -60,10 +62,16 @@ public class JavaScriptAnalyze {
         return this.option;
     }
 
+    private final static Pattern EXISTS_REGEXP = Pattern.compile("\\sRegExp\\W");
+
+    public boolean existsRegExp() {
+        Matcher m = EXISTS_REGEXP.matcher(this.script);
+        return m.find();
+    }
+
     public boolean analyze() {
         JavaScriptLexer lexer = new JavaScriptLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
-        tokens.fill();
         for (Token token : tokens.getTokens()) {
             if (this.option.contains(AnalyzeOption.JS_COMMENTS)) {
                 if (token.getChannel() == Token.HIDDEN_CHANNEL) {
@@ -97,7 +105,7 @@ public class JavaScriptAnalyze {
                 }
             }
         }
-        if (this.option.contains(AnalyzeOption.REGEXP)) {
+        if (this.option.contains(AnalyzeOption.REGEXP) && existsRegExp()) {
             JavaScriptParser parser = new JavaScriptParser(tokens);
             final ParseTree tree = parser.program();  // JS プログラム全体を解析
             ParseTreeWalker walker = new ParseTreeWalker();
