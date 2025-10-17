@@ -19,6 +19,7 @@ import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -163,6 +164,13 @@ public class JavaScriptAnalyzeTest {
             InputStream regexStream = JavaScriptAnalyzeTest.class.getResourceAsStream("/resources/regexliteral.js");
             String input = StringUtil.getStringCharset(FileUtil.readAllBytes(regexStream), StandardCharsets.ISO_8859_1);
             JavaScriptAnalyze jsAnalyze = new JavaScriptAnalyze(input, EnumSet.allOf(JavaScriptAnalyze.AnalyzeOption.class));
+            System.out.println("isComment:" + jsAnalyze.existsComment());
+            System.out.println("isRegExp:" + jsAnalyze.existsRegExp());
+            System.out.println("existsRegExpLiteral:" + jsAnalyze.existsRegExpLiteral());
+            assertTrue(jsAnalyze.existsComment());
+            assertTrue(jsAnalyze.existsRegExp());
+            assertTrue(jsAnalyze.existsRegExpLiteral());
+
             jsAnalyze.analyze();
             System.out.println("regexList");
             List<RegExPattermItem> regexpList = jsAnalyze.getRegExpList();
@@ -201,6 +209,13 @@ public class JavaScriptAnalyzeTest {
             List<CaptureItem> htmlList = htmlAnalyze.getCaputreList();
             for (CaptureItem captureItem : htmlList) {
                 JavaScriptAnalyze jsAnalyze = new JavaScriptAnalyze(captureItem.getCaptureValue(), EnumSet.allOf(JavaScriptAnalyze.AnalyzeOption.class));
+                System.out.println("isComment:" + jsAnalyze.existsComment());
+                System.out.println("isRegExp:" + jsAnalyze.existsRegExp());
+                System.out.println("existsRegExpLiteral:" + jsAnalyze.existsRegExpLiteral());
+                assertTrue(jsAnalyze.existsComment());
+                assertTrue(jsAnalyze.existsRegExp());
+                assertTrue(jsAnalyze.existsRegExpLiteral());
+
                 jsAnalyze.analyze();
                 List<RegExPattermItem> regexpList = jsAnalyze.getRegExpList();
                 System.out.println("regexList");

@@ -10,6 +10,7 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.atn.PredictionMode;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import passive.ast.js.JavaScriptLexer;
@@ -27,16 +28,26 @@ public class JavaScriptAnalyze {
         JS_COMMENTS, REGEXP
     };
 
+    private final static Pattern COMMWNT = Pattern.compile("(//|/*)");
+
+    public boolean existsComment() {
+        Matcher m = COMMWNT.matcher(this.script);
+        return m.find();
+    }
+
     // 値を抽出する正規表現: /pattern/flags
-    private final static Pattern REGEXP_LITERAL = Pattern.compile("^(/.*?/)([a-z]*)$");
+    private final static Pattern REGEXP_LITERAL = Pattern.compile("(/.*?/)([a-z]*)");
+
+    public boolean existsRegExpLiteral() {
+        Matcher m = REGEXP_LITERAL.matcher(this.script);
+        return m.find();
+    }
 
     private EnumSet<AnalyzeOption> option = EnumSet.noneOf(AnalyzeOption.class);
 
     private final String script;
-    private final CharStream input;
 
     public JavaScriptAnalyze(String script, EnumSet<AnalyzeOption> option) {
-        this.input = CharStreams.fromString(script);
         this.script = script;
         this.option = option;
     }
@@ -69,11 +80,26 @@ public class JavaScriptAnalyze {
         return m.find();
     }
 
+    private final JavaScriptLexer lexer = new JavaScriptLexer(CharStreams.fromString(""));
+    private final CommonTokenStream tokens = new CommonTokenStream(lexer);
+    private final JavaScriptParser parser = new JavaScriptParser(tokens);
+
     public boolean analyze() {
-        JavaScriptLexer lexer = new JavaScriptLexer(input);
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        // 解析不要時は解析行わない
+        boolean isCommentAnalyze = this.option.contains(AnalyzeOption.JS_COMMENTS) && existsComment();
+        boolean isRegExpLiteralAnalyze = this.option.contains(AnalyzeOption.REGEXP) && existsRegExpLiteral();
+        boolean isRegExpFuncAnalyze = this.option.contains(AnalyzeOption.REGEXP) && existsRegExp();
+        if (!(isCommentAnalyze || isRegExpLiteralAnalyze || isRegExpFuncAnalyze)) {
+            return false;
+        }
+        // インスタンスの使いまわし
+        this.lexer.setInputStream(CharStreams.fromString(this.script));
+        this.tokens.setTokenSource(this.lexer);
+        this.parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
+
+        tokens.fill();
         for (Token token : tokens.getTokens()) {
-            if (this.option.contains(AnalyzeOption.JS_COMMENTS)) {
+            if (isCommentAnalyze) {
                 if (token.getChannel() == Token.HIDDEN_CHANNEL) {
                     String text = token.getText();
                     if (text.startsWith("//") || text.startsWith("/*")) {
@@ -85,7 +111,7 @@ public class JavaScriptAnalyze {
                     }
                 }
             }
-            if (this.option.contains(AnalyzeOption.REGEXP)) {
+            if (isRegExpLiteralAnalyze) {
                 if (token.getType() == JavaScriptLexer.RegularExpressionLiteral) {
                     String regexLiteral = token.getText();
 
@@ -105,8 +131,8 @@ public class JavaScriptAnalyze {
                 }
             }
         }
-        if (this.option.contains(AnalyzeOption.REGEXP) && existsRegExp()) {
-            JavaScriptParser parser = new JavaScriptParser(tokens);
+        if (isRegExpFuncAnalyze) {
+            this.parser.setTokenStream(tokens);
             final ParseTree tree = parser.program();  // JS プログラム全体を解析
             ParseTreeWalker walker = new ParseTreeWalker();
             walker.walk(new JavaScriptParserBaseListener() {
