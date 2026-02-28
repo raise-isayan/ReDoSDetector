@@ -1,6 +1,5 @@
 var someVar = "test";
 
-
 const reg1 = new RegExp("abc");
 const reg2 = RegExp("[a-z]+", "gi");
 const reg3 = RegExp(someVar);         // 対象外

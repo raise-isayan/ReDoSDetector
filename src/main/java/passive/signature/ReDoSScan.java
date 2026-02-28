@@ -81,6 +81,8 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
 
     private final Set<String> analyzedUrl = Collections.synchronizedSet(new HashSet<>());
 
+    private final JavaScriptAnalyze jsAnalyze = new JavaScriptAnalyze(EnumSet.of(JavaScriptAnalyze.AnalyzeOption.REGEXP));
+
     @Override
     public ScanCheck passiveScanCheck() {
         return new ScannerCheckAdapter() {
@@ -94,8 +96,7 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
                     // JavaScriptファイルの場合
                     if (wrapRequest.pathWithoutQuery().endsWith(".js") && !analyzedUrl.contains(wrapRequest.pathWithoutQuery())) {
                         String body = wrapResponse.getBodyString(StandardCharsets.ISO_8859_1, false);
-                        JavaScriptAnalyze jsAnalyze = new JavaScriptAnalyze(body, EnumSet.of(JavaScriptAnalyze.AnalyzeOption.REGEXP));
-                        jsAnalyze.analyze();
+                        jsAnalyze.analyze(body);
                         List<RegExPattermItem> itemList = jsAnalyze.getRegExpList();
                         List<ReDoSIssueItem> issueList = new ArrayList<>();
                         for (RegExPattermItem regItem : itemList) {
@@ -130,8 +131,7 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
                             List<ReDoSIssueItem> issueList = new ArrayList<>();
                             List<CaptureItem> captureList = htmlAnalyze.getCaputreList();
                             for (CaptureItem captureItem : captureList) {
-                                JavaScriptAnalyze jsAnalyze = new JavaScriptAnalyze(captureItem.getCaptureValue(), EnumSet.of(JavaScriptAnalyze.AnalyzeOption.REGEXP));
-                                jsAnalyze.analyze();
+                                jsAnalyze.analyze(captureItem.getCaptureValue());
                                 List<RegExPattermItem> itemList = jsAnalyze.getRegExpList();
                                 for (RegExPattermItem regItem : itemList) {
                                     String regex = regItem.getRegExPattern();
