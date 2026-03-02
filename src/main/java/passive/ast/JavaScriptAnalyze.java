@@ -3,7 +3,9 @@ package passive.ast;
 import extension.view.base.CaptureItem;
 import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.mozilla.javascript.CompilerEnvirons;
 import org.mozilla.javascript.Parser;
 import org.mozilla.javascript.ast.AstNode;
@@ -13,6 +15,8 @@ import org.mozilla.javascript.ast.Name;
 import org.mozilla.javascript.ast.NewExpression;
 import org.mozilla.javascript.ast.NodeVisitor;
 import org.mozilla.javascript.ast.RegExpLiteral;
+import org.mozilla.javascript.ast.StringLiteral;
+import org.mozilla.javascript.ast.VariableInitializer;
 import passive.signature.RegExPattermItem;
 
 /**
@@ -24,6 +28,7 @@ public class JavaScriptAnalyze {
     private class RegExpVisitor implements NodeVisitor {
 
         private final String script;
+        private final Map<String, AstNode> scopeVariables = new HashMap<>();
 
         public RegExpVisitor(String script) {
             this.script = script;
@@ -40,18 +45,23 @@ public class JavaScriptAnalyze {
                 item.setStart(re.getAbsolutePosition());
                 item.setEnd(re.getAbsolutePosition() + re.getLength());
                 regexList.add(item);
+            } else if (node instanceof VariableInitializer vi) {
+                if (vi.getTarget() instanceof Name name && vi.getInitializer() instanceof StringLiteral value) {
+                    String varName = name.getIdentifier();
+                    scopeVariables.put(varName, value);
+                }
             } else if (node instanceof NewExpression ne) {
                 AstNode target = ne.getTarget();
                 // 呼び出し先が "RegExp"
-                if (target instanceof Name regexfc) {
-                    if ("RegExp".equals(regexfc.getIdentifier())) {
+                if (target instanceof Name regexName) {
+                    if ("RegExp".equals(regexName.getIdentifier())) {
                         List<AstNode> args = ne.getArguments();
                         if (!args.isEmpty()) {
                             String pattern = "";
                             String flags = "";
                             // 第1引数（パターン）の情報を取得
                             if (args.size() >= 1) {
-                                pattern = getFunctionArgs(this.script, args.get(0));
+                                pattern = getFunctionArgs(this.script, resolveValue(args.get(0)));
                             }
                             if (args.size() >= 2) {
                                 flags = getFunctionArgs(this.script, args.get(1));;
@@ -68,6 +78,16 @@ public class JavaScriptAnalyze {
                 }
             }
             return true; // 子ノードも走査を続ける
+        }
+
+        private AstNode resolveValue(AstNode node) {
+            if (node instanceof StringLiteral literal) {
+                return literal;
+            } else if (node instanceof Name name) {
+                String varName = name.getIdentifier();
+                return scopeVariables.getOrDefault(varName, node);
+            }
+            return node;
         }
     }
 

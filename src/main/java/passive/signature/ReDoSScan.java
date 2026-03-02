@@ -124,12 +124,12 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
                         String body = wrapResponse.getBodyString(StandardCharsets.ISO_8859_1, false);
                         HtmlAnalyze htmlAnalyze = new HtmlAnalyze(body);
                         htmlAnalyze.analyze();
-                        if (htmlAnalyze.getCaputreList().isEmpty()) {
+                        if (htmlAnalyze.getScriptList().isEmpty()) {
                             issues.addAll(parseHttpResponse(baseRequestResponse));
                         } else {
                             // scriptタグ内を解析
                             List<ReDoSIssueItem> issueList = new ArrayList<>();
-                            List<CaptureItem> captureList = htmlAnalyze.getCaputreList();
+                            List<CaptureItem> captureList = htmlAnalyze.getScriptList();
                             for (CaptureItem captureItem : captureList) {
                                 jsAnalyze.analyze(captureItem.getCaptureValue());
                                 List<RegExPattermItem> itemList = jsAnalyze.getRegExpList();

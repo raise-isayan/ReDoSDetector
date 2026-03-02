@@ -20,7 +20,6 @@ import org.junit.jupiter.api.Test;
  * @author isayan
  */
 public class HtmlAnalyzeTest {
-
     private final static Logger logger = Logger.getLogger(HtmlAnalyzeTest.class.getName());
 
     public HtmlAnalyzeTest() {
@@ -43,15 +42,34 @@ public class HtmlAnalyzeTest {
     }
 
     @Test
-    public void testHtmlAnalyzeT() {
-        System.out.println("testHtmlAnalyzeT");
+    public void testHtmlAnalyzeJavascript() {
+        System.out.println("testHtmlAnalyzeJavascript");
         try {
             InputStream htmlStream = HtmlAnalyzeTest.class.getResourceAsStream("/resources/script.html");
             String input = StringUtil.getStringCharset(FileUtil.readAllBytes(htmlStream), StandardCharsets.UTF_8);
             HtmlAnalyze analyze = new HtmlAnalyze(input);
             analyze.analyze();
-            List<CaptureItem> scriptList = analyze.getCaputreList();
+            List<CaptureItem> scriptList = analyze.getScriptList();
             for (CaptureItem item : scriptList) {
+                System.out.println("capture:" + item.getCaptureValue());
+                System.out.println("start:" + item.start());
+                System.out.println("end:" + item.end());
+            }
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+    }
+
+    @Test
+    public void testHtmlAnalyzeComment() {
+        System.out.println("testHtmlAnalyzeComment");
+        try {
+            InputStream htmlStream = HtmlAnalyzeTest.class.getResourceAsStream("/resources/script.html");
+            String input = StringUtil.getStringCharset(FileUtil.readAllBytes(htmlStream), StandardCharsets.UTF_8);
+            HtmlAnalyze analyze = new HtmlAnalyze(input);
+            analyze.analyze();
+            List<CaptureItem> commentList = analyze.getCommentList();
+            for (CaptureItem item : commentList) {
                 System.out.println("capture:" + item.getCaptureValue());
                 System.out.println("start:" + item.start());
                 System.out.println("end:" + item.end());

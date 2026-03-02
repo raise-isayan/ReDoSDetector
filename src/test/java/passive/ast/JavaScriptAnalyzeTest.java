@@ -62,7 +62,7 @@ public class JavaScriptAnalyzeTest {
         return text;
     }
 
-        @Test
+    @Test
     public void testRegex() {
         System.out.println("testRegex");
         try {
@@ -98,7 +98,7 @@ public class JavaScriptAnalyzeTest {
             String input = StringUtil.getStringCharset(FileUtil.readAllBytes(regexStream), StandardCharsets.ISO_8859_1);
             HtmlAnalyze htmlAnalyze = new HtmlAnalyze(input);
             htmlAnalyze.analyze();
-            List<CaptureItem> htmlList = htmlAnalyze.getCaputreList();
+            List<CaptureItem> htmlList = htmlAnalyze.getScriptList();
             JavaScriptAnalyze jsAnalyze = new JavaScriptAnalyze(EnumSet.allOf(AnalyzeOption.class));
             for (CaptureItem captureItem : htmlList) {
                 jsAnalyze.analyze(captureItem.getCaptureValue());
@@ -122,7 +122,7 @@ public class JavaScriptAnalyzeTest {
                     int end = item.end();
                     System.out.println("start:" + start + String.format("(%x)", start));
                     System.out.println("end:" + end + String.format("(%x)", end));
-               }
+                }
             }
         } catch (IOException ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
