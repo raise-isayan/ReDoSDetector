@@ -1,4 +1,3 @@
-
 package redoscheckr;
 
 import java.util.Arrays;

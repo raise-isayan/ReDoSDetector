@@ -41,7 +41,6 @@ public class DetectIssue {
         return result;
     }
 
-
     static DetectIssue parseDiagnostics(Diagnostics diagnostics) {
         return parseDiagnostics(diagnostics, Optional.empty());
     }

@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
  * @author isayan
  */
 public class HtmlAnalyzeTest {
+
     private final static Logger logger = Logger.getLogger(HtmlAnalyzeTest.class.getName());
 
     public HtmlAnalyzeTest() {

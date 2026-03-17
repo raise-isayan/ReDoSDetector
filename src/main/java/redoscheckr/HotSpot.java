@@ -37,6 +37,7 @@ public class HotSpot {
     }
 
     public static class Spot {
+
         private final int start;
         private final int end;
         private final Temperature temperature;

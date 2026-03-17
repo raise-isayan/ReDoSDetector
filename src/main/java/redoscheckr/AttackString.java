@@ -28,7 +28,7 @@ public class AttackString {
         Seq<scala.Tuple3<codes.quine.labs.recheck.unicode.UString, codes.quine.labs.recheck.unicode.UString, Object>> seq = this.scala.pumps();
         for (Iterator<scala.Tuple3<codes.quine.labs.recheck.unicode.UString, codes.quine.labs.recheck.unicode.UString, Object>> ite = seq.iterator(); ite.hasNext();) {
             scala.Tuple3<UString, UString, Object> tuple = ite.next();
-            pumps.add(new Pumps(tuple._1().asString(), tuple._2().asString(), (int)tuple._3()));
+            pumps.add(new Pumps(tuple._1().asString(), tuple._2().asString(), (int) tuple._3()));
         }
         return pumps;
     }

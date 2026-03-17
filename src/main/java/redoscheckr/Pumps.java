@@ -7,9 +7,7 @@ package redoscheckr;
 public class Pumps {
 
     private final String prefix;
-
     private final String pump;
-
     private final int bias;
 
     public Pumps(String prefix, String repeat, int bias) {

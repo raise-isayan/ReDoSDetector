@@ -10,6 +10,8 @@ import extension.view.base.CaptureItem;
 import java.nio.charset.StandardCharsets;
 import java.util.EnumSet;
 import java.util.logging.Level;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,6 +27,9 @@ import passive.signature.RegExPattermItem;
 public class JavaScriptAnalyzeTest {
 
     private final static Logger logger = Logger.getLogger(JavaScriptAnalyzeTest.class.getName());
+
+    private final static Pattern DQUOT = Pattern.compile("(?<![\\\\¥])\"");
+    private final static Pattern SQUOT = Pattern.compile("(?<![\\\\¥])\'");
 
     public JavaScriptAnalyzeTest() {
     }
@@ -49,7 +54,9 @@ public class JavaScriptAnalyzeTest {
     private String stripQuotes(String text) {
         if ((text.startsWith("\"") && text.endsWith("\"")) || (text.startsWith("'") && text.endsWith("'"))) {
             String leteral = text.substring(1, text.length() - 1);
-            return leteral.replaceAll("\\\\/", "/").replaceAll("\\\\\\\\", "\\\\");
+            if ((text.startsWith("\"") && DQUOT.matcher(leteral).find()) || (text.startsWith("\'") && SQUOT.matcher(leteral).find())) {
+                return leteral.replaceAll("\\\\/", "/").replaceAll("\\\\\\\\", "\\\\");
+            }
         }
         return text;
     }
@@ -63,8 +70,53 @@ public class JavaScriptAnalyzeTest {
     }
 
     @Test
-    public void testRegex() {
-        System.out.println("testRegex");
+    public void testQuot() {
+        System.out.println("testQuot");
+        {
+            String q1 = "abc+\\\"xyz+";
+            Matcher m1 = DQUOT.matcher(q1);
+            if (m1.find()) {
+                System.out.println("Q1:" + m1.group(0));
+            }
+        }
+        {
+            String q2 = "abc+\"xyz+";
+            Matcher m2 = DQUOT.matcher(q2);
+            if (m2.find()) {
+                System.out.println("Q2:" + m2.group(0));
+            }
+        }
+        {
+            System.out.println("Q3:" + stripQuotes("\"abc+\\\"xyz+\""));
+            System.out.println("Q4:" + stripQuotes("\"abc+\"xyz+\""));
+        }
+        {
+            System.out.println("Q5:" + stripQuotes("'abc+\\'xyz+'"));
+            System.out.println("Q6:" + stripQuotes("'abc+'xyz+'"));
+        }
+    }
+
+    @Test
+    public void testRegexp() {
+        System.out.println("testRegexp");
+        long start = System.currentTimeMillis();
+        String input = "var someVar = \"[0-9a-z]+\";\nconst reg6 = new RegExp(\"abc+\" + someVar + \"xyz+\");\n";
+        JavaScriptAnalyze jsAnalyze = new JavaScriptAnalyze(EnumSet.allOf(AnalyzeOption.class));
+        jsAnalyze.analyze(input);
+        System.out.println("RegExp");
+        List<RegExPattermItem> regList = jsAnalyze.getRegExpList();
+        for (RegExPattermItem item : regList) {
+            System.out.println("capture:" + item.getCaptureValue());
+            System.out.println("pattern:" + item.getRegExPattern());
+            System.out.println("flag:" + item.getRegExFlag());
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("time:" + (end - start));
+    }
+
+    @Test
+    public void testJavaScriptAnalyze() {
+        System.out.println("testJavaScriptAnalyze");
         try {
             long start = System.currentTimeMillis();
             InputStream regexStream = JavaScriptAnalyzeTest.class.getResourceAsStream("/resources/regexliteral.js");

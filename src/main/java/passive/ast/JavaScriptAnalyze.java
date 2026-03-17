@@ -6,6 +6,7 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 import org.mozilla.javascript.CompilerEnvirons;
 import org.mozilla.javascript.Parser;
 import org.mozilla.javascript.ast.AstNode;
@@ -91,15 +92,20 @@ public class JavaScriptAnalyze {
         }
     }
 
+    private final static Pattern DQUOT = Pattern.compile("(?<![\\\\¥])\"");
+    private final static Pattern SQUOT = Pattern.compile("(?<![\\\\¥])\'");
+
     public static String getFunctionArgs(String script, AstNode node) {
         return script.substring(node.getAbsolutePosition(), node.getAbsolutePosition() + node.getLength());
     }
 
     // 引用符で囲まれた文字列を剥がす
-    private static String stripQuotes(String text) {
+    private String stripQuotes(String text) {
         if ((text.startsWith("\"") && text.endsWith("\"")) || (text.startsWith("'") && text.endsWith("'"))) {
             String leteral = text.substring(1, text.length() - 1);
-            return unescape(leteral);
+            if ((text.startsWith("\"") && DQUOT.matcher(leteral).find()) || (text.startsWith("\'") && SQUOT.matcher(leteral).find())) {
+                return leteral.replaceAll("\\\\/", "/").replaceAll("\\\\\\\\", "\\\\");
+            }
         }
         return text;
     }
@@ -134,7 +140,6 @@ public class JavaScriptAnalyze {
 
     private final CompilerEnvirons env;
     private EnumSet<AnalyzeOption> option = EnumSet.noneOf(AnalyzeOption.class);
-    private final Parser parser;
 
     public JavaScriptAnalyze(EnumSet<AnalyzeOption> option) {
         this.option = option;
@@ -145,12 +150,15 @@ public class JavaScriptAnalyze {
             this.env.setRecordingComments(true);
             this.env.setRecordingLocalJsDocComments(true);
         }
-        this.parser = new Parser(this.env);
     }
 
     public void analyze(String script) {
         // パーサーの生成と実行
-        AstRoot root = this.parser.parse(script, null, 1);
+        this.commentList.clear();
+        this.regexList.clear();
+        // パーサーの生成と実行
+        final Parser parser = new Parser(this.env);
+        AstRoot root = parser.parse(script, null, 1);
         // コメントの取得
         if (this.option.contains(AnalyzeOption.JS_COMMENTS) && root.getComments() != null) {
             for (Comment comment : root.getComments()) {

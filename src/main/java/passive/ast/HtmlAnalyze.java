@@ -38,7 +38,6 @@ public class HtmlAnalyze {
             item.setEnd(m2.end(1));
             this.commentList.add(item);
         }
-
         return true;
     }
 

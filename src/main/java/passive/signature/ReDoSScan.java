@@ -10,11 +10,13 @@ import burp.api.montoya.scanner.audit.issues.AuditIssue;
 import burp.api.montoya.scanner.audit.issues.AuditIssueConfidence;
 import burp.api.montoya.scanner.audit.issues.AuditIssueDefinition;
 import burp.api.montoya.scanner.audit.issues.AuditIssueSeverity;
+import burp.api.montoya.scanner.scancheck.PassiveScanCheck;
 import extension.burp.Confidence;
 import extension.burp.IBurpTab;
 import extension.burp.IPropertyConfig;
 import extension.burp.Severity;
 import extension.burp.scanner.IssueItem;
+import extension.burp.scanner.PassiveScanCheckAdapter;
 import extension.burp.scanner.ScannerCheckAdapter;
 import extension.burp.scanner.SignatureScanBase;
 import extension.helpers.HttpMessageWapper.ContentMimeType;
@@ -84,21 +86,71 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
     private final JavaScriptAnalyze jsAnalyze = new JavaScriptAnalyze(EnumSet.of(JavaScriptAnalyze.AnalyzeOption.REGEXP));
 
     @Override
-    public ScanCheck passiveScanCheck() {
+    public PassiveScanCheck passiveScanCheck() {
+        return new PassiveScanCheckAdapter(this.getIssueName()) {
+            @Override
+            public AuditResult doCheck(HttpRequestResponse baseRequestResponse) {
+                return doPassiveScanCheck(baseRequestResponse);
+            }
+        };
+    }
+
+    @Override
+    public ScanCheck scannerScanCheck() {
         return new ScannerCheckAdapter() {
 
             @Override
             public AuditResult passiveAudit(HttpRequestResponse baseRequestResponse) {
-                List<AuditIssue> issues = new ArrayList<>();
-                HttpRequestWapper wrapRequest = new HttpRequestWapper(baseRequestResponse.request());
-                HttpResponseWapper wrapResponse = new HttpResponseWapper(baseRequestResponse.response());
-                if (wrapResponse.hasHttpResponse() && wrapResponse.getBodyByte().length > 0) {
-                    // JavaScriptファイルの場合
-                    if (wrapRequest.pathWithoutQuery().endsWith(".js") && !analyzedUrl.contains(wrapRequest.pathWithoutQuery())) {
-                        String body = wrapResponse.getBodyString(StandardCharsets.ISO_8859_1, false);
-                        jsAnalyze.analyze(body);
+                return doPassiveScanCheck(baseRequestResponse);
+            }
+        };
+    }
+
+    private AuditResult doPassiveScanCheck(HttpRequestResponse baseRequestResponse) {
+        List<AuditIssue> issues = new ArrayList<>();
+        HttpRequestWapper wrapRequest = new HttpRequestWapper(baseRequestResponse.request());
+        HttpResponseWapper wrapResponse = new HttpResponseWapper(baseRequestResponse.response());
+        if (wrapResponse.hasHttpResponse() && wrapResponse.getBodyByte().length > 0) {
+            // JavaScriptファイルの場合
+            if (wrapRequest.pathWithoutQuery().endsWith(".js") && !analyzedUrl.contains(wrapRequest.pathWithoutQuery())) {
+                String body = wrapResponse.getBodyString(StandardCharsets.ISO_8859_1, false);
+                jsAnalyze.analyze(body);
+                List<RegExPattermItem> itemList = jsAnalyze.getRegExpList();
+                List<ReDoSIssueItem> issueList = new ArrayList<>();
+                for (RegExPattermItem regItem : itemList) {
+                    String regex = regItem.getRegExPattern();
+                    String flags = regItem.getRegExFlag();
+                    DetectIssue result = detect.scan(regex, flags, getOption());
+                    if (result.getStatus() == ReDoSOption.StatusType.VULNERABLE) {
+                        ReDoSIssueItem issueItem = new ReDoSIssueItem();
+                        issueItem.setType(MatchPattern.Type.CLIENT_SIDE.toString());
+                        issueItem.setMessageIsRequest(false);
+                        issueItem.setServerity(Severity.LOW);
+                        issueItem.setConfidence(Confidence.FIRM);
+                        issueItem.setCaptureValue(regItem.getCaptureValue());
+                        issueItem.setFlgags(flags);
+                        issueItem.setStart(wrapResponse.bodyOffset() + regItem.start());
+                        issueItem.setEnd(wrapResponse.bodyOffset() + regItem.end());
+                        issueItem.setDetectIssue(result);
+                        issueList.add(issueItem);
+                    }
+                }
+                HttpRequestResponse applyMarks = applyMarkers(baseRequestResponse, issueList);
+                issues.add(makeScanIssue(applyMarks, issueList));
+                analyzedUrl.add(wrapRequest.pathWithoutQuery());
+            } else {
+                String body = wrapResponse.getBodyString(StandardCharsets.ISO_8859_1, false);
+                HtmlAnalyze htmlAnalyze = new HtmlAnalyze(body);
+                htmlAnalyze.analyze();
+                if (htmlAnalyze.getScriptList().isEmpty()) {
+                    issues.addAll(parseHttpResponse(baseRequestResponse));
+                } else {
+                    // scriptタグ内を解析
+                    List<ReDoSIssueItem> issueList = new ArrayList<>();
+                    List<CaptureItem> captureList = htmlAnalyze.getScriptList();
+                    for (CaptureItem captureItem : captureList) {
+                        jsAnalyze.analyze(captureItem.getCaptureValue());
                         List<RegExPattermItem> itemList = jsAnalyze.getRegExpList();
-                        List<ReDoSIssueItem> issueList = new ArrayList<>();
                         for (RegExPattermItem regItem : itemList) {
                             String regex = regItem.getRegExPattern();
                             String flags = regItem.getRegExFlag();
@@ -111,56 +163,19 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
                                 issueItem.setConfidence(Confidence.FIRM);
                                 issueItem.setCaptureValue(regItem.getCaptureValue());
                                 issueItem.setFlgags(flags);
-                                issueItem.setStart(wrapResponse.bodyOffset() + regItem.start());
-                                issueItem.setEnd(wrapResponse.bodyOffset() + regItem.end());
+                                issueItem.setStart(wrapResponse.bodyOffset() + captureItem.start() + regItem.start());
+                                issueItem.setEnd(wrapResponse.bodyOffset() + captureItem.start() + regItem.end());
                                 issueItem.setDetectIssue(result);
                                 issueList.add(issueItem);
                             }
                         }
-                        HttpRequestResponse applyMarks = applyMarkers(baseRequestResponse, issueList);
-                        issues.add(makeScanIssue(applyMarks, issueList));
-                        analyzedUrl.add(wrapRequest.pathWithoutQuery());
-                    } else {
-                        String body = wrapResponse.getBodyString(StandardCharsets.ISO_8859_1, false);
-                        HtmlAnalyze htmlAnalyze = new HtmlAnalyze(body);
-                        htmlAnalyze.analyze();
-                        if (htmlAnalyze.getScriptList().isEmpty()) {
-                            issues.addAll(parseHttpResponse(baseRequestResponse));
-                        } else {
-                            // scriptタグ内を解析
-                            List<ReDoSIssueItem> issueList = new ArrayList<>();
-                            List<CaptureItem> captureList = htmlAnalyze.getScriptList();
-                            for (CaptureItem captureItem : captureList) {
-                                jsAnalyze.analyze(captureItem.getCaptureValue());
-                                List<RegExPattermItem> itemList = jsAnalyze.getRegExpList();
-                                for (RegExPattermItem regItem : itemList) {
-                                    String regex = regItem.getRegExPattern();
-                                    String flags = regItem.getRegExFlag();
-                                    DetectIssue result = detect.scan(regex, flags, getOption());
-                                    if (result.getStatus() == ReDoSOption.StatusType.VULNERABLE) {
-                                        ReDoSIssueItem issueItem = new ReDoSIssueItem();
-                                        issueItem.setType(MatchPattern.Type.CLIENT_SIDE.toString());
-                                        issueItem.setMessageIsRequest(false);
-                                        issueItem.setServerity(Severity.LOW);
-                                        issueItem.setConfidence(Confidence.FIRM);
-                                        issueItem.setCaptureValue(regItem.getCaptureValue());
-                                        issueItem.setFlgags(flags);
-                                        issueItem.setStart(wrapResponse.bodyOffset() + captureItem.start() + regItem.start());
-                                        issueItem.setEnd(wrapResponse.bodyOffset() + captureItem.start() + regItem.end());
-                                        issueItem.setDetectIssue(result);
-                                        issueList.add(issueItem);
-                                    }
-                                }
-                            }
-                            HttpRequestResponse applyMarks = applyMarkers(baseRequestResponse, issueList);
-                            issues.add(makeScanIssue(applyMarks, issueList));
-                        }
                     }
+                    HttpRequestResponse applyMarks = applyMarkers(baseRequestResponse, issueList);
+                    issues.add(makeScanIssue(applyMarks, issueList));
                 }
-                return AuditResult.auditResult(issues);
             }
-        };
-
+        }
+        return AuditResult.auditResult(issues);
     }
 
     private List<AuditIssue> parseHttpResponse(HttpRequestResponse baseRequestResponse) {
@@ -328,11 +343,11 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
             detail.append(HttpUtil.toHtmlEncode(attackString.toString()));
             detail.append("</code></p>");
             // 攻撃文字列が長すぎる場合は表示しない
-            if (attackString.getAsUString().length() > 1024)  {
+            if (attackString.getAsUString().length() > 1024) {
                 detail.append("<p><code>");
                 detail.append(HttpUtil.toHtmlEncode(attackString.getAsUString()));
                 detail.append("</code></p>");
-           }
+            }
             detail.append("</ul>");
         }
         if (issue.getHotspot().isPresent()) {

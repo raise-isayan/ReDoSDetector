@@ -58,7 +58,7 @@ public class BurpExtension extends BurpExtensionImpl implements HttpHandler, Ext
                 tab.getUiComponent().addPropertyChangeListener(config.getSettingName(), newPropertyChangeListener());
             }
         }
-        api().scanner().registerScanCheck(this.signature.getSignatureScan().passiveScanCheck());
+        api().scanner().registerScanCheck(this.signature.getSignatureScan().scannerScanCheck());
         api.http().registerHttpHandler(this);
         api.extension().registerUnloadingHandler(this);
         this.tabReDoSDetector.addPropertyChangeListener(newPropertyChangeListener());
@@ -110,7 +110,7 @@ public class BurpExtension extends BurpExtensionImpl implements HttpHandler, Ext
         ToolSource toolSource = responseReceived.toolSource();
         if (toolSource.isFromTool(ToolType.REPEATER)) {
 //            api().siteMap().add(HttpRequestResponse.httpRequestResponse(responseReceived.initiatingRequest(), responseReceived));
-            ScanCheck scan = this.signature.getSignatureScan().passiveScanCheck();
+            ScanCheck scan = this.signature.getSignatureScan().scannerScanCheck();
             AuditResult audit = scan.passiveAudit(HttpRequestResponse.httpRequestResponse(responseReceived.initiatingRequest(), responseReceived));
             BurpExtension.helpers().outPrintln("issue:" + responseReceived.initiatingRequest().url() + "." + audit.auditIssues().size());
             for (AuditIssue auditIssue : audit.auditIssues()) {
