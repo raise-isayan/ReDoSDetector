@@ -1,0 +1,84 @@
+package passive.ast;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import extension.helpers.FileUtil;
+import extension.helpers.StringUtil;
+import extension.view.base.CaptureItem;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+/**
+ *
+ * @author isayan
+ */
+public class HtmlPatternAnalyzeTest {
+
+    private final static Logger logger = Logger.getLogger(HtmlPatternAnalyzeTest.class.getName());
+
+    public HtmlPatternAnalyzeTest() {
+    }
+
+    @BeforeAll
+    public static void setUpClass() {
+    }
+
+    @AfterAll
+    public static void tearDownClass() {
+    }
+
+    @BeforeEach
+    public void setUp() {
+    }
+
+    @AfterEach
+    public void tearDown() {
+    }
+
+    @Test
+    public void testHtmlAnalyzeJavascript() {
+        System.out.println("testHtmlAnalyzeJavascript");
+        try {
+            InputStream htmlStream = HtmlPatternAnalyzeTest.class.getResourceAsStream("/resources/script.html");
+            String input = StringUtil.getStringCharset(FileUtil.readAllBytes(htmlStream), StandardCharsets.UTF_8);
+            HtmlPatternAnalyze analyze = new HtmlPatternAnalyze(input);
+            analyze.analyze();
+            List<CaptureItem> scriptList = analyze.getScriptList();
+            for (CaptureItem item : scriptList) {
+                System.out.println("capture:" + item.getCaptureValue());
+                System.out.println("start:" + item.start());
+                System.out.println("end:" + item.end());
+            }
+        } catch (IOException ex) {
+            fail(ex);
+        }
+    }
+
+    @Test
+    public void testHtmlAnalyzeComment() {
+        System.out.println("testHtmlAnalyzeComment");
+        try {
+            InputStream htmlStream = HtmlPatternAnalyzeTest.class.getResourceAsStream("/resources/script.html");
+            String input = StringUtil.getStringCharset(FileUtil.readAllBytes(htmlStream), StandardCharsets.UTF_8);
+            HtmlPatternAnalyze analyze = new HtmlPatternAnalyze(input);
+            analyze.analyze();
+            List<CaptureItem> commentList = analyze.getCommentList();
+            for (CaptureItem item : commentList) {
+                System.out.println("capture:" + item.getCaptureValue());
+                System.out.println("start:" + item.start());
+                System.out.println("end:" + item.end());
+            }
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+    }
+
+}

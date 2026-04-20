@@ -38,6 +38,7 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import passive.ast.HtmlAnalyze;
+import passive.ast.HtmlPatternAnalyze;
 import passive.ast.JavaScriptAnalyze;
 import redoscheckr.AttackString;
 import redoscheckr.DetectIssue;
@@ -147,8 +148,32 @@ public class ReDoSScan extends SignatureScanBase<ReDoSIssueItem> implements IBur
                 } else {
                     // scriptタグ内を解析
                     List<ReDoSIssueItem> issueList = new ArrayList<>();
-                    List<CaptureItem> captureList = htmlAnalyze.getScriptList();
-                    for (CaptureItem captureItem : captureList) {
+                    List<CaptureItem> scriptList = htmlAnalyze.getScriptList();
+                    for (CaptureItem captureItem : scriptList) {
+                        jsAnalyze.analyze(captureItem.getCaptureValue());
+                        List<RegExPattermItem> itemList = jsAnalyze.getRegExpList();
+                        for (RegExPattermItem regItem : itemList) {
+                            String regex = regItem.getRegExPattern();
+                            String flags = regItem.getRegExFlag();
+                            DetectIssue result = detect.scan(regex, flags, getOption());
+                            if (result.getStatus() == ReDoSOption.StatusType.VULNERABLE) {
+                                ReDoSIssueItem issueItem = new ReDoSIssueItem();
+                                issueItem.setType(MatchPattern.Type.CLIENT_SIDE.toString());
+                                issueItem.setMessageIsRequest(false);
+                                issueItem.setServerity(Severity.LOW);
+                                issueItem.setConfidence(Confidence.FIRM);
+                                issueItem.setCaptureValue(regItem.getCaptureValue());
+                                issueItem.setFlgags(flags);
+                                issueItem.setStart(wrapResponse.bodyOffset() + captureItem.start() + regItem.start());
+                                issueItem.setEnd(wrapResponse.bodyOffset() + captureItem.start() + regItem.end());
+                                issueItem.setDetectIssue(result);
+                                issueList.add(issueItem);
+                            }
+                        }
+                    }
+                    // input pattern を解析
+                    List<CaptureItem> patternList = htmlAnalyze.getInputPatternList();
+                    for (CaptureItem captureItem : patternList) {
                         jsAnalyze.analyze(captureItem.getCaptureValue());
                         List<RegExPattermItem> itemList = jsAnalyze.getRegExpList();
                         for (RegExPattermItem regItem : itemList) {

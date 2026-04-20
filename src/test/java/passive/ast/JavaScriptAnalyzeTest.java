@@ -148,7 +148,7 @@ public class JavaScriptAnalyzeTest {
         try {
             InputStream regexStream = JavaScriptAnalyzeTest.class.getResourceAsStream("/resources/script.html");
             String input = StringUtil.getStringCharset(FileUtil.readAllBytes(regexStream), StandardCharsets.ISO_8859_1);
-            HtmlAnalyze htmlAnalyze = new HtmlAnalyze(input);
+            HtmlPatternAnalyze htmlAnalyze = new HtmlPatternAnalyze(input);
             htmlAnalyze.analyze();
             List<CaptureItem> htmlList = htmlAnalyze.getScriptList();
             JavaScriptAnalyze jsAnalyze = new JavaScriptAnalyze(EnumSet.allOf(AnalyzeOption.class));

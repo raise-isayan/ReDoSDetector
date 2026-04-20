@@ -1,20 +1,10 @@
 package passive.signature;
 
 import extension.helpers.StringUtil;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Toolkit;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.EnumSet;
-import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.WindowConstants;
 import redoscheckr.DetectIssue;
 import redoscheckr.ReDoSOption;
 import redoscheckr.ReDosDetector;
@@ -800,37 +790,9 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
         this.spnTimeout.setValue(option.getTimeout());
     }
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(MainPanel::createAndShowGui);
-    }
+//    public static void main(String[] args) {
+//        EventQueue.invokeLater(MainPanel::createAndShowGui);
+//    }
 
-    final static class MainPanel extends JPanel {
-
-        private MainPanel() {
-            super(new BorderLayout());
-            ReDoSDetectorTab redosTab = new ReDoSDetectorTab();
-            ReDoSOption option = new ReDoSOption();
-            redosTab.setOption(option);
-            this.add(redosTab, BorderLayout.CENTER);
-            setPreferredSize(new Dimension(800, 800));
-        }
-
-        private static void createAndShowGui() {
-            try {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } catch (UnsupportedLookAndFeelException ignored) {
-                Toolkit.getDefaultToolkit().beep();
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-                logger.log(Level.SEVERE, ex.getMessage(), ex);
-                return;
-            }
-            JFrame frame = new JFrame("ReDoS");
-            frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            frame.getContentPane().add(new MainPanel());
-            frame.pack();
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-        }
-    }
 
 }

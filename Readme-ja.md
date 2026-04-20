@@ -41,7 +41,7 @@ Burp SuiteにReDoSDetectorタブが追加されます。
 
 ![ReDoSDetector Tab Scan](/image/ReDoSDetectorTab-Scan.png)
 
-#### Advance
+#### Advance option タブ
 
 ReDoSのスキャンオプションを指定します。
 
@@ -56,7 +56,7 @@ ReDoSのスキャンオプションを指定します。
 Burp Suite不要のスタンドアローンで起動するGUIモードが存在します。
 
 ````
-java -jar ReDoSDetector.jar
+java -jar ReDoSDetector.jar -gui
 ````
 
 ## ビルド

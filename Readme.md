@@ -56,7 +56,7 @@ For more information on scanning options, see below.
 There is a GUI mode that runs standalone without Burp Suite.
 
 ````
-java -jar ReDoSDetector.jar
+java -jar ReDoSDetector.jar -gui
 ````
 
 ## build

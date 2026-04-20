@@ -34,7 +34,7 @@ clean.doFirst {
 
 application {
     // Define the main class for the application.
-    mainClass = 'passive.signature.ReDoSDetectorTab'
+    mainClass = 'redoscheckr.ReDosDetector'
 }
 
 processResources {
@@ -80,7 +80,7 @@ dependencies {
 //    implementation 'org.antlr:antlr4-runtime:4.13.2'
 
     // https://mvnrepository.com/artifact/org.jsoup/jsoup
-//    implementation 'org.jsoup:jsoup:1.21.2'
+    implementation 'org.jsoup:jsoup:1.21.2'
 
     // Use JUnit Jupiter for testing.
     // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
