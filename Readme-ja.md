@@ -51,7 +51,13 @@ ReDoSのスキャンオプションを指定します。
 
 * https://makenowjust-labs.github.io/recheck/docs/usage/parameters/
 
-## GUIオプション
+## CLI オプション
+
+````
+java -jar ReDoSDetector.jar -regex <pattern> [-flag <flag>] [--option <scan-option.json>]
+````
+
+## GUI オプション
 
 Burp Suite不要のスタンドアローンで起動するGUIモードが存在します。
 

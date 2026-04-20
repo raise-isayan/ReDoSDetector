@@ -11,6 +11,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Optional;
 import javax.swing.JFrame;
@@ -77,6 +79,8 @@ public class ReDosDetector {
         try {
             String regex_value = null;
             String flag_value = null;
+            String option_setting = null;
+            String option_store = null;
             for (int i = 0; i < args.length; i += 2) {
                 String[] param = Arrays.copyOfRange(args, i, args.length);
                 if (param.length > 1) {
@@ -85,6 +89,12 @@ public class ReDosDetector {
                     }
                     if ("-flag".equals(param[0])) {
                         flag_value = param[1];
+                    }
+                    if ("-option".equals(param[0])) {
+                        option_setting = param[1];
+                    }
+                    if ("-store-option".equals(param[0])) {
+                        option_store = param[1];
                     }
                 } else if (param.length > 0) {
                     if ("-v".equals(param[0])) {
@@ -103,6 +113,14 @@ public class ReDosDetector {
                 }
             }
 
+            // option
+            ReDoSOption option = new ReDoSOption();
+            if (option_store != null) {
+                File file = new File(option_store);
+                JsonUtil.saveToJson(file, option, true);
+                System.exit(0);
+            }
+
             // 必須チェック
             if (regex_value == null) {
                 System.out.println("-regex argument err ");
@@ -113,12 +131,16 @@ public class ReDosDetector {
             if (flag_value == null) {
                 flag_value = "";
             }
+            if (option_setting != null) {
+                File file = new File(option_setting);
+                option = JsonUtil.loadFromJson(file, ReDoSOption.class, true);
+            }
 
-            ReDosDetector detect = new ReDosDetector();
-            DetectIssue issue = detect.scan(regex_value, flag_value);
+            final ReDosDetector detect = new ReDosDetector();
+            DetectIssue issue = detect.scan(regex_value, flag_value, option);
             JsonObject json = toJson(issue);
             System.out.println(JsonUtil.prettyJson(json, false));
-        } catch (Exception ex) {
+        } catch (IOException | IllegalArgumentException ex) {
             String errmsg = String.format("%s: %s", ex.getClass().getName(), ex.getMessage());
             System.out.println(errmsg);
             usage();
@@ -150,11 +172,12 @@ public class ReDosDetector {
     private static void usage() {
         final String projname = BUNDLE.getString("projname");
         System.out.println("Usage:");
-        System.out.println(String.format("\tjava -jar %s.jar -regex <pattern> -flag <flag> ", projname));
+        System.out.println(String.format("\tjava -jar %s.jar -regex <pattern> [-flag <flag>] [--option <scan-option.json>] ", projname));
         System.out.println("Opton:");
-        System.out.println("\t-gui GUI Interface");
-        System.out.println("\t-v version");
-        System.out.println("\t-h help");
+        System.out.println("\t-gui - GUI Interface");
+        System.out.println("\t-store-option");
+        System.out.println("\t-v - version");
+        System.out.println("\t-h - help");
     }
 
     public static String getProjectName() {

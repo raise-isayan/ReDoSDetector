@@ -51,6 +51,12 @@ For more information on scanning options, see below.
 
 * https://makenowjust-labs.github.io/recheck/docs/usage/parameters/
 
+## CLI Option
+
+````
+java -jar ReDoSDetector.jar -regex <pattern> [-flag <flag>] [--option <scan-option.json>]
+````
+
 ## GUI Option
 
 There is a GUI mode that runs standalone without Burp Suite.
