@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import extension.helpers.FileUtil;
 import extension.helpers.StringUtil;
 import extension.view.base.CaptureItem;
+import extension.view.base.RegExPattermItem;
 import java.nio.charset.StandardCharsets;
 import java.util.EnumSet;
 import java.util.logging.Level;
@@ -18,7 +19,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import passive.ast.JavaScriptAnalyze.AnalyzeOption;
-import passive.signature.RegExPattermItem;
 
 /**
  *

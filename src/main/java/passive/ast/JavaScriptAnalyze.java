@@ -1,6 +1,7 @@
 package passive.ast;
 
 import extension.view.base.CaptureItem;
+import extension.view.base.RegExPattermItem;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -18,7 +19,6 @@ import org.mozilla.javascript.ast.NodeVisitor;
 import org.mozilla.javascript.ast.RegExpLiteral;
 import org.mozilla.javascript.ast.StringLiteral;
 import org.mozilla.javascript.ast.VariableInitializer;
-import passive.signature.RegExPattermItem;
 
 /**
  *
@@ -174,7 +174,6 @@ public class JavaScriptAnalyze {
             root.visit(new RegExpVisitor(script));
         }
     }
-
 
     public void clearAll() {
         this.commentList.clear();

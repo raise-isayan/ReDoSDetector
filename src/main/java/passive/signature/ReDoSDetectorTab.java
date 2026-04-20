@@ -790,9 +790,4 @@ public class ReDoSDetectorTab extends javax.swing.JPanel {
         this.spnTimeout.setValue(option.getTimeout());
     }
 
-//    public static void main(String[] args) {
-//        EventQueue.invokeLater(MainPanel::createAndShowGui);
-//    }
-
-
 }

@@ -25,6 +25,7 @@ import extension.helpers.HttpResponseWapper;
 import extension.helpers.HttpUtil;
 import extension.helpers.json.JsonUtil;
 import extension.view.base.CaptureItem;
+import extension.view.base.RegExPattermItem;
 import java.awt.Component;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
