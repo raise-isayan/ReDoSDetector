@@ -25,6 +25,7 @@ import passive.OptionProperty;
 import passive.signature.ReDoSScan;
 import passive.signature.ReDoSSignature;
 import passive.signature.ReDoSDetectorTab;
+import redoscheckr.ReDosDetector;
 
 /**
  *
@@ -43,7 +44,7 @@ public class BurpExtension extends BurpExtensionImpl implements HttpHandler, Ext
     @Override
     public void initialize(MontoyaApi api) {
         super.initialize(api);
-        api().extension().setName(BUNDLE.getString("projname"));
+        api().extension().setName(ReDosDetector.getProjectName());
         IBurpTab tab = this.signature.getBurpTab();
         if (tab != null) {
             api().userInterface().registerSuiteTab(tab.getTabCaption(), tab.getUiComponent());

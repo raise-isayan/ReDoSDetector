@@ -25,9 +25,9 @@ Please use the following versions
 
 ## How to Use
 
-The Burp Suite Extender can be loaded by following the steps below.
+The Burp Suite Extension can be loaded by following the steps below.
 
-1. Click [add] on the [Extender] tab
+1. Click [add] on the [Extensions] tab
 2. Click [Select file ...] and select ReDoSDetector.jar
 3. Click [Next], confirm that no error is occurring, and close the dialog with [Close].
 
@@ -74,14 +74,14 @@ gradlew release
 ## Runtime environment
 
 .Java
-* JRE (JDK) 17 (Open JDK is recommended) (https://openjdk.java.net/)
+* JRE (JDK) 21 (Open JDK is recommended) (https://openjdk.java.net/)
 
 .Burp suite
 * v2024.2.1.3 or higher (http://www.portswigger.net/burp/)
 
 ## Development environment
-* NetBean 24 (https://netbeans.apache.org/)
-* Gradle 7.6 (https://gradle.org/)
+* NetBean 30 (https://netbeans.apache.org/)
+* Gradle 9.6,1 (https://gradle.org/)
 
 ## Use Library
 Building requires a [BurpExtensionCommons](https://github.com/raise-isayan/BurpExtensionCommons) library.

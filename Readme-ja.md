@@ -25,9 +25,9 @@ ReDoS判定のライブラリに"https://makenowjust-labs.github.io/recheck/"を
 
 ## 利用方法
 
-Burp suite の Extender は以下の手順で読み込めます。
+Burp suite の Extension は以下の手順で読み込めます。
 
-1. [Extender]タブの[add]をクリック
+1. [Extensions]タブの[add]をクリック
 2. [Select file ...]をクリックし、ReDoSDetector.jar を選択する。
 3. ｢Next｣をクリックし、エラーがでてないことを確認後、「Close」にてダイヤログを閉じる。
 
@@ -74,14 +74,14 @@ gradlew release
 ## 実行環境
 
 .Java
-* JRE (JDK) 17 (Open JDK is recommended) (https://openjdk.java.net/)
+* JRE (JDK) 21 (Open JDK is recommended) (https://openjdk.java.net/)
 
 .Burp suite
 * v2024.2.1.3 or higher (http://www.portswigger.net/burp/)
 
 ## 開発環境
-* NetBean 24 (https://netbeans.apache.org/)
-* Gradle 7.6 (https://gradle.org/)
+* NetBean 30 (https://netbeans.apache.org/)
+* Gradle 9.5.1 (https://gradle.org/)
 
 ## 必須ライブラリ
 ビルドには別途 [BurpExtensionCommons](https://github.com/raise-isayan/BurpExtensionCommons) のライブラリを必要とします。
