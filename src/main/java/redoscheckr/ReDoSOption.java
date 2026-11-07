@@ -56,9 +56,9 @@ public class ReDoSOption {
     }
 
     public enum AccelerationModeType {
-        AUTO(codes.quine.labs.recheck.common.AccelerationMode.Auto$.MODULE$),
-        ON(codes.quine.labs.recheck.common.AccelerationMode.On$.MODULE$),
-        OFF(codes.quine.labs.recheck.common.AccelerationMode.Off$.MODULE$);
+        AUTO(codes.quine.labs.recheck.common.AccelerationMode$.Auto),
+        ON(codes.quine.labs.recheck.common.AccelerationMode$.On),
+        OFF(codes.quine.labs.recheck.common.AccelerationMode$.Off);
 
         private final codes.quine.labs.recheck.common.AccelerationMode scalar;
 
@@ -77,9 +77,9 @@ public class ReDoSOption {
     };
 
     public enum CheckerType {
-        AUTO(codes.quine.labs.recheck.common.Checker.Auto$.MODULE$),
-        FUZZ(codes.quine.labs.recheck.common.Checker.Fuzz$.MODULE$),
-        AUTOMATON(codes.quine.labs.recheck.common.Checker.Automaton$.MODULE$),
+        AUTO(codes.quine.labs.recheck.common.Checker$.Auto),
+        FUZZ(codes.quine.labs.recheck.common.Checker$.Fuzz),
+        AUTOMATON(codes.quine.labs.recheck.common.Checker$.Automaton),
         NONE(null);
 
         private final codes.quine.labs.recheck.common.Checker scalar;
@@ -109,8 +109,8 @@ public class ReDoSOption {
     }
 
     public enum SeederType {
-        STATIC(codes.quine.labs.recheck.common.Seeder.Static$.MODULE$),
-        DYNAMIC(codes.quine.labs.recheck.common.Seeder.Dynamic$.MODULE$);
+        STATIC(codes.quine.labs.recheck.common.Seeder$.Static),
+        DYNAMIC(codes.quine.labs.recheck.common.Seeder$.Dynamic);
 
         private final codes.quine.labs.recheck.common.Seeder scalar;
 

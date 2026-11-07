@@ -25,10 +25,10 @@ public class AttackString {
 
     public List<Pumps> getPumpList() {
         List<Pumps> pumps = new ArrayList<>();
-        Seq<scala.Tuple3<codes.quine.labs.recheck.unicode.UString, codes.quine.labs.recheck.unicode.UString, Object>> seq = this.scala.pumps();
-        for (Iterator<scala.Tuple3<codes.quine.labs.recheck.unicode.UString, codes.quine.labs.recheck.unicode.UString, Object>> ite = seq.iterator(); ite.hasNext();) {
-            scala.Tuple3<UString, UString, Object> tuple = ite.next();
-            pumps.add(new Pumps(tuple._1().asString(), tuple._2().asString(), (int) tuple._3()));
+        Seq<scala.Tuple3<codes.quine.labs.recheck.unicode.UString, codes.quine.labs.recheck.unicode.UString, Integer>> seq = this.scala.pumps();
+        for (Iterator<scala.Tuple3<codes.quine.labs.recheck.unicode.UString, codes.quine.labs.recheck.unicode.UString, Integer>> ite = seq.iterator(); ite.hasNext();) {
+            scala.Tuple3<UString, UString, Integer> tuple = ite.next();
+            pumps.add(new Pumps(tuple._1().asString(), tuple._2().asString(), tuple._3()));
         }
         return pumps;
     }
